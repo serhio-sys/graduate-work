@@ -1,0 +1,35 @@
+{% extends "game/base.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block head_title %}{% trans "Class" %}{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/game/select_class.css' %}">
+{% endblock %}
+
+{% block main %}
+<div class="w-100 p-3 position-absolute top-50 start-50 translate-middle">
+    <div class="p-3 rounded" style="width:100%; background: rgba(0,0,0,0.2); box-shadow: 0px 0px 20px white">
+        <div class="row">
+            <div><h1 class="text-light text-center">{% trans "Оберіть ваш ігровий клас" %}</h1></div>
+            <div class="d-flex justify-content-around mt-4">
+                {% for clas in classes %}
+                    <form method="post" action="{% url 'select_class' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="role" value="{{clas.name}}"/>
+                        <button type="submit" class="role d-flex flex-column text-light">
+                            <div class="p-2 w-100 d-flex justify-content-center"><img src="{{ clas.img }}" width="200px" height="300px"/></div>
+                            <div class="text-center w-100 mt-4"><h2>{{clas.visual_name}}</h2></div>
+                            <div class="role_description">
+                                {{clas.desc}}
+                            </div>
+                        </button>
+                    </form>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

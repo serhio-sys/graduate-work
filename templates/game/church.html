@@ -1,0 +1,28 @@
+{% extends "game/main.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_title %}{% trans "Church Location" %}{% endblock %}
+{% block map %}
+<div class="navigation">
+    <div class="map">
+        <img src="{% static 'img/locations/church_loc.jpg' %}" class="image_map"/>
+    </div>
+    <div class="d-flex gap-4 mt-3 justify-content-center">
+        <a class="btn btn-warning" href="{% url 'city_loc' %}">{% trans "Вийти з церкви" %}</a>
+    </div>
+</div>
+{% endblock %}
+{% block location %}
+<div class="location_name d-flex flex-column justify-content-start align-items-center h-100">
+    {% trans "Ви зараз знаходитесь у церкві."%}
+</div>
+{% endblock %}
+{% block low %}
+<div class="w-100 h-100 d-flex flex-column align-items-center">
+    <h3>{% trans "Ціна пожертвування (10$)" %}</h3>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-outline-light">{% trans "Зробити пожертвування" %}</button>
+    </form>
+</div>
+{% endblock %}

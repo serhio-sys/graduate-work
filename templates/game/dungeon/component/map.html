@@ -1,0 +1,61 @@
+{% load static %}
+{% load i18n %}
+<div class="micro_map">
+    {% for row in map %}
+    <div class="d-flex">
+        {% for cell in row %}
+            {% if cell.pos == 1 %}
+                <img src="{% static 'img/map/empty_loc.png' %}" width="40px" height="40px" />
+            {% elif cell.pos == 6 %}
+                <img src="{% static 'img/map/you.png' %}" width="40px" height="40px" />
+            {% elif cell.pos == 2 %}
+                <img src="{% static 'img/map/leave.png' %}" width="40px" height="40px" />
+            {% elif cell.pos == 3 %}
+                <img src="{% static 'img/map/treasure.png' %}" width="40px" height="40px" />
+            {% elif cell.pos == 4 %}
+                <img src="{% static 'img/map/fight.png' %}" width="40px" height="40px" />
+            {% elif cell.pos == 5 %}
+                <img src="{% static 'img/map/boss.png' %}" width="40px" height="40px" />
+            {% else %}
+                <img src="{% static 'img/map/empty.png' %}" width="40px" height="40px" />
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endfor %}
+</div>
+<div class="navigation">
+    <div class="map">
+        <img src="{{ img }}" class="image_map"/>
+    </div>
+    <div class="mt-3">
+        {% if a %}
+        <a href="{{a}}" class="btn btn-warning btn-sm">v</a>
+        {% else %}
+        <a class="disable btn btn-outline-dark btn-sm">v</a>
+        {% endif %}
+        {% if r %}
+        <a href="{{r}}" class="btn btn-warning btn-sm"><</a>
+        {% else %}
+        <a class="disable btn btn-outline-dark btn-sm"><</a>
+        {% endif %}
+        {% if l %}
+        <a href="{{l}}" class="btn btn-warning btn-sm">></a>
+        {% else %}
+        <a class="disable btn btn-outline-dark btn-sm">></a>
+        {% endif %}    
+        {% if b %}
+        <a href="{{b}}" class="btn btn-warning btn-sm">^</a>
+        {% else %}
+        <a class="disable btn btn-outline-dark btn-sm">^</a>
+        {% endif %}
+    </div>
+    {% if can_leave and user.current_dungeon == 1 %}
+        <div class="d-flex gap-4 mt-3">
+            <a class="btn btn-outline-light btn-sm" href="{% url 'dungeon_loc' %}">{% trans "Покинути підземілля" %}</a>
+        </div>
+    {% elif can_leave and user.current_dungeon > 1 %}
+        <div class="d-flex gap-4 mt-3">
+            <a class="btn btn-outline-light btn-sm" href="{% url 'change_dungeon' request.resolver_match.url_name %}">{% trans "Спуститися на рівень нижче" %}</a>
+        </div>
+    {% endif %}
+</div>  

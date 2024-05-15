@@ -1,0 +1,23 @@
+{% extends "game/main.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_title %}{% trans "Tavern Location" %}{% endblock %}
+
+{% block map %}
+<div class="navigation">
+    <div class="map">
+        <img src="{% static 'img/locations/tavern_loc.jpg' %}" class="image_map"/>
+    </div>
+    <div class="d-flex gap-4 mt-3">
+        <a class="btn btn-warning" href="{% url 'outskirts_loc' %}">{% trans "Покинути таверну"%}</a>
+    </div>
+</div>
+{% endblock %}
+{% block location %}
+<div class="location_name d-flex flex-column justify-content-start align-items-center h-100">
+    {% trans "Локація: Таверна"%}
+</div>
+{% endblock %}
+{% block low %}
+<div><a href="">{% trans "" %}</a></div>
+{% endblock %}

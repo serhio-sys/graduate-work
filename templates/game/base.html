@@ -1,0 +1,61 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block head_title %}{% trans "Boycovskiy Club" %}{% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'img/logo.ico' %}" type="image/x-icon">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/game/base.css' %}">
+    {% block styles %}
+    {% endblock styles %}
+  </head>
+  <body id="google_translate_element" style="min-width: 1200px;">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand d-flex align-items-center gap-3" href="{% url 'home' %}">
+            {% trans "Бійцівський Клуб" %}
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDark" aria-controls="navbarDark" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarDark">
+            <ul class="navbar-nav ms-auto me-auto mb-xl-0">
+                <li class="nav-item dropdown">
+                    <a class="btn btn-info btn-sm me-1" href="{% url 'abilities' %}?name={{request.resolver_match.url_name}}">{% trans "Навички" %}</a>
+                    <a class="btn btn-info btn-sm me-5" href="{% url 'inventory' request.resolver_match.url_name %}">{% trans "Інвентар" %}</a>
+                    <a href="{% url 'back_to_main' request.resolver_match.url_name %}" class="btn btn-outline-light btn-sm">Повернутися на головну</a>
+                </li>
+            </ul>
+            <form method="post" action="{% url 'locale' request.resolver_match.url_name %}" class="locale-form me-4">{% csrf_token %}{{locale_form}}</form>
+          </div>
+        </div>
+    </nav>
+    <main class="main">
+        {% block main %}
+        {% endblock main %}
+    </main>
+  <script>
+    document.querySelector('main').style.minHeight = `calc(100vh - ${document.querySelector('.navbar').offsetHeight}px)`;
+    document.querySelector(".locale").addEventListener("change", () => {
+      document.querySelector(".locale-form").submit();
+    })
+    var lang = "{{request.session.lang}}"
+    if (lang === "") {
+      lang = "uk"
+    }
+    document.querySelectorAll("option").forEach(it => {
+        if (it.value == lang){
+            it.setAttribute("selected", "selected");
+        }
+    })
+  </script>
+    {% block script %}
+    <script src="{% static 'js/ajax.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    {% endblock script %}
+  </body>
+</html>

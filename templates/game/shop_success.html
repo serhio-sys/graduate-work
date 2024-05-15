@@ -1,0 +1,16 @@
+{% extends "game/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Success" %}{% endblock %}
+
+{% block main %}
+<div class="p-3 position-absolute top-50 start-50 translate-middle">
+    <div class="d-flex flex-column">
+        <h2>
+            {% trans "Успішна покупка. Тепер це знарядження є у вашому інвентарі." %}
+        </h2>
+        <a href="{% url 'shop_loc' %}" class="mt-2 btn btn-warning">{% trans "Повернутися до магазину." %}</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+[
+    {
+        "model": "game.DungeonLvl",
+        "fields": {
+            "lvl": 1,
+            "min_treasure": 10,
+            "max_treasure": 50,
+            "unlock_lvl": 9
+        }
+    },
+    {
+        "model": "game.DungeonLvl",
+        "fields": {
+            "lvl": 2,
+            "map": "maps/map2.json",
+            "min_treasure": 40,
+            "max_treasure": 100,
+            "unlock_lvl": 18
+        }
+    },
+    {
+        "model": "game.DungeonLvl",
+        "fields": {
+            "lvl": 3,
+            "map": "maps/map3.json",
+            "min_treasure": 60,
+            "max_treasure": 290,
+            "unlock_lvl": 28
+        }
+    },
+    {
+        "model": "game.DungeonLvl",
+        "fields": {
+            "lvl": 4,
+            "map": "maps/map4.json",
+            "min_treasure": 80,
+            "max_treasure": 340,
+            "unlock_lvl": 39
+        }
+    },
+    {
+        "model": "game.DungeonLvl",
+        "fields": {
+            "lvl": 5,
+            "map": "maps/map5.json",
+            "min_treasure": 100,
+            "max_treasure": 500,
+            "unlock_lvl": 50
+        }
+    }
+]

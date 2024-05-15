@@ -1,0 +1,40 @@
+{% extends "game/main.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_title %}{% trans "Instruction" %}{% endblock %}
+{% block map %}
+<div class="micro_map d-flex flex-column gap-3 p-1" style="width: 550px;">
+    <h2 class="text-center">
+        {{text.head}}
+    </h2>
+    <div>
+        {{text.desc|safe}}
+    </div>
+</div>
+<div class="navigation">
+    <div class="map">
+        {% if text.img %}
+            <a href="{% static 'img/tutorial' %}/{{text.img}}"><img src="{% static 'img/tutorial' %}/{{text.img}}" class="image_map" style="object-fit:contain; object-position: center;"/></a>
+        {% else %}
+            <img src="{% static 'img/locations/tavern_loc.jpg' %}" class="image_map"/>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+{% block location %}
+<div class="location_name d-flex flex-column justify-content-start align-items-center h-100">
+    {% trans "Навчання."%}
+</div>
+{% endblock %}
+{% block low %}
+<div class="w-100 h-100 d-flex flex-column align-items-center">
+    <div class="d-flex gap-4 mt-3 justify-content-center">
+        {% if prev is not None %}
+            <a class="btn btn-warning" href="{{prev}}">{% trans "Повернутися назад" %}</a>
+        {% endif %}
+        {% if next is not None %}
+            <a class="btn btn-warning" href="{{next}}">{% trans "Наступний крок" %}</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

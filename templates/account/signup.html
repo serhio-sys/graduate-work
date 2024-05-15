@@ -1,0 +1,38 @@
+{% extends "home.html" %}
+
+{% load i18n %}
+
+{% load crispy_forms_filters %}
+
+{% block head_title %}{% trans "Реєстрація" %}{% endblock %}
+
+{% block main %}
+<div class="w-100 p-3 d-flex flex-direction-column align-items-center justify-content-center">
+    <div class="p-3 rounded bg-dark" style="max-width:1200px; width: 100%;">
+        <div class="text-center">
+            <h1>{% trans "Реєстрація" %}</h1>
+            <p>{% blocktrans %}Вже маєте акаунт? Тоді залогуйтесь <a href="{{ login_url }}">залогуватися</a>.{% endblocktrans %}</p>
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form class="signup" id="signup_form" method="post" enctype="multipart/form-data" action="{% url 'account_signup' %}">
+                {% csrf_token %}
+                {{ form|crispy }}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <div class="d-grid mt-3">
+                    <button class="btn btn-light btn-lg" type="submit">{% trans "Зареєструватися" %}</button>
+                </div>     
+                </form>
+                <form method="POST" action="/accounts/google/login/?process=login">
+                    {% csrf_token %}
+                    <button type="submit" class="socialaccount_providers empty-btn p-1">
+                        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                    </button> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

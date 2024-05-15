@@ -1,0 +1,21 @@
+{% extends "game/main.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_title %}{% trans "Dungeon" %}{% endblock %}
+{% block map %}
+{% include "game/dungeon/component/map.html" %}
+{% endblock map %}
+{% block location %}
+<div class="d-flex justify-content-start align-items-center">
+</div>
+<div class="location_name d-flex flex-column justify-content-start align-items-center h-100">
+    {% trans "Рівень підземелля | " %}{{user.current_dungeon}}
+</div>
+{% endblock %}
+{% block low %}
+<div class="w-100 h-100 d-flex flex-column align-items-center">
+    <h3>{% trans "Ви перемогли головного командувача. І тепер можете перейти на новий рівень." %}</h3>
+    <p>{% trans "При переході на новий рівень вам для виходу з підземілля вам потрібно буде повертатися на самий перший рівень." %}</p>
+    <a class="btn btn-outline-light" href="{% url 'change_dungeon' request.resolver_match.url_name %}">{% trans "Перейти" %}</a>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% load static %}
+{% load i18n %}
+
+<div class="hero d-flex flex-row-reverse gap-2">
+    <div class="d-flex flex-column align-items-end">
+        <div class="hero_health and name">
+            <div>
+                {{enemy.name}} [{{enemy.lvl}}]
+            </div>
+        </div>
+        <div class="mt-1 hero_img_block">
+            <img src="{{ enemy.get_img_url }}" class="hero_img"/>
+            <div class="hero_stats">
+                <div>{% trans "Характеристики" %}</div>
+                {% with enemy.get_summary_damage as dmg %}
+                <div class="mt-2">{% trans "Атака: " %} {{dmg.total}} ({{dmg.hero}}+{{dmg.bonus}})</div>
+                {% endwith %}
+                <div>{% trans "Захист: " %} {{enemy.return_all_armor}} ({{enemy.defence}}{% if enemy.armor_equiped is not None %}+{{enemy.armor_equiped.armor_value}}{% endif %})</div>
+                {% with enemy_effects as stats %}
+                <div class="str_enemy">{% trans "Сила: " %} {{stats.str.total}} ({{stats.str.hero}}{% if stats.str.sum >= 0 %}+{{stats.str.sum}}{% else %}{{stats.str.sum}}{% endif %})</div>
+                <div class="ag_enemy">{% trans "Спритність: " %} {{stats.ag.total}} ({{stats.ag.hero}}{% if stats.ag.sum >= 0 %}+{{stats.ag.sum}}{% else %}{{stats.ag.sum}}{% endif %})</div>
+            </div>
+        </div>
+        <div class="hero_health w-100">
+            <div class="progress mt-2 position-relative" style="height: 15px;">
+                <div class="progress-bar bg-danger" role="progressbar" style="width: {{enemy.get_current_hp}}%;" aria-valuenow="{{enemy.get_current_hp}}" aria-valuemin="0" aria-valuemax="{{enemy.get_max_hp}}"></div>
+                <span class="progress-bar-text enemy_hp">{% trans "здоров'я:" %}{{enemy.get_current_hp}}</span>
+            </div>
+        </div>
+        <div class="effects mt-3">
+            <div class="btn btn-light btn-sm effects-btn effects-btn-enemy">{% trans "Ефекти" %}</div>
+            <div class="effects_info enemy_effects">
+                {% if stats.effects %}
+                    {% for effect in stats.effects %}
+                    <span>{{effect.name}}: {{effect.desc}} | {{effect.deleted_time|date:"H:i:s" }}</span>
+                    {% endfor %}
+                {% else %}
+                    <span>{% trans "Немає жодних ефектів накладених на героя." %}</span>
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+    <div class="mt-5 d-flex flex-column gap-1">
+        {% if enemy.weapon_equiped %}
+            <img src="{{enemy.weapon_equiped.get_img}}" width="85px" height="85px"/>
+        {% else %}
+            <div class="empty_img"></div>
+        {% endif %}
+        {% if enemy.weapon2_equiped %}
+            {% if user.weapon2_equiped %}
+                <img src="{{enemy.weapon2_equiped.get_img}}" width="85px" height="85px"/>
+            {% else %}
+                <div class="empty_img"></div>
+            {% endif %}
+        {% else %}
+            {% if enemy.armor_equiped %}
+                <img src="{{enemy.armor_equiped.get_img}}" width="85px" height="85px"/>
+            {% else %}
+                <div class="empty_img"></div>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,18 @@
+{% extends "home.html" %}
+
+{% load i18n %}
+
+{% load crispy_forms_filters %}
+
+{% block head_title %}{% trans "Реєстрація" %}{% endblock %}
+
+{% block main %}
+<div class="p-3 position-absolute top-50 start-50 translate-middle">
+    <div class="p-3 rounded bg-dark" style="max-width:1200px; width: 100%;">
+        <div class="text-center">
+            <h1>{% trans "Підтвердження вашої електронної адреси" %}</h1>
+            <p>{% blocktrans %}Вам було відправлено повідомлення на підтвердження вашої електронної пошти.{% endblocktrans %}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

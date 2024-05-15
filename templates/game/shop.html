@@ -1,0 +1,59 @@
+{% extends "game/main.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_title %}{% trans "City Location" %}{% endblock %}
+
+{% block map %}
+<div class="navigation">
+    <div class="map">
+        <img src="{% static 'img/locations/shop_loc.jpg' %}" class="image_map"/>
+    </div>
+    <div class="d-flex gap-4 mt-3">
+        <a class="btn btn-warning" href="{% url 'city_loc' %}">{% trans "Покинути магазин"%}</a>
+    </div>
+</div>
+{% endblock %}
+{% block location %}
+<div class="location_name d-flex flex-column justify-content-start align-items-center h-100">
+    {% trans "Локація: Магазин"%}
+</div>
+{% endblock %}
+{% block low %}
+<div>
+    <h2 class="text-center">{% trans "Зброя" %}</h2>
+    <div class="d-flex flex-wrap gap-3 w-100 justify-content-center">
+        {% for w in weapons %}
+        <div class="weapon mt-3">
+            <div>
+                <img src="{{w.get_img}}"  class="weapon_img"/>
+                <span>{{w.name}}</span>
+            </div>
+            <div>{% trans "Урон:" %} {{w.damage}}</div>
+            <div>{% trans "Ціна:" %} {{w.balance}} $</div>
+            <div>{% trans "Рівень гравця:" %} {{w.lvl}}</div>
+            <div>{% trans "Потрібна спритність:" %} {{w.req_agility}}</div>
+            <div>{% trans "Потрібна сила:" %} {{w.req_strength}}</div>
+            <a href="{{w.get_absolute_url}}" class="btn btn-outline-warning mt-2">{% trans "Купити" %}</a>
+        </div>
+        {% endfor %}
+    </div>
+    <hr/>
+    <h2 class="text-center">{% trans "Захист" %}</h2>
+    <div class="d-flex flex-wrap gap-3 w-100 justify-content-center">
+        {% for a in armors %}
+        <div class="weapon mt-3">
+            <div>
+                <img src="{{a.get_img}}"  class="weapon_img"/>
+                <span>{{a.name}}</span>
+            </div>
+            <div>{% trans "Захист" %}: {{a.armor_value}}</div>
+            <div>{% trans "Ціна" %}: {{a.balance}} $</div>
+            <div>{% trans "Рівень гравця:" %} {{a.lvl}}</div>
+            <div>{% trans "Потрібна спритність:" %} {{a.req_agility}}</div>
+            <div>{% trans "Потрібна сила:" %} {{a.req_strength}}</div>
+            <a href="{{a.get_absolute_url}}" class="btn btn-outline-warning mt-2">{% trans "Купити" %}</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

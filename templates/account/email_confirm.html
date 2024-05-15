@@ -1,0 +1,41 @@
+{% extends "home.html" %}
+
+{% load i18n %}
+{% load account %}
+{% load allauth %}
+{% load crispy_forms_filters %}
+
+{% block head_title %}{% trans "Реєстрація" %}{% endblock %}
+
+{% block main %}
+<div class="p-3 position-absolute top-50 start-50 translate-middle">
+    <div class="p-3 rounded bg-dark" style="max-width:1200px; width: 100%;">
+        <div class="text-center">
+            <h1>{% trans "Підтвердження вашої електронної адреси" %}</h1>
+            {% if confirmation %}
+            {% user_display confirmation.email_address.user as user_display %}
+            {% if can_confirm %}
+                <p>
+                    {% blocktrans with confirmation.email_address.email as email %}Будь ласка перевірте <a href="mailto:{{ email }}">{{ email }}</a> чи цей емайл налижить користувачу {{ user_display }}.{% endblocktrans %}
+                </p>
+                {% url 'account_confirm_email' confirmation.key as action_url %}
+                {% element form method="post" action=action_url %}
+                    {% slot actions %}
+                        {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-light" >{% trans 'Підтвердити' %}</button>
+                    {% endslot %}
+                {% endelement %}
+            {% else %}
+                <p>
+                    {% blocktrans %}Неможливо підтвердити {{ email }}, бо цей емайл вже є підтвердженим іншим корустувачем.{% endblocktrans %}
+                </p>
+            {% endif %}
+            {% else %}
+            {% url 'account_email' as email_url %}
+            <p>
+                {% blocktrans %}Посилання застаріло. Будь ласка перейдіть по <a href="{{ email_url }}">відправити новий запит на підтвердження</a>.{% endblocktrans %}
+            </p>
+            {% endif %}</div>
+    </div>
+</div>
+{% endblock %}

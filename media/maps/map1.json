@@ -1,0 +1,9 @@
+[
+    [{"pos": 0},{"pos": 0},{"pos": 2, "img": "img/locations/dungeon/dun1/dun1_2.jpg"},{"pos": 1, "img": "img/locations/dungeon/dun1/dun1_1.jpg"},{"pos": 4, "img": "img/locations/dungeon/dun1/dun1_enemy.jpg"},{"pos": 1, "img": "img/locations/dungeon/dun1/dun1_1.jpg"}],
+    [{"pos": 0},{"pos": 0},{"pos": 1, "img": "img/locations/dungeon/dun1/dun1_3.jpg"},{"pos": 0},{"pos": 0},{"pos": 0}],
+    [{"pos": 4, "img": "img/locations/dungeon/dun1/dun1_enemy.jpg"},{"pos": 1, "img": "img/locations/dungeon/dun1/dun1_3.jpg"},{"pos": 4, "img": "img/locations/dungeon/dun1/dun1_enemy.jpg"},{"pos": 1, "img": "img/locations/dungeon/dun1/dun1_4.jpg"},{"pos": 4, "img": "img/locations/dungeon/dun1/dun1_enemy.jpg"},{"pos": 0}],
+    [{"pos": 1, "img": "img/locations/dungeon/dun1/dun1_1.jpg"},{"pos": 0},{"pos": 0},{"pos": 0},{"pos": 1, "img": "img/locations/dungeon/dun1/dun1_3.jpg"},{"pos": 0}],
+    [{"pos": 4, "img": "img/locations/dungeon/dun1/dun1_enemy.jpg"},{"pos": 1, "img": "img/locations/dungeon/dun1/dun1_1.jpg"},{"pos": 4, "img": "img/locations/dungeon/dun1/dun1_enemy.jpg"},{"pos": 4, "img": "img/locations/dungeon/dun1/dun1_enemy.jpg"},{"pos": 1, "img": "img/locations/dungeon/dun1/dun1_3.jpg"},{"pos": 0}],
+    [{"pos": 0},{"pos": 0},{"pos": 5, "img": "img/locations/dungeon/dun1/dun1_boss_cleaned.jpg"},{"pos": 0},{"pos": 0},{"pos": 0}]
+]
+

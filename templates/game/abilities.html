@@ -1,0 +1,90 @@
+{% extends "game/main.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_title %}{% trans "Abilities" %}{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/game/main.css' %}">
+<style>
+    input[type="number"] {
+        width: 50px;
+        text-align: center;
+    }
+</style>
+{% endblock %}
+{% block map %}
+<div class="d-flex flex-column justify-content-center align-items-center h-100 w-100">
+    <h1>{% trans "Ваші атрибути" %}</h1>
+    <h3>{% trans "Вільних атрибутів для розподілу: " %}{{user.upgrade_points}}</h3>
+    <form method="post">
+        {% csrf_token %}
+        {% for f in form %}
+            <div class="mt-2">
+                {{f}}
+                {% if f.id_for_label != "id_upgrade_points" %}
+                <label class="form-label" for="{{ f.id_for_label }}">{{f.label}}</label>
+                <div class="form-error">{{ f.errors }}</div>
+                <div class="btn btn-sm btn-light" style="width: 30px;" onclick="increaseValue(event)">+</div>
+                <div class="btn btn-sm btn-light" style="width: 30px;" onclick="decreaseValue(event)">-</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button class="btn btn-outline-light mt-4" type="submit">{% trans "Підтвердити зміни" %}</button>
+    </form>
+</div>
+<div>
+    
+</div>
+{% endblock %}
+{% block location %}
+<div class="location_name d-flex flex-column justify-content-start align-items-center h-100">
+    {% trans "Покращення статистик персонажа"%}
+    <a class="btn btn-outline-light btn-sm mt-2" href="{% url 'start' %}">{% trans "Повернутися до гри" %}</a>
+</div>
+{% endblock %}
+{% block low %}
+
+{% endblock %}
+{% block script %}
+<script>
+    var current_points = {{user.upgrade_points}};
+    var max_points = {{user.upgrade_points}};
+    var text = "{% trans "Вільних атрибутів для розподілу: " %}";
+
+
+    function increaseValue(event) {
+        var elem = event.target.parentElement;
+        var input = document.querySelector('.'+elem.querySelector('input').classList[0]);
+        var upgrade_points_elem = document.getElementById('id_upgrade_points')
+        var value = parseInt(input.value, 10);
+        value = isNaN(value) ? 1 : value;
+        if (current_points > 0){    
+            value++;
+            current_points--;
+            upgrade_points_elem.value--;
+            document.querySelector('h3').innerHTML = text+current_points;
+        }
+        input.value = value;
+        console.log(input.value)
+      }
+  
+      function decreaseValue(event) {
+        var elem = event.target.parentElement;
+        var input = document.querySelector('.'+elem.querySelector('input').classList[0]);
+        var upgrade_points_elem = document.getElementById('id_upgrade_points')
+        var value = parseInt(input.value, 10);
+        if (current_points < max_points){
+            value = isNaN(value) ? 1 : value;
+            if (value > 1){
+                value--;
+                current_points++;
+                upgrade_points_elem.value++;
+                document.querySelector('h3').innerHTML = text+current_points;
+            }
+            else {
+                value = 1
+            }
+        }
+        input.value = value;
+      }
+</script>
+{% endblock %}

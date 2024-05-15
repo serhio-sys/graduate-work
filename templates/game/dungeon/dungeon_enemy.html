@@ -1,0 +1,24 @@
+{% extends "game/main.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_title %}{% trans "Dungeon" %}{% endblock %}
+{% block map %}
+{% include "game/dungeon/component/map.html" %}
+{% endblock map %}
+{% block location %}
+<div class="d-flex justify-content-start align-items-center">
+</div>
+<div class="location_name d-flex flex-column justify-content-start align-items-center h-100">
+    {% trans "Рівень підземелля | " %}{{user.current_dungeon}}
+</div>
+{% endblock %}
+{% block low %}
+<div class="w-100 h-100 d-flex flex-column align-items-center">
+    <h3>{% trans "Перед вами стоїть ворог. Що ви будете робити?" %}</h3>
+    <p>{% trans "Якщо ви будете продовжувати рухатись є можливість, що бій почнеться й ворог атакує першим (50% шансу)." %}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-outline-light">{% trans "Почати бій, бо це найкращий захист" %}</button>
+    </form>
+</div>
+{% endblock %}

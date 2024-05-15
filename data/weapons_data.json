@@ -1,0 +1,263 @@
+[
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 1,
+            "name": "Кривий меч",
+            "damage": 3,
+            "img": "weapon/sword_1.png",
+            "balance": 300,
+            "lvl": 2,
+            "req_agility": 1,
+            "req_strength": 4
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 2,
+            "name": "Кіготь бобра",
+            "damage": 5,
+            "img": "weapon/sword_2.png",
+            "balance": 600,
+            "lvl": 5,
+            "req_agility": 2,
+            "req_strength": 7
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 3,
+            "name": "Меч паладіна",
+            "damage": 8,
+            "img": "weapon/sword_3.png",
+            "balance": 1300,
+            "lvl": 10,
+            "req_agility": 4,
+            "req_strength": 10
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 4,
+            "name": "Зачарований меч",
+            "damage": 12,
+            "img": "weapon/sword_4.png",
+            "balance": 1660,
+            "lvl": 14,
+            "req_agility": 5,
+            "req_strength": 15
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 5,
+            "name": "Покорювач сердець",
+            "damage": 16,
+            "img": "weapon/sword_5.png",
+            "balance": 2360,
+            "lvl": 16,
+            "req_agility": 8,
+            "req_strength": 15
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 6,
+            "name": "Проклятий меч",
+            "damage": 20,
+            "img": "weapon/sword_6.png",
+            "balance": 2960,
+            "lvl": 18,
+            "req_agility": 5,
+            "req_strength": 15
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 7,
+            "name": "Титановий меч",
+            "damage": 25,
+            "img": "weapon/sword_7.png",
+            "balance": 3540,
+            "lvl": 21,
+            "req_agility": 4,
+            "req_strength": 1
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 8,
+            "name": "Ікло",
+            "damage": 31,
+            "img": "weapon/sword_8.png",
+            "balance": 3910,
+            "lvl": 24,
+            "req_agility": 10,
+            "req_strength": 2
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 9,
+            "name": "Меч древніх",
+            "damage": 36,
+            "img": "weapon/sword_9.png",
+            "balance": 4110,
+            "lvl": 25,
+            "req_agility": 17,
+            "req_strength": 4
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 10,
+            "name": "Меч душ",
+            "damage": 42,
+            "img": "weapon/sword_10.png",
+            "balance": 4310,
+            "lvl": 30,
+            "req_agility": 26,
+            "req_strength": 4
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 11,
+            "name": "Ніж початківця",
+            "damage": 2,
+            "img": "weapon/knife_1.png",
+            "balance": 300,
+            "lvl": 2,
+            "req_agility": 4,
+            "req_strength": 1
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 12,
+            "name": "Кіготь бобра",
+            "damage": 4,
+            "img": "weapon/knife_2.png",
+            "balance": 630,
+            "lvl": 4,
+            "req_agility": 7,
+            "req_strength": 2
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 13,
+            "name": "Кухонний ніж",
+            "damage": 7,
+            "img": "weapon/knife_3.png",
+            "balance": 850,
+            "lvl": 8,
+            "req_agility": 10,
+            "req_strength": 4
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 14,
+            "name": "Роздроблювач кісток",
+            "damage": 11,
+            "img": "weapon/knife_4.png",
+            "balance": 1460,
+            "lvl": 12,
+            "req_agility": 15,
+            "req_strength": 5
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 15,
+            "name": "Лісничий ніж",
+            "damage": 13,
+            "img": "weapon/knife_5.png",
+            "balance": 1960,
+            "lvl": 14,
+            "req_agility": 20,
+            "req_strength": 6
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 16,
+            "name": "Втрачена душа",
+            "damage": 16,
+            "img": "weapon/knife_6.png",
+            "balance": 2360,
+            "lvl": 16,
+            "req_agility": 24,
+            "req_strength": 10
+        }
+    },
+
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 17,
+            "name": "Серебряний ніж",
+            "damage": 19,
+            "img": "weapon/knife_7.png",
+            "balance": 2900,
+            "lvl": 21,
+            "req_agility": 29,
+            "req_strength": 14
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 18,
+            "name": "Лезо",
+            "damage": 23,
+            "img": "weapon/knife_8.png",
+            "balance": 3310,
+            "lvl": 24,
+            "req_agility": 35,
+            "req_strength": 15
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 19,
+            "name": "Кровопиця",
+            "damage": 26,
+            "img": "weapon/knife_9.png",
+            "balance": 3810,
+            "lvl": 27,
+            "req_agility": 39,
+            "req_strength": 17
+        }
+    },
+    {
+        "model": "game.Weapon",
+        "fields": {
+            "id": 20,
+            "name": "Покинутий ніж",
+            "damage": 30,
+            "img": "weapon/knife_10.png",
+            "balance": 4310,
+            "lvl": 31,
+            "req_agility": 50,
+            "req_strength": 19
+        }
+    }
+]

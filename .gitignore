@@ -1,0 +1,9 @@
+.sqlite3
+media/img
+.env
+.idea
+site-packages
+__pycache__/
+.azure
+db.sqlite3
+staticfiles

@@ -1,0 +1,13 @@
+{% extends "game/main.html" %}
+{% load i18n %}
+{% block head_title %}{% trans "Dungeon" %}{% endblock %}
+{% block map %}
+{% include "game/dungeon/component/map.html" %}
+{% endblock map %}
+{% block location %}
+<div class="d-flex justify-content-start align-items-center">
+</div>
+<div class="location_name d-flex flex-column justify-content-start align-items-center h-100">
+    {% trans "Підземілля | Рівень:" %} {{user.current_dungeon}}
+</div>
+{% endblock %}

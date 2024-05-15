@@ -1,0 +1,32 @@
+[
+    {
+        "model": "game.Effect",
+        "fields": {
+            "name": "Бог з тобою",
+            "desc": "Посилення спритності первонажу",
+            "is_church_ef": true,
+            "agility": 3,
+            "strength": 2
+        }
+    },
+    {
+        "model": "game.Effect",
+        "fields": {
+            "name": "Кровотеча",
+            "desc": "Послаблення сили персонажу",
+            "agility": -1,
+            "strength": -2,
+            "is_positive": false
+        }
+    },
+    {
+        "model": "game.Effect",
+        "fields": {
+            "name": "Перелом кістки",
+            "desc": "Послаблення всього",
+            "agility": -3,
+            "strength": -1,
+            "is_positive": false
+        }
+    }
+]

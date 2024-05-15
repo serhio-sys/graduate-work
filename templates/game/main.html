@@ -1,0 +1,53 @@
+{% extends "game/base.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/game/main.css' %}">
+{% endblock %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Game Main" %}{% endblock %}
+
+{% block main %}
+{% if request.GET.msg %}
+<div class="message">
+    <h1>{{request.GET.msg}}</h1>
+</div>
+{% endif %}
+<div class="w-100 h-100 p-3 d-flex flex-column justify-content-between">
+    <div class="d-flex justify-content-between h-100">
+        {% include "components/hero.html" %}
+        {% block map %}
+        <div class="navigation">
+            <div class="map">
+                <img src="{% static 'img/locations/main_loc.jpg' %}" class="image_map"/>
+            </div>
+            <div class="d-flex justify-content-center">
+                <a href="{% url 'city_loc' %}" class="btn btn-outline-light mt-3">{% trans "Йти до міста" %}</a>
+            </div>
+        </div>
+        {% endblock %}
+    </div><hr/>
+    {% block location %}
+    <div class="location_name d-flex flex-column justify-content-end align-items-center h-100">
+        {% trans "Ви зараз знаходитесь на головній локації"%}
+    </div>
+    {% endblock %}
+    <hr/>
+    {% block low %}
+    <div class="h-100">
+        Chat
+    </div>
+    {% endblock %}
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    var elem = document.querySelector(".message");
+    elem.addEventListener("click", () => {
+        elem.classList.add("hidden");
+    });
+</script>
+{% endblock %}

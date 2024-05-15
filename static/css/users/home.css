@@ -1,0 +1,28 @@
+.navbar-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    overflow: hidden;
+}
+.empty-btn{
+  border: none;
+  outline: none;
+  background: transparent;
+}
+.locale{
+    text-align: center;
+}
+.locale-form{
+    text-align: center;
+}
+form li {
+    color: red;
+}
+form ul {
+    list-style: none;
+    padding: 0;
+}
+form .alert {
+    background: transparent;
+}
+

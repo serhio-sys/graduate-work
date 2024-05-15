@@ -1,0 +1,50 @@
+{% extends "home.html" %}
+
+{% load i18n %}
+{% load account %}
+{% load allauth %}
+{% load crispy_forms_filters %}
+
+{% block head_title %}{% trans "Реєстрація" %}{% endblock %}
+
+{% block main %}
+<div class="w-100 p-3 d-flex flex-column align-items-center flex-wrap justify-content-between gap-5">
+    <h1 class="text-center">Best players</h1>
+    <div class="d-flex flex-wrap gap-5 w-100 justify-content-center">
+        {% for user in page_obj %}
+            <div class="d-flex">
+            <div class="hero p-3 bg-dark d-flex gap-3 rounded">
+                <div>
+                    <div class="hero_health and name">
+                        <div>
+                            {{user.username}} [{{user.check_exp}}]
+                        </div>
+                        <div class="progress mt-1" style="height: 10px;">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: {{user.exp}}%;" aria-valuenow="{{user.exp}}" aria-valuemin="0" aria-valuemax="100">{% trans "досвід:" %}{{user.exp}}</div>
+                        </div>
+                    </div>
+                    <div class="mt-1"><img src="{{user.get_class_img}}" style="width: 200px; height:300px; background:rgba(0,0,0,0.2);"/></div>
+                    <div class="hero_health">
+                        <div class="progress mt-2" style="height: 10px;">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{user.get_current_hp}}%;" aria-valuenow="{{user.get_current_hp}}" aria-valuemin="0" aria-valuemax="{{user.get_max_hp}}">{% trans "здоров'я:" %}{{user.get_current_hp}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 d-flex flex-column gap-3">
+                    <div style="width: 100px; height:100px; background:black;"><img /></div>
+                    <div style="width: 100px; height:100px; background:black;"><img /></div>
+                </div>
+                <div class="hero_stats mt-4 ms-1">
+                    <div>{% trans "Характеристики" %}</div>
+                    <div class="mt-2">{% trans "Атака: " %} {{user.return_all_damage}} ({{user.attack}}{% if user.weapon is not None %}+{{user.weapon.damage}}{% endif %})</div>
+                    <div>{% trans "Захист: " %} {{user.return_all_armor}} ({{user.defence}}{% if user.armor is not None %}+{{user.armor.armor}}{% endif %})</div>
+                    <div>{% trans "Сила: " %} {{user.strength}}</div>
+                    <div>{% trans "Спритність: " %} {{user.agility}}</div>
+                    <div class="mt-4">{% trans "Рахунок: " %} {{user.balance}} $</div>
+                </div>
+            </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

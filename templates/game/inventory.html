@@ -1,0 +1,201 @@
+{% extends "game/base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/game/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/game/inventory.css' %}">
+{% endblock %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Game Main" %}{% endblock %}
+
+{% block main %}
+<div class="w-100 h-100 p-3 d-flex flex-column justify-content-between">
+    <div class="d-flex justify-content-between h-100">
+        <div class="hero d-flex gap-2">
+            <div>
+                <div class="hero_health and name">
+                    <div>
+                        {{user.username}} [{{user.check_exp}}]
+                    </div>
+                    <div class="progress mt-1" style="height: 15px;">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: {{user.exp}}%;" aria-valuenow="{{user.exp}}" aria-valuemin="0" aria-valuemax="100">{% trans "досвід:" %}{{user.exp}}</div>
+                    </div>
+                </div>
+                <div class="mt-1 hero_img_block">
+                    <img src="{{user.get_class_img}}" class="hero_img"/>
+                    <div class="hero_stats">
+                        <div>{% trans "Характеристики" %}</div>
+                        {% with user.get_summary_damage as dmg %}
+                        <div class="mt-2">{% trans "Атака: " %} {{dmg.total}} ({{dmg.hero}}+{{dmg.bonus}})</div>
+                        {% endwith %}
+                        <div>{% trans "Захист: " %} {{user.return_all_armor}} ({{user.defence}}{% if user.armor_equiped is not None %}+{{user.armor_equiped.armor_value}}{% endif %})</div>
+                        {% with user.get_summary_stats as stats %}
+                        <div>{% trans "Сила: " %} {{stats.str.total}} ({{stats.str.hero}}{% if stats.str.sum >= 0 %}+{{stats.str.sum}}{% else %}-{{stats.str.sum}}{% endif %})</div>
+                        <div>{% trans "Спритність: " %} {{stats.ag.total}} ({{stats.ag.hero}}{% if stats.ag.sum >= 0 %}+{{stats.ag.sum}}{% else %}-{{stats.ag.sum}}{% endif %})</div>
+                        {% endwith %}
+                    </div>
+                </div>
+                <div class="hero_health">
+                    <div class="progress mt-2 position-relative" style="height: 15px;">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: {{user.get_current_hp}}%;" aria-valuenow="{{user.get_current_hp}}" aria-valuemin="0" aria-valuemax="{{user.get_max_hp}}"></div>
+                        <span class="progress-bar-text user_hp">{% trans "здоров'я:" %}{{user.get_current_hp}}</span>
+                    </div>
+                </div>
+                <div class="mt-4 bal">{% trans "Рахунок: " %} {{user.balance}} $</div>
+            </div>
+            <div class="mt-5 d-flex flex-column gap-1" ondrop="drop_eq(event)" ondragover="allowDrop(event)">
+                {% if user.weapon_equiped %}
+                    <img src="{{user.weapon_equiped.get_img}}" class="item_img" style="background: rgba(black, 0.5);" width="85px" height="85px"  draggable="true" ondragstart="drag_deq(event, 1, 'weapon')"/>
+                {% else %}
+                    <div class="empty_img"></div>
+                {% endif %}
+                {% if user.weapon2_equiped %}
+                    <img src="{{user.weapon2_equiped.get_img}}" class="item_img" width="85px" height="85px"  draggable="true" ondragstart="drag_deq(event, 2, 'weapon')"/>
+                {% else %}
+                    {% if user.armor_equiped %}
+                        <img src="{{user.armor_equiped.get_img}}" class="item_img" width="85px" height="85px"  draggable="true" ondragstart="drag_deq(event, 0, 'armor')"/>
+                    {% else %}
+                        <div class="empty_img"></div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="shop w-100 p-2 rouded" style="max-width: 800px;" ondrop="drop_deq(event)" ondragover="allowDrop(event)">
+            <div class="text-center">{% trans "Зброя" %}</div>
+            <hr/>
+            <div class="inv_block">
+                {% if weapons %}
+                {% for w in weapons %}
+                <div class="weapon mt-3">
+                    <div>
+                        <img src="{{w.get_img}}" class="weapon_img" draggable="true" ondragstart="drag_eq(event, 'weapon', '{{w.id}}')"/>
+                    </div>
+                    <div><span>{{w.name}}</span></div>
+                    <div>{% trans "Урон:" %} {{w.damage}}</div>
+                    <div><form class="sell_form" method="post" action="{% url 'sell_w' w.pk %}"><button type="submit" data-sell-sum="{{w.get_sell_sum}}" class="btn btn-outline-warning mt-2">Sell by {{w.get_sell_sum}}</button></form></div>
+                </div>
+                {% endfor %}
+                {% else %}
+                    <p>{% trans "Намає зброї в наявності. Придбайте в магазині." %}</p>
+                {% endif %}
+            </div>
+            <hr/>
+            <div class="text-center">{% trans "Броня" %}</div>
+            <hr/>
+            <div class="inv_block">
+                {% if armors %}
+                    {% for a in armors %}
+                    <div class="weapon mt-3">
+                        <div>
+                            <img src="{{a.get_img}}"class="weapon_img" draggable="true" ondragstart="drag_eq(event, 'armor', '{{a.id}}')"/>
+                        </div>
+                        <span>{{a.name}}</span>
+                        <div>{% trans "Захист" %}: {{a.armor}}</div>
+                        <div><form class="sell_form" method="post" action="{% url 'sell_a' a.pk %}"><button type="submit" data-sell-sum="{{w.get_sell_sum}}" class="btn btn-outline-warning mt-2">Sell by {{a.get_sell_sum}}</button></form></div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>{% trans "Намає броні в наявності. Придбайте в магазині." %}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <div class="location_name d-flex flex-column justify-content-end align-items-center h-100">
+        {% trans "Інвентар"%}
+    </div>
+    <div class="d-flex justify-content-center"><a href="{% url 'start' %}" class="btn btn-outline-light mt-3">{% trans "Повернутися в гру" %}</a></div>
+    <hr/>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    const Url = "/"
+    var csrftoken = '{{ csrf_token }}';
+    var balance = document.querySelector('.bal')
+    var user_balance = {{user.balance}};
+
+    document.querySelectorAll('.sell_form').forEach(item => {
+        
+        item.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let sellSumAttribute = e.target.querySelector('.btn').getAttribute('data-sell-sum');
+            await fetch(item.action, {
+                method: "POST",
+                headers: {'X-CSRFToken': csrftoken} 
+            }).then(res => {
+                if (res.status == 200) {
+                    user_balance += parseInt(sellSumAttribute)
+                    balance.innerHTML = `{% trans "Рахунок: " %}${user_balance}  $`
+                    item.parentElement.parentElement.remove();
+                }
+            });
+        });
+    });
+
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag_eq(ev, item, pk) {
+        ev.dataTransfer.setData('type', item);
+        ev.dataTransfer.setData('pk', pk);
+    }
+      
+    async function drop_eq(ev) {
+        ev.preventDefault();
+        var dataString = ev.dataTransfer.getData('type');
+        var ds = ev.dataTransfer.getData('pk')
+        if (dataString === "armor"){
+            await fetch(Url+"game/equip_armor/", {
+                method: "POST",
+                headers: {'Content-Type': 'application/json', 'X-CSRFToken': csrftoken},
+                body: JSON.stringify({"pk": ds}) 
+            }).then(res => {
+            console.log("Request complete! response:", res);
+            });
+        } else if (dataString === "weapon"){
+            await fetch(Url+"game/equip_weapon/", {
+                method: "POST",
+                headers: {'Content-Type': 'application/json', 'X-CSRFToken': csrftoken}, 
+                body: JSON.stringify({"pk": ds})
+            }).then(res => {
+            console.log("Request complete! response:", res);
+            });
+        } 
+        window.location.reload()
+    }
+
+    function drag_deq(ev, deq_type, item) {
+        ev.dataTransfer.setData('type', item);
+        ev.dataTransfer.setData('deq', deq_type)
+    }
+      
+    async function drop_deq(ev) {
+        var dataString = ev.dataTransfer.getData('type');
+        var deq = ev.dataTransfer.getData('deq');
+        ev.preventDefault();
+        if (dataString === "armor"){
+            await fetch(Url+"game/equip_armor/", {
+                method: "POST",
+                headers: {'Content-Type': 'application/json', 'X-CSRFToken': csrftoken},
+                body: JSON.stringify({"dequip": true}) 
+            }).then(res => {
+            console.log("Request complete! response:", res);
+            });
+        } else if (dataString === "weapon"){
+            await fetch(Url+"game/equip_weapon/", {
+                method: "POST",
+                headers: {'Content-Type': 'application/json', 'X-CSRFToken': csrftoken}, 
+                body: JSON.stringify({"dequip": deq})
+            }).then(res => {
+            console.log("Request complete! response:", res);
+            });
+        }
+        window.location.reload()
+    }
+</script>
+<script src="{% static 'js/ajax.js' %}"></script>
+{% endblock %}

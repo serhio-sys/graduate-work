@@ -1,0 +1,84 @@
+.navbar-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    overflow: hidden;
+}
+.empty-btn{
+  border: none;
+  outline: none;
+  background: transparent;
+}
+.main{
+    width: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0, 0.9);
+    color: white;
+}
+.locale{
+    text-align: center;
+}
+.locale-form{
+    text-align: center;
+}
+form li {
+    color: white;
+}
+.hero_img {
+    cursor: pointer;
+    width: 100%;
+    height:100%;
+    background:rgba(0,0,0,0.2);
+}
+.hero_img_block{
+    position: relative;
+    width: 180px;
+    height:260px;
+    overflow: hidden;
+}
+.hero_stats {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    padding: 1em;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    transform: scale(0,0);
+    background-color: rgba(0,0,0, 0.8);
+    border-radius: 0.4em;
+    transition: all ease 300ms;
+    cursor: pointer;
+    z-index: 1;
+}
+.hero_img_block:hover .hero_stats{
+    opacity: 1;
+    transform: scale(1,1);
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.inv_block{
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: auto;
+    gap: 1em;
+}
+.weapon_img{
+    width:80px;
+    height:80px;
+    object-fit: contain;
+}
+.weapon{
+    width:250px;
+    background:black;
+    padding:1em;
+    border-radius:0.3em;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    align-items: unset;
+    justify-content: space-between;
+}

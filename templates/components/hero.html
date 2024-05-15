@@ -1,0 +1,87 @@
+{% load static %}
+{% load i18n %}
+
+<div class="hero d-flex gap-2">
+    <div>
+        <div class="hero_health and name">
+            <div>
+                {{user.username}} [{{user.check_exp}}]
+            </div>
+            <div class="progress mt-1 position-relative" style="height: 15px;">
+                <div class="progress-bar bg-info" role="progressbar" style="width: {{user.exp}}%;" aria-valuenow="{{user.exp}}" aria-valuemin="0" aria-valuemax="100"></div>
+                <span class="progress-bar-text">{% trans "досвід: " %}{{user.exp}}</span>
+            </div>
+        </div>
+        <div class="mt-1 hero_img_block">
+            <img src="{{user.get_class_img}}" class="hero_img"/>
+            <div class="hero_stats">
+                <div>{% trans "Характеристики" %}</div>
+                {% with user.get_summary_damage as dmg %}
+                <div class="mt-2">{% trans "Атака: " %} {{dmg.total}} ({{dmg.hero}}+{{dmg.bonus}})</div>
+                {% endwith %}
+                <div>{% trans "Захист: " %} {{user.return_all_armor}} ({{user.defence}}{% if user.armor_equiped is not None %}+{{user.armor_equiped.armor_value}}{% endif %})</div>
+                {% with user.get_summary_stats as stats %}
+                <div class="user_str">{% trans "Сила: " %} {{stats.str.total}} ({{stats.str.hero}}{% if stats.str.sum >= 0 %}+{{stats.str.sum}}{% else %}{{stats.str.sum}}{% endif %})</div>
+                <div class="user_ag">{% trans "Спритність: " %} {{stats.ag.total}} ({{stats.ag.hero}}{% if stats.ag.sum >= 0 %}+{{stats.ag.sum}}{% else %}{{stats.ag.sum}}{% endif %})</div>
+           </div>
+        </div>
+        <div class="hero_health">
+            <div class="progress mt-2 position-relative" style="height: 15px;">
+                <div class="progress-bar bg-danger" role="progressbar" style="width: {{user.get_current_hp}}%;" aria-valuenow="{{user.get_current_hp}}" aria-valuemin="0" aria-valuemax="{{user.get_max_hp}}"></div>
+                <span class="progress-bar-text user_hp">{% trans "здоров'я:" %}{{user.get_current_hp}}</span>
+            </div>
+        </div>
+        <div class="mt-4">{% trans "Рахунок: " %} {{user.balance}} $</div>
+        <div class="effects mt-3">
+            <div class="btn btn-light btn-sm effects-btn">{% trans "Ефекти" %}</div>
+            <div class="effects_info user_effects">
+                {% if stats.effects %}
+                    {% for effect in stats.effects %}
+                    <span>{{effect.name}}: {{effect.desc}} | {{effect.deleted_time|date:"H:i:s" }}</span><br>
+                    {% endfor %}
+                {% else %}
+                    <span>{% trans "Немає жодних ефектів накладених на героя." %}</span>
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+    <div class="mt-5 d-flex flex-column gap-1">
+        {% if user.weapon_equiped %}
+            <div class="img_wp"> 
+                <img src="{{user.weapon_equiped.get_img}}" class="item_img" />
+                <div class="d-flex flex-column align-items-center justify-content-center img_txt">
+                    <span class="text-center">{{user.weapon_equiped.name}}</span>
+                    <span class="text-center">{{user.weapon_equiped.damage}} DMG</span>
+                </div>
+            </div>
+        {% else %}
+            <div class="empty_img"></div>
+        {% endif %}
+        {% if user.weapon2_equiped %}
+            {% if user.weapon_equiped %}
+            <div class="img_wp">
+                <img src="{{user.weapon2_equiped.get_img}}" class="item_img"/>
+                <div class="d-flex flex-column align-items-center justify-content-center img_txt">
+                    <span class="text-center">{{user.weapon2_equiped.name}}</span>
+                    <span class="text-center">{{user.weapon2_equiped.damage}} DMG</span>
+                </div>
+            </div>
+            {% else %}
+                <div class="empty_img"></div>
+            {% endif %}
+        {% else %}
+            {% if user.armor_equiped %}
+                <div class="img_wp"> 
+                    <img src="{{user.armor_equiped.get_img}}" class="item_img"/>
+                    <div class="d-flex flex-column align-items-center justify-content-center img_txt">
+                        <span class="text-center">{{user.armor_equiped.name}}</span>
+                        <span class="text-center">{{user.armor_equiped.armor}} Defence</span>
+                    </div>
+                </div>
+            {% else %}
+                <div class="empty_img"></div>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,262 @@
+[
+    {
+        "model": "game.Enemy",
+        "fields": {
+            "name": "Enemy_1_dungeon",
+            "health": 100,
+            "attack": 6,
+            "defence": 0,
+            "agility": 4,
+            "strength": 2,
+            "lvl": 1,
+            "role": "agility",
+            "img": "1.png",
+            "weapon_equiped": null,
+            "armor_equiped": null,
+            "dungeon": 1
+        }
+    },
+    {
+        "model": "game.Enemy",
+        "fields": {
+            "name": "Enemy_1_dungeon",
+            "health": 100,
+            "attack": 7,
+            "defence": 2,
+            "agility": 2,
+            "strength": 6,
+            "lvl": 1,
+            "role": "strength",
+            "img": "2.png",
+            "weapon_equiped": null,
+            "armor_equiped": null,
+            "dungeon": 1
+        }
+    },
+    {
+        "model": "game.Enemy",
+        "fields": {
+            "name": "Boss_1_dungeon",
+            "health": 100,
+            "attack": 13,
+            "defence": 3,
+            "agility": 8,
+            "strength": 4,
+            "lvl": 1,
+            "role": "agility",
+            "img": "boss.png",
+            "is_boss": true,
+            "weapon_equiped": null,
+            "armor_equiped": null,
+            "dungeon": 1
+        }
+    },
+    {
+        "model": "game.Enemy",
+        "fields": {
+            "name": "Enemy_2_dungeon",
+            "health": 100,
+            "attack": 14,
+            "defence": 5,
+            "agility": 7,
+            "strength": 4,
+            "lvl": 2,
+            "role": "agility",
+            "img": "1.png",
+            "weapon_equiped": 1,
+            "armor_equiped": 1,
+            "dungeon": 2
+        }
+    },
+    {
+        "model": "game.Enemy",
+        "fields": {
+            "name": "Enemy_2_dungeon",
+            "health": 100,
+            "attack": 15,
+            "defence": 9,
+            "agility": 3,
+            "strength": 6,
+            "lvl": 2,
+            "role": "strength",
+            "img": "2.png",
+            "weapon_equiped": 11,
+            "weapon2_equiped": 11,
+            "dungeon": 2
+        }
+    },
+    {
+        "model": "game.Enemy",
+        "fields": {
+            "name": "Boss_2_dungeon",
+            "health": 100,
+            "attack": 20,
+            "defence": 3,
+            "agility": 8,
+            "strength": 4,
+            "lvl": 2,
+            "role": "agility",
+            "img": "boss.png",
+            "is_boss": true,
+            "weapon_equiped": 3,
+            "armor_equiped": 1,
+            "dungeon": 2
+        }
+    },
+    {
+        "model": "game.Enemy",
+        "fields": {
+            "name": "Enemy_3_dungeon",
+            "health": 100,
+            "attack": 16,
+            "defence": 2,
+            "agility": 12,
+            "strength": 9,
+            "lvl": 3,
+            "role": "agility",
+            "img": "1.png",
+            "weapon_equiped": 15,
+            "weapon2_equiped": 14,
+            "dungeon": 3
+        }
+    },
+    {
+        "model": "game.Enemy",
+        "fields": {
+            "name": "Enemy_3_dungeon",
+            "health": 100,
+            "attack": 17,
+            "defence": 9,
+            "agility": 9,
+            "strength": 12,
+            "lvl": 3,
+            "role": "strength",
+            "img": "2.png",
+            "weapon_equiped": 5,
+            "armor_equiped": 3,
+            "dungeon": 3
+        }
+    },
+    {
+        "model": "game.Enemy",
+        "fields": {
+            "name": "Boss_3_dungeon",
+            "health": 100,
+            "attack": 25,
+            "defence": 11,
+            "agility": 11,
+            "strength": 16,
+            "lvl": 3,
+            "role": "agility",
+            "img": "boss.png",
+            "is_boss": true,
+            "weapon_equiped": 6,
+            "armor_equiped": 3,
+            "dungeon": 3
+        }
+    },
+    {
+        "model": "game.Enemy",
+        "fields": {
+            "name": "Enemy_4_dungeon",
+            "health": 100,
+            "attack": 20,
+            "defence": 12,
+            "agility": 16,
+            "strength": 15,
+            "lvl": 4,
+            "role": "agility",
+            "img": "1.png",
+            "weapon_equiped": 17,
+            "weapon2_equiped": 16,
+            "dungeon": 4
+        }
+    },
+    {
+        "model": "game.Enemy",
+        "fields": {
+            "name": "Enemy_4_dungeon",
+            "health": 100,
+            "attack": 21,
+            "defence": 10,
+            "agility": 14,
+            "strength": 12,
+            "lvl": 4,
+            "role": "strength",
+            "img": "2.png",
+            "weapon_equiped": 7,
+            "armor_equiped": 4,
+            "dungeon": 4
+        }
+    },
+    {
+        "model": "game.Enemy",
+        "fields": {
+            "name": "Boss_4_dungeon",
+            "health": 100,
+            "attack": 21,
+            "defence": 9,
+            "agility": 18,
+            "strength": 10,
+            "lvl": 4,
+            "role": "agility",
+            "img": "boss.png",
+            "is_boss": true,
+            "weapon_equiped": 17,
+            "weapon2_equiped": 16,
+            "dungeon": 4
+        }
+    },
+    {
+        "model": "game.Enemy",
+        "fields": {
+            "name": "Enemy_5_dungeon",
+            "health": 100,
+            "attack": 22,
+            "defence": 10,
+            "agility": 21,
+            "strength": 19,
+            "lvl": 5,
+            "role": "agility",
+            "img": "1.png",
+            "weapon_equiped": 18,
+            "weapon2_equiped": 17,
+            "dungeon": 5
+        }
+    },
+    {
+        "model": "game.Enemy",
+        "fields": {
+            "name": "Enemy_5_dungeon",
+            "health": 100,
+            "attack": 20,
+            "defence": 14,
+            "agility": 24,
+            "strength": 21,
+            "lvl": 5,
+            "role": "strength",
+            "img": "2.png",
+            "weapon_equiped": 9,
+            "armor_equiped": 4,
+            "dungeon": 5
+        }
+    },
+    {
+        "model": "game.Enemy",
+        "fields": {
+            "name": "Boss_5_dungeon",
+            "health": 300,
+            "attack": 25,
+            "defence": 23,
+            "agility": 28,
+            "strength": 34,
+            "lvl": 5,
+            "role": "strength",
+            "img": "boss.png",
+            "is_boss": true,
+            "weapon_equiped": 10,
+            "armor_equiped": 5,
+            "dungeon": 5
+        }
+    }
+]

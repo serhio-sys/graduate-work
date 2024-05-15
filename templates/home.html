@@ -1,0 +1,117 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block head_title %}{% trans "Boycovskiy Club" %}{% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'img/logo.ico' %}" type="image/x-icon">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/users/home.css' %}">
+    {% block styles %}
+    <style>
+      .main{
+        min-height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        background-image: url("{% static 'img/bgstart.png' %}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    </style>
+    {% endblock styles %}
+  </head>
+  <body id="google_translate_element">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand d-flex align-items-center gap-3" href="{% url 'home' %}">
+            <img src="{% static 'img/logo.ico' %}" alt="Logo" width="50" height="50">
+            {% trans "Бійцівський Клуб" %}
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDark" aria-controls="navbarDark" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarDark">
+            <ul class="navbar-nav ms-auto me-4 mb-xl-0">
+               <li class="nav-item">
+                    <a class="nav-link" href="{% url 'forbes' %}">Forbes</a>
+               </li>
+               {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link btn btn-outline-dark dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{user.username}}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                          <li class="p-2">
+                            <a class="btn btn-outline-info d-block" href="{% url 'profile_edit' %}">{% trans 'Мій профіль' %}</a>
+                          </li>
+                          <li>
+                            <form method="post" action="{% url 'account_logout' %}" class="dropdown-item">
+                            {% csrf_token %}
+                            <button class="w-100 btn btn-outline-dark" type="submit">{% trans 'Вийти' %}</button>
+                            </form>
+                          </li>
+                        </ul>
+                    </li>
+               {% endif %}
+            </ul>
+            <form method="post" action="{% url 'locale' request.resolver_match.url_name %}" class="locale-form me-4">{% csrf_token %}{{locale_form}}</form>
+          </div>
+        </div>
+    </nav>
+    <main class="main text-light">
+        {% block main %}
+            {% if user.is_authenticated %}
+                <div class="position-absolute top-50 start-50 translate-middle">
+                    {% if user.role %}
+                      <a class="btn btn-outline-light btn-lg" href="{% url 'start' %}">{% trans "Почати гру" %}</a>
+                    {% else %}
+                      <a class="btn btn-outline-light btn-lg" href="{% url 'select_class' %}">{% trans "Почати гру" %}</a>
+                    {% endif %}
+                </div>
+            {% else %}
+                <div class="position-absolute top-50 start-50 translate-middle">
+                    <h1>{% trans "Ви повинні увійти в свій аккаунт." %}</h1>
+                    <a class="btn btn-light btn-lg" href="{% url 'account_login' %}">{% trans "Увійти" %}</a>
+                    <a class="btn btn-outline-light btn-lg" href="{% url 'account_signup' %}">{% trans "Зареєструватися" %}</a>
+                </div>
+            {% endif %}
+        {% endblock main %}
+    </main>
+    <footer class="bg-dark d-flex flex-wrap justify-content-between align-items-center py-3 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="/" class="mb-3 me-2 mb-md-0 text-light text-decoration-none lh-1">
+            <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+          </a>
+          <span class="mb-3 mb-md-0 text-light">&copy; 2024 Boycovskiy Club, Inc</span>
+        </div>
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+          <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+          <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+          <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+        </ul>
+    </footer>
+  <script>
+    document.querySelector('main').style.minHeight = `calc(100vh - ${document.querySelector('.navbar').offsetHeight}px)`;
+    document.querySelector(".locale").addEventListener("change", () => {
+      document.querySelector(".locale-form").submit();
+    })
+    var lang = "{{request.session.lang}}"
+    if (lang === "") {
+      lang = "uk"
+    }
+    document.querySelectorAll("option").forEach(it => {
+        if (it.value == lang){
+            it.setAttribute("selected", "selected");
+        }
+    })
+  </script>
+    {% block script %}
+    <script src="{% static 'js/ajax.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% endblock script %}
+  </body>
+</html>

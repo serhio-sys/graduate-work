@@ -1,0 +1,20 @@
+{% extends "game/main.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_title %}{% trans "Dungeon" %}{% endblock %}
+{% block map %}
+<div class="navigation">
+    <div class="map">
+        <img src="{% static 'img/locations/dungeon_loc.jpg' %}" class="image_map"/>
+    </div>
+    <div class="d-flex gap-4 mt-3">
+        <a class="btn btn-outline-light btn-sm" href="{% url 'dungeon' %}">{% trans "Увійти в підземілля" %}</a>
+        <a class="btn btn-outline-light btn-sm" href="{% url 'outskirts_loc' %}">{% trans "Повернутися на окраїну міста" %}</a>
+    </div>
+</div>
+{% endblock %}
+{% block location %}
+<div class="location_name d-flex flex-column justify-content-start align-items-center h-100">
+    {% trans "Підземілля | Рівень:" %} {{user.dungeon.lvl}}
+</div>
+{% endblock %}

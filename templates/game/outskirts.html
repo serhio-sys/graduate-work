@@ -1,0 +1,22 @@
+{% extends "game/main.html" %}
+{% load i18n %}
+{% load static %}
+{% block head_title %}{% trans "City Location" %}{% endblock %}
+{% block map %}
+<div class="navigation">
+    <div class="map">
+        <img src="{% static 'img/locations/outskirts_loc.jpg' %}" class="image_map"/>
+    </div>
+    <div class="d-flex gap-4 mt-3">
+        <a class="btn btn-outline-light btn-sm" href="{% url 'city_loc' %}">{% trans "Повернутися до центру міста" %}</a>
+        <a class="btn btn-warning btn-sm" href="{% url 'tavern' %}">{% trans "Увійти до таверни" %}</a>
+        <a class="btn btn-warning btn-sm" href="{% url 'dungeon_loc' %}">{% trans "Піти до підземілля" %}</a>
+        <a class="btn btn-outline-light btn-sm" href="{% url 'main_loc' %}">{% trans "Відправитися додому" %}</a>
+    </div>
+</div>
+{% endblock %}
+{% block location %}
+<div class="location_name d-flex flex-column justify-content-start align-items-center h-100">
+    {% trans "Ви зараз знаходитесь у окраїні міста"%}
+</div>
+{% endblock %}

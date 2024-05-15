@@ -1,0 +1,10 @@
+[
+    [{"pos": 4, "img": "img/locations/dungeon/dun4/dun_enemy.jpg"},{"pos": 5, "img": "img/locations/dungeon/dun4/dun4.jpg"},{"pos": 4, "img": "img/locations/dungeon/dun4/dun_enemy.jpg"},{"pos": 0, "img": ""},{"pos": 0, "img": ""},{"pos": 2, "img": "img/locations/dungeon/dun4/dun1.jpg"}],
+    [{"pos": 1, "img": "img/locations/dungeon/dun4/dun2.jpg"},{"pos": 0, "img": ""},{"pos": 1, "img": "img/locations/dungeon/dun4/dun3.jpg"},{"pos": 0, "img": ""},{"pos": 0, "img": ""},{"pos": 1, "img": "img/locations/dungeon/dun4/dun3.jpg"}],
+    [{"pos": 1, "img": "img/locations/dungeon/dun4/dun3.jpg"},{"pos": 0, "img": ""},{"pos": 1, "img": "img/locations/dungeon/dun4/dun2.jpg"},{"pos": 0, "img": ""},{"pos": 0, "img": ""},{"pos": 1, "img": "img/locations/dungeon/dun4/dun2.jpg"}],
+    [{"pos": 1, "img": "img/locations/dungeon/dun4/dun2.jpg"},{"pos": 1, "img": "img/locations/dungeon/dun4/dun3.jpg"},{"pos": 4, "img": "img/locations/dungeon/dun4/dun_enemy.jpg"},{"pos": 1, "img": "img/locations/dungeon/dun4/dun2.jpg"},{"pos": 1, "img": "img/locations/dungeon/dun4/dun3.jpg"},{"pos": 4, "img": "img/locations/dungeon/dun4/dun_enemy.jpg"}],
+    [{"pos": 0, "img": ""},{"pos": 1, "img": "img/locations/dungeon/dun4/dun3.jpg"},{"pos": 0, "img": ""},{"pos": 1, "img": "img/locations/dungeon/dun4/dun2.jpg"},{"pos": 0, "img": ""},{"pos": 0, "img": ""}],
+    [{"pos": 0, "img": ""},{"pos": 1, "img": "img/locations/dungeon/dun4/dun2.jpg"},{"pos": 0, "img": ""},{"pos": 4, "img": "img/locations/dungeon/dun4/dun_enemy.jpg"},{"pos": 0, "img": ""},{"pos": 0, "img": ""}],
+    [{"pos": 0, "img": ""},{"pos": 4, "img": "img/locations/dungeon/dun4/dun_enemy.jpg"},{"pos": 1, "img": "img/locations/dungeon/dun4/dun3.jpg"},{"pos": 1, "img": "img/locations/dungeon/dun4/dun3.jpg"},{"pos": 0, "img": ""},{"pos": 0, "img": ""}],
+    [{"pos": 0, "img": ""},{"pos": 0, "img": ""},{"pos": 0, "img": ""},{"pos": 0, "img": ""},{"pos": 0, "img": ""},{"pos": 0, "img": ""}]
+]

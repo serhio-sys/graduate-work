@@ -1,0 +1,45 @@
+{% extends "home.html" %}
+
+{% load i18n %}
+{% load account %}
+{% load allauth %}
+{% load crispy_forms_filters %}
+
+{% block head_title %}{% trans "Реєстрація" %}{% endblock %}
+
+{% block main %}
+<div class="w-100 p-3 d-flex flex-column align-items-center justify-content-center gap-5">
+    <div class="p-3 rounded bg-dark" style="max-width:750px;width:100%;">
+        <div class="text-center">
+            <h1>{% trans "Ваш профіль" %}</h1>
+        </div>
+        {% if user.img %}
+        <div class="d-flex justify-content-center"><img src="{{user.img.url}}" class="img-thumbnail" alt="img-thumbnail" width="200px" height="200px"></div>
+        {% endif %}
+        <div class="row">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div><button type="submit" class="btn btn-outline-light">{% trans "Зберегти зміни" %}</button></div>
+            </form>
+            {% if email_verified %}    
+                <div class="rounded p-3">{% trans "Email: активовано" %}</div>
+            {% else %}
+                <div class="p-3">
+                    <p class="p-2 mt-2 rounded" style="background: rgba(255,255,255, 0.5);">{% trans "Щоб редагувати Email треба його активувати" %}</p>
+                    <a class="btn btn-danger" href="{% url 'account_email_verification_sent' %}">{% trans "Активувати Email" %}</a>
+                </div>
+            {% endif %}
+            <div class="w-100 mt-3"><a class="btn btn-danger" href="{% url 'profile_del' %}">{% trans "Видалити аккаунт" %}</a></div>
+        </div>
+    </div>
+    <div class="p-3 rounded bg-dark" style="max-width:350px;width:100%;">
+        <div class="text-center">
+            <h1>{% trans "Зміна паролю" %}</h1>
+        </div>
+        <div class="row">
+            <a href="{% url 'account_change_password' %}" class="btn btn-outline-light">{% trans "Змінити пароль" %}</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
