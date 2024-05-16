@@ -35,6 +35,8 @@ ENVIRONMENT = os.environ.get('ENVIRONMENT', default='development')
 
 DEFAULT_HTTP_PROTOCOL = 'http'
 PROTOCOL = 'http'
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 
+SESSION_COOKIE_SECURE = False
 
 # Application definition
 INSTALLED_APPS = [
