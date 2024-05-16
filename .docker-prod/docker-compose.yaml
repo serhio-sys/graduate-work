@@ -39,7 +39,7 @@ services:
     volumes:
       - staticfiles:/code/staticfiles
     ports:
-      - 443:443
+      - 80:80
     depends_on:
       - web
 
