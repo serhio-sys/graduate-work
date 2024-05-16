@@ -33,28 +33,10 @@ PROD_HOST = "20.56.1.155"
 
 ENVIRONMENT = os.environ.get('ENVIRONMENT', default='development')
 
-SECURE_CROSS_ORIGIN_OPENER_POLICY = "unsafe-none"
-SECURE_SSL_REDIRECT = False
 DEFAULT_HTTP_PROTOCOL = 'http'
 PROTOCOL = 'http'
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = False
-SESSION_COOKIE_AGE = 31536000
-ACCOUNT_LOGOUT_ON_GET = False
-ACCOUNT_LOGOUT_REDIRECT_URL = '/'
-
-if not DEBUG:
-    SECURE_SSL_REDIRECT = True
-    DEFAULT_HTTP_PROTOCOL = 'https'
-    PROTOCOL = 'https'
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_HSTS_SECONDS = 3600
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
