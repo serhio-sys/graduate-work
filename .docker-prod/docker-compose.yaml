@@ -17,7 +17,7 @@ services:
     env_file:
     - ../.env
     ports:
-      - "5051:80"
+      - "5051:5050"
     restart: always
 
   web:
