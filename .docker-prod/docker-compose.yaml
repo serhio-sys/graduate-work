@@ -10,16 +10,15 @@ services:
       - postgres_data:/var/lib/postgresql/data/
 
   pgadmin:
-      image: dpage/pgadmin4
-      container_name: pgadmin
-      depends_on:
-        - db
-      ports:
-        - "5051:80"
-      environment:
-        PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
-        PGADMIN_DEFAULT_PASSWORD: root
-      restart: always
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    depends_on:
+      - db
+    env_file:
+    - ../.env
+    ports:
+      - "5051:80"
+    restart: always
 
   web:
     build:

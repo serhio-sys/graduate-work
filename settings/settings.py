@@ -40,6 +40,16 @@ PROTOCOL = 'http'
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    DEFAULT_HTTP_PROTOCOL = 'https'
+    PROTOCOL = 'https'
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 3600
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -85,10 +95,10 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'game.middleware.CustomUserMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'game.middleware.CustomUserMiddleware',
     'game.middleware.EffectMiddleware',
 ]
 
@@ -122,25 +132,13 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'wertun',
-        'PASSWORD': '43554453',
-        'HOST': 'localhost',
+        'NAME': os.getenv("POSTGRES_DB"),
+        'USER': os.getenv("POSTGRES_USER"),
+        'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+        'HOST': os.getenv("POSTGRES_HOST"),
         'PORT': 5432 
     }
 }
-
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv("POSTGRES_DB"),
-            'USER': os.getenv("POSTGRES_USER"),
-            'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-            'HOST': os.getenv("POSTGRES_HOST"),
-            'PORT': 5432 
-        }
-    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -220,7 +218,7 @@ AUTHENTICATION_BACKEND = {
     'allauth.account.auth_backends.AuthenticationBackend',
 }
 
-SITE_ID = 1
+SITE_ID = int(os.getenv("SITE_ID",default=1))
 ACCOUNT_SIGNUP_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT = 'home'
 ACCOUNT_EMAIL_REQUIRED = True
@@ -230,15 +228,12 @@ ACCOUNT_FORMS = {'signup': 'users.forms.CustomUserCreationFormAccount',
                 'reset_password_from_key': 'users.forms.CustomResetPasswordKeyForm', 
                 'login': 'users.forms.CustomLoginForm', 
                 'reset_password':'users.forms.CustomResetPassword'}
-SOCIALACCOUNT_AUTO_SIGNUP = False
-SOCIALACCOUNT_FORMS = {'signup': 'users.forms.CustomUserCreationForm'}
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
             'client_id': str(os.getenv("GOOGLE_CLIENT_ID",default=None)),
             'secret': str(os.getenv("GOOGLE_SECRET_KEY",default=None)),
-            'key': '',
-            'sites': [SITE_ID,]
+            'key': ''    
         }
     }
 }
@@ -255,4 +250,4 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+#pgadmin4@pgadmin.org

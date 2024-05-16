@@ -68,7 +68,6 @@ class CustomUserCreationFormAccount(SF):
                                                  autocomplete="new-password")
         self.fields["password2"] = PasswordField(label=_("Пароль (знову)"), 
                                                  autocomplete="new-password")
-        self.fields["img"] = forms.ImageField(required=False, label=_("Аватар (Не обов'язковий)"))
 
         if hasattr(self, "field_order"):
             set_form_field_order(self, self.field_order)
@@ -76,8 +75,6 @@ class CustomUserCreationFormAccount(SF):
     def save(self, request):
         user = super(CustomUserCreationFormAccount, self).save(request) # pylint: disable=R1725
         user.dungeon = DungeonLvl.objects.get(pk=1)
-        if request.FILES:
-            user.img = request.FILES['img']
         user.save()
         return user
 
@@ -85,7 +82,6 @@ class CustomUserCreationFormAccount(SF):
 class CustomUserCreationForm(SignupForm):
     email = forms.CharField(required=True, widget=forms.HiddenInput())
     username = forms.CharField(required=True, label=_("Ім'я користувача"))
-    account_img = forms.ImageField(required=False, label=_("Аватар (Не обов'язковий)"))
     password1 = PasswordField(label=_("Пароль"), autocomplete="new-password")
 
     def __init__(self, *args, **kwargs):  # pylint: disable=W0246
@@ -105,8 +101,6 @@ class CustomUserCreationForm(SignupForm):
         user.activated = True
         user.set_password(password)
         user.dungeon = DungeonLvl.objects.get(pk=1)
-        if request.FILES:
-            user.img = request.FILES['account_img']
         user.save()
         return user
 
