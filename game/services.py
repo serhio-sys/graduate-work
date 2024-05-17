@@ -320,7 +320,7 @@ class BasedFight:
             rnd = random.randint(0, len(self.patterns) - 1)
             total_dmg = who.return_all_damage_taken()
             total_defence = whom.return_all_defence()
-            attack = total_dmg - total_defence if total_defence < total_dmg else 1
+            attack = round(total_dmg - total_defence if total_defence < total_dmg else 1)
             if isinstance(who, NewUser):
                 if form.cleaned_data['attack'] != self.patterns[rnd]:
                     if whom.health - attack > 0:
@@ -446,12 +446,13 @@ class BossFightView(BasedFight):
             user.exp += 50
             user.balance += user.dungeon.lvl * 500
             user.enemy.delete()
+            user.enemy.save()
             try:
                 user.dungeon = DungeonLvl.objects.get(lvl=user.dungeon.lvl + 1) 
             except (DungeonLvl.DoesNotExist):
                 response = redirect("final")
                 return response
-            user.save(update_fields=['exp', 'balance', 'dungeon', 'enemy'])
+            user.save(update_fields=['exp', 'balance', 'dungeon'])
             request.session['is_boss'] = True
         elif self.is_winner is False:
             request.session['winner'] = False
