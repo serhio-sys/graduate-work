@@ -1,9 +1,9 @@
-from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from allauth.account.models import EmailAddress
-from game.models import Enemy, BaseEntity
+from game.models import BaseEntity
+from django.templatetags.static import static
 
 
 class NewUser(AbstractUser, BaseEntity):
@@ -59,8 +59,7 @@ class NewUser(AbstractUser, BaseEntity):
         return EmailAddress.objects.filter(user=self, verified=True).exists()
 
     def get_class_img(self):
-        url = f"{settings.PROTOCOL}://127.0.0.1:8000"
-        return url + "/static/img/classes/" + settings.ROLES[self.role]['img']
+        return static("img/classes/" + settings.ROLES[self.role]['img'])
 
     def check_exp(self):
         if self.lvl >= 99 and self.exp > 99:
