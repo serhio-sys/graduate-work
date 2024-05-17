@@ -219,6 +219,7 @@ ACCOUNT_FORMS = {'signup': 'users.forms.CustomUserCreationFormAccount',
                 'reset_password_from_key': 'users.forms.CustomResetPasswordKeyForm', 
                 'login': 'users.forms.CustomLoginForm', 
                 'reset_password':'users.forms.CustomResetPassword'}
+SOCIALACCOUNT_FORMS = {'signup': 'users.forms.CustomUserCreationForm'}
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
