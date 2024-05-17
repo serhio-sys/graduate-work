@@ -8,3 +8,4 @@ if __name__ == "__main__":
     os.system("python manage.py loaddata data/weapons_data.json")
     os.system("python manage.py loaddata data/enemy_data.json")
     os.system("python manage.py loaddata data/effects_data.json")
+    os.system("python manage.py loaddata data/sites.json")
