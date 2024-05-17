@@ -451,7 +451,7 @@ class BossFightView(BasedFight):
             except (DungeonLvl.DoesNotExist):
                 response = redirect("final")
                 return response
-            user.save(update_fields=['exp', 'balance', 'dungeon'])
+            user.save(update_fields=['exp', 'balance', 'dungeon', 'enemy'])
             request.session['is_boss'] = True
         elif self.is_winner is False:
             request.session['winner'] = False

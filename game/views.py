@@ -13,7 +13,7 @@ from .services import get_select_classview, get_with_user_context, \
     post_church, post_equip_armor, post_equip_weapon, get_buy_armor, get_buy_weapon, \
     BasedDungeon, BasedFight, reverse, get_instructions_page, \
     ChangeDungeonView, BossFightView
-from .models import Weapon, Armor, Enemy, DungeonLvl
+from .models import Weapon, Armor
 from .forms import UserIncreaseStatsForm, AttackForm
 from .logs import select_log
 from .mixins import DungeonMixin, InstructionMixin
@@ -294,15 +294,7 @@ class FightView(BasedFight, LoginRequiredMixin, View):
                 dmg = self.attack(request, user.enemy, user)
                 self.logs.append(select_log(who=user.enemy.name,
                                             whom=user.username,
-                                            type="agility", dmg=dmg))
-                response = self.finish_attack(request, user, self.logs)
-                return response
-        elif user.enemy.role == "shooter":
-            if random.randint(0, 100) < 10:
-                dmg = self.attack(request, user.enemy, user)
-                self.logs.append(select_log(who=user.enemy.name,
-                                            whom=user.username,
-                                            type="shooter", dmg=dmg))
+                                            attack_type="agility", dmg=dmg))
                 response = self.finish_attack(request, user, self.logs)
                 return response
         if self.request.user.role == "agility":
@@ -310,15 +302,7 @@ class FightView(BasedFight, LoginRequiredMixin, View):
                 dmg = self.attack(request, user, user.enemy)
                 self.logs.append(select_log(who=user.username,
                                             whom=user.enemy.name,
-                                            type="agility", dmg=dmg))
-                response = self.finish_attack(request, user, self.logs)
-                return response
-        elif self.request.user.role == "shooter":
-            if random.randint(0, 100) < 10:
-                dmg = self.attack(request, user, user.enemy)
-                self.logs.append(select_log(who=user.username,
-                                            whom=user.enemy.name,
-                                            type="shooter", dmg=dmg))
+                                            attack_type="agility", dmg=dmg))
                 response = self.finish_attack(request, user, self.logs)
                 return response
         dmg = self.attack(request, user, user.enemy)
