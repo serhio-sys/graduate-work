@@ -10,6 +10,7 @@ cffi==1.16.0
 channels==4.1.0
 channels-redis==4.2.0
 charset-normalizer==3.3.2
+click==8.1.7
 cloudinary==1.40.0
 colorama==0.4.6
 constantly==23.10.4
@@ -29,6 +30,7 @@ django-debug-toolbar==4.2.0
 filelock==3.13.1
 graphviz==0.20.1
 gunicorn==22.0.0
+h11==0.14.0
 hyperlink==21.0.0
 idna==3.6
 incremental==22.10.0
@@ -68,10 +70,12 @@ sqlparse==0.4.4
 tomli==2.0.1
 tomlkit==0.12.3
 Twisted==24.3.0
+twisted-iocpsupport==1.0.4
 txaio==23.1.1
 typing_extensions==4.9.0
 tzdata==2023.3
 urllib3==2.1.0
+uvicorn==0.29.0
 virtualenv==20.24.6
 whitenoise==6.6.0
 xmltodict==0.13.0
