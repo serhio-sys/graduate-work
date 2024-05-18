@@ -47,5 +47,15 @@
             "max_treasure": 500,
             "unlock_lvl": 50
         }
+    },
+    {
+        "model": "game.DungeonLvl",
+        "fields": {
+            "lvl": 6,
+            "map": "",
+            "min_treasure": 100,
+            "max_treasure": 500,
+            "unlock_lvl": 90
+        }
     }
 ]

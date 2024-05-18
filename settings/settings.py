@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
-from django.core.management.utils import get_random_secret_key
 from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 
@@ -23,26 +22,31 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_random_secret_key()
+SECRET_KEY = os.environ.get('DJANGO_SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', True)
 ALLOWED_HOSTS = ['*']
+ALLOWED_ADMIN_IPS = []
+SECRET_ADMIN_TOKEN = os.environ.get("SECRET_ADMIN_TOKEN")
 CORS_ORIGIN_ALLOW_ALL = True
-PROD_HOST = "20.56.1.155"
+PROD_HOST = "dungeonapp.westeurope.cloudapp.azure.com"
 
-ENVIRONMENT = os.environ.get('ENVIRONMENT', default='development')
-
-SECURE_CROSS_ORIGIN_OPENER_POLICY = "unsafe-none"
-SECURE_SSL_REDIRECT = False
 DEFAULT_HTTP_PROTOCOL = 'http'
 PROTOCOL = 'http'
+SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_AGE = 31536000
+ACCOUNT_LOGOUT_ON_GET = False
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
-
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
+    'channels_redis',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -85,10 +89,11 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'game.middleware.CustomUserMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',    
+    'game.middleware.AdminMiddleware',
+    'game.middleware.CustomUserMiddleware',
     'game.middleware.EffectMiddleware',
 ]
 
@@ -113,8 +118,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'settings.wsgi.application'
-
+ASGI_APPLICATION = 'settings.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -122,41 +126,23 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'wertun',
-        'PASSWORD': '43554453',
-        'HOST': 'localhost',
+        'NAME': os.getenv("POSTGRES_DB"),
+        'USER': os.getenv("POSTGRES_USER"),
+        'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+        'HOST': os.getenv("POSTGRES_HOST"),
         'PORT': 5432 
     }
 }
-
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv("POSTGRES_DB"),
-            'USER': os.getenv("POSTGRES_USER"),
-            'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-            'HOST': os.getenv("POSTGRES_HOST"),
-            'PORT': 5432 
-        }
-    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'settings.password_validators.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'settings.password_validators.NumericPasswordValidator',
     },
 ]
 
@@ -220,7 +206,7 @@ AUTHENTICATION_BACKEND = {
     'allauth.account.auth_backends.AuthenticationBackend',
 }
 
-SITE_ID = 1
+SITE_ID = int(os.getenv("SITE_ID",default=1))
 ACCOUNT_SIGNUP_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_REDIRECT = 'home'
 ACCOUNT_EMAIL_REQUIRED = True
@@ -230,15 +216,14 @@ ACCOUNT_FORMS = {'signup': 'users.forms.CustomUserCreationFormAccount',
                 'reset_password_from_key': 'users.forms.CustomResetPasswordKeyForm', 
                 'login': 'users.forms.CustomLoginForm', 
                 'reset_password':'users.forms.CustomResetPassword'}
-SOCIALACCOUNT_AUTO_SIGNUP = False
 SOCIALACCOUNT_FORMS = {'signup': 'users.forms.CustomUserCreationForm'}
+SOCIALACCOUNT_AUTO_SIGNUP = False
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
             'client_id': str(os.getenv("GOOGLE_CLIENT_ID",default=None)),
             'secret': str(os.getenv("GOOGLE_SECRET_KEY",default=None)),
-            'key': '',
-            'sites': [SITE_ID,]
+            'key': ''    
         }
     }
 }
@@ -255,4 +240,12 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("redis", 6379)],
+        },
+    },
+}

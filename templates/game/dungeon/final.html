@@ -1,17 +1,19 @@
-{% load i18n %}
+{% extends "game/base.html" %}
 {% load static %}
+
+{% block styles %}
 <link rel="stylesheet" href="{% static 'css/game/main.css' %}">
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% trans "FINAL" %}</title>
-</head>
-<body>
-    <main class="main">
-        {% block main %}
-        {% endblock main %}
-    </main>
-</body>
-</html>
+{% endblock %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "FINAL" %}{% endblock %}
+
+{% block main %}
+<div class="w-100 h-100 p-3 position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center justify-content-center">
+    {% if request.session.winner %}
+        <h1>{% trans "Вітаємо. Ви врятували селище Гроссенберг і стали його героєм. Усі жителі Гроссенберга будуть вам вдячні до кінця життя." %}</h1>
+        <div><a class="btn btn-warning" href="{% url 'dungeon' %}">{% trans "Повернутися до підземілля" %}</a></div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -43,19 +43,37 @@
     </div>
     <div class="mt-5 d-flex flex-column gap-1">
         {% if enemy.weapon_equiped %}
-            <img src="{{enemy.weapon_equiped.get_img}}" width="85px" height="85px"/>
+            <div class="img_wp"> 
+                <img src="{{enemy.weapon_equiped.get_img}}" class="item_img" />
+                <div class="d-flex flex-column align-items-center justify-content-center img_txt">
+                    <span class="text-center">{{enemy.weapon_equiped.name}}</span>
+                    <span class="text-center">{{enemy.weapon_equiped.damage}} DMG</span>
+                </div>
+            </div>
         {% else %}
             <div class="empty_img"></div>
         {% endif %}
         {% if enemy.weapon2_equiped %}
-            {% if user.weapon2_equiped %}
-                <img src="{{enemy.weapon2_equiped.get_img}}" width="85px" height="85px"/>
+            {% if enemy.weapon_equiped %}
+            <div class="img_wp">
+                <img src="{{enemy.weapon2_equiped.get_img}}" class="item_img"/>
+                <div class="d-flex flex-column align-items-center justify-content-center img_txt">
+                    <span class="text-center">{{enemy.weapon2_equiped.name}}</span>
+                    <span class="text-center">{{enemy.weapon2_equiped.damage}} DMG</span>
+                </div>
+            </div>
             {% else %}
                 <div class="empty_img"></div>
             {% endif %}
         {% else %}
             {% if enemy.armor_equiped %}
-                <img src="{{enemy.armor_equiped.get_img}}" width="85px" height="85px"/>
+                <div class="img_wp"> 
+                    <img src="{{enemy.armor_equiped.get_img}}" class="item_img"/>
+                    <div class="d-flex flex-column align-items-center justify-content-center img_txt">
+                        <span class="text-center">{{enemy.armor_equiped.name}}</span>
+                        <span class="text-center">{{enemy.armor_equiped.armor}} Defence</span>
+                    </div>
+                </div>
             {% else %}
                 <div class="empty_img"></div>
             {% endif %}

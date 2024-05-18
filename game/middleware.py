@@ -1,7 +1,8 @@
 import random
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponseForbidden
 from django.shortcuts import reverse as reverse_lazy
 from django.contrib.auth import get_user_model
+from django.conf import settings
 
 
 class EffectMiddleware:
@@ -46,3 +47,26 @@ class CustomUserMiddleware:
 
         response = self.get_response(request)
         return response
+    
+class AdminMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if request.path.startswith('/admin/'):
+            ip = AdminMiddleware.__get_client_ip__(request)  
+            if request.GET.get("token") == settings.SECRET_ADMIN_TOKEN and ip not in settings.ALLOWED_ADMIN_IPS:
+                settings.ALLOWED_ADMIN_IPS.append(ip)
+            if ip not in settings.ALLOWED_ADMIN_IPS:
+                return HttpResponseForbidden("<h1><center>Access to the admin panel is restricted to authenticated users.</center></h1><h2><center>Forbidden 403</center></h2>")
+        response = self.get_response(request)
+        return response
+
+    @staticmethod
+    def __get_client_ip__(request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip

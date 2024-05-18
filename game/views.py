@@ -8,12 +8,13 @@ from django.http import HttpRequest, JsonResponse, HttpResponseRedirect
 from django.contrib.auth import get_user_model
 from django.views.decorators.http import require_POST, require_GET
 from django.templatetags.static import static
+from django.utils.translation import gettext_lazy as _
 from .services import get_select_classview, get_with_user_context, \
     post_select_classview, get_inventory_classview, \
     post_church, post_equip_armor, post_equip_weapon, get_buy_armor, get_buy_weapon, \
     BasedDungeon, BasedFight, reverse, get_instructions_page, \
     ChangeDungeonView, BossFightView
-from .models import Weapon, Armor, Enemy, DungeonLvl
+from .models import Weapon, Armor
 from .forms import UserIncreaseStatsForm, AttackForm
 from .logs import select_log
 from .mixins import DungeonMixin, InstructionMixin
@@ -212,9 +213,8 @@ class AbilitiesView(DungeonMixin, View):
                 request.user.strength = form.cleaned_data['strength']
                 request.user.upgrade_points = form.cleaned_data['upgrade_points']
                 request.user.save(update_fields=['upgrade_points', 'strength', 'agility'])
-            response = get_with_user_context(request=request, template_name=self.template_name)
-            response.context_data.update({"form": UserIncreaseStatsForm(instance=request.user)})
-            return response.render()
+                msg = _("Ваші атрибути зросли. Поспішіть перевірити свою силу в підземеллі.")
+                return redirect(reverse('abilities') + f"?message={msg}")
         response.context_data.update({"form": form})
         return response.render()
 
@@ -245,11 +245,11 @@ class DungeonEnemyView(DungeonView):
 
     def get(self, request: HttpRequest):
         response = self.get_based_response(request=request)
+        request.session["x"], request.session["y"] = self.x, self.y
         if isinstance(response, HttpResponseRedirect):
             return response
         response.template_name = self.template_name
         request.session['fight_posibility'] = 40
-        request.session["x"], request.session["y"] = self.x, self.y
         response.context_data['img'] = static(self.map_data[self.x][self.y]["img"])
         return response.render()
 
@@ -294,15 +294,7 @@ class FightView(BasedFight, LoginRequiredMixin, View):
                 dmg = self.attack(request, user.enemy, user)
                 self.logs.append(select_log(who=user.enemy.name,
                                             whom=user.username,
-                                            type="agility", dmg=dmg))
-                response = self.finish_attack(request, user, self.logs)
-                return response
-        elif user.enemy.role == "shooter":
-            if random.randint(0, 100) < 10:
-                dmg = self.attack(request, user.enemy, user)
-                self.logs.append(select_log(who=user.enemy.name,
-                                            whom=user.username,
-                                            type="shooter", dmg=dmg))
+                                            attack_type="agility", dmg=dmg))
                 response = self.finish_attack(request, user, self.logs)
                 return response
         if self.request.user.role == "agility":
@@ -310,15 +302,7 @@ class FightView(BasedFight, LoginRequiredMixin, View):
                 dmg = self.attack(request, user, user.enemy)
                 self.logs.append(select_log(who=user.username,
                                             whom=user.enemy.name,
-                                            type="agility", dmg=dmg))
-                response = self.finish_attack(request, user, self.logs)
-                return response
-        elif self.request.user.role == "shooter":
-            if random.randint(0, 100) < 10:
-                dmg = self.attack(request, user, user.enemy)
-                self.logs.append(select_log(who=user.username,
-                                            whom=user.enemy.name,
-                                            type="shooter", dmg=dmg))
+                                            attack_type="agility", dmg=dmg))
                 response = self.finish_attack(request, user, self.logs)
                 return response
         dmg = self.attack(request, user, user.enemy)
@@ -335,17 +319,19 @@ class FightView(BasedFight, LoginRequiredMixin, View):
 
 class DungeonBossView(DungeonView):
     template_name = "game/dungeon/dungeon_boss.html"
-    defeted_template_name = "game/dungeon/dungeon_change.html"
+    defeted_template_name = "game/dungeon/dungeon_change.html"   
 
     def get(self, request: HttpRequest):
-        response = self.get_based_response(request=request)
+        response = self.get_based_response(request=request)   
+        request.session["x"], request.session["y"] = self.x, self.y
+        if request.user.current_dungeon == 5 and request.user.dungeon.lvl == 6:
+            return redirect("dungeon")
         if isinstance(response, HttpResponseRedirect):
             return response
         if self.request.user.dungeon.lvl > self.request.user.current_dungeon:
             response.template_name = self.defeted_template_name
             return response.render()
         response.template_name = self.template_name
-        request.session["x"], request.session["y"] = self.x, self.y
         response.context_data['img'] = static(f"img/locations/dungeon/dun{request.user.current_dungeon}/dun_boss.jpg")
         return response.render()
 

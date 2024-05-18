@@ -29,24 +29,24 @@
     </div>
     <div class="mt-3">
         {% if a %}
-        <a href="{{a}}" class="btn btn-warning btn-sm">v</a>
+        <a href="{{a}}" class="active_bottom btn btn-warning btn-sm" style="min-width: 30px;">↓</a>
         {% else %}
-        <a class="disable btn btn-outline-dark btn-sm">v</a>
+        <a class="disable btn btn-outline-dark btn-sm" style="min-width: 30px;">↓</a>
         {% endif %}
         {% if r %}
-        <a href="{{r}}" class="btn btn-warning btn-sm"><</a>
+        <a href="{{r}}" class="active_left btn btn-warning btn-sm" style="min-width: 30px;">←</a>
         {% else %}
-        <a class="disable btn btn-outline-dark btn-sm"><</a>
+        <a class="disable btn btn-outline-dark btn-sm" style="min-width: 30px;">←</a>
         {% endif %}
         {% if l %}
-        <a href="{{l}}" class="btn btn-warning btn-sm">></a>
+        <a href="{{l}}" class="active_right btn btn-warning btn-sm" style="min-width: 30px;">→</a>
         {% else %}
-        <a class="disable btn btn-outline-dark btn-sm">></a>
+        <a class="disable btn btn-outline-dark btn-sm" style="min-width: 30px;">→</a>
         {% endif %}    
         {% if b %}
-        <a href="{{b}}" class="btn btn-warning btn-sm">^</a>
+        <a href="{{b}}" class="active_top btn btn-warning btn-sm" style="min-width: 30px;">↑</a>
         {% else %}
-        <a class="disable btn btn-outline-dark btn-sm">^</a>
+        <a class="disable btn btn-outline-dark btn-sm" style="min-width: 30px;">↑</a>
         {% endif %}
     </div>
     {% if can_leave and user.current_dungeon == 1 %}
@@ -59,3 +59,29 @@
         </div>
     {% endif %}
 </div>  
+<script>
+    const active_bottom = document.querySelector('.active_bottom')
+    const active_top = document.querySelector('.active_top')
+    const active_left = document.querySelector('.active_left')
+    const active_right = document.querySelector('.active_right')
+    const body = document.querySelector('body')
+    body.onkeyup = function(event) {
+        switch (event.keyCode) {
+            case 83:
+                active_bottom.click()
+                break;
+            case 87:
+                active_top.click()
+                break;
+            case 68:
+                active_right.click()
+                break;
+            case 65:
+                active_left.click()
+                break;
+        }
+        if (event.keyCode === 83) {
+            active_bottom.click()
+        }
+    };
+</script>

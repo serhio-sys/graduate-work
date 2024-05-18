@@ -110,3 +110,29 @@
     color: black; 
     font-weight: 700;
 }
+.win_img {
+    position: absolute; 
+    left: 0; 
+    bottom: 0; 
+    width: 100%;
+}
+.base_input {
+    outline: none;
+    border-radius: 0.4em; 
+    border: 1px solid grey; 
+    background: transparent; 
+    outline:none;
+}
+.header_connected_users {
+    text-align: center; 
+    border-top-left-radius: 0.4em; 
+    border-top-right-radius: 0.4em; 
+    background: gray; 
+    color:white;
+}
+.body_connected_users {
+    border:1px solid gray; 
+    border-bottom-left-radius: 0.4em; 
+    border-bottom-right-radius: 0.4em; 
+    text-align: center;
+}

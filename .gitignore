@@ -1,9 +1,11 @@
 .sqlite3
 media/img
 .env
+env
 .idea
 site-packages
 __pycache__/
 .azure
+.token
 db.sqlite3
 staticfiles

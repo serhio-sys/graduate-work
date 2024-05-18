@@ -14,11 +14,10 @@ services:
       container_name: pgadmin
       depends_on:
         - db
+      env_file:
+      - ../.env
       ports:
         - "5051:80"
-      environment:
-        PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
-        PGADMIN_DEFAULT_PASSWORD: root
       restart: always
 
   web:
@@ -34,6 +33,16 @@ services:
       - 8000:8000
     depends_on:
       - db
+      - redis
+
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_volume_data:/data
 
 volumes:
+  redis_volume_data:
   postgres_data:
