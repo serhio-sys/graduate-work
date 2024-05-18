@@ -166,7 +166,7 @@ def get_select_classview(request: HttpRequest, template_name: str) -> HttpRespon
             "img": request.build_absolute_uri('/static/img/classes/agility.png'),
             "visual_name": _("Ловкач"),
             "desc": _(
-                "Головний атрибут: Спритність.\n Якщо супротивник дуже повільний і"
+                "Головний атрибут: Спритність.\n Якщо супротивник дуже повільний і "
                 "буде ловити гав, то є можливість зробити подвійну атаку.\n Особливість:"
                 "можливість ухилитися від атаки та контр атакувати.")
         },
@@ -176,7 +176,7 @@ def get_select_classview(request: HttpRequest, template_name: str) -> HttpRespon
             "visual_name": _("Силач"),
             "desc": _(
                 "Головний атрибут: Сила.\n Чим більша сила, тим більше"
-                "болю може зазнати супротивник.\n Особливість: наносити тяжкі поранення.")
+                " болю може зазнати супротивник.\n Особливість: наносити тяжкі поранення.")
         }
     ]
     return render(request=request, template_name=template_name, context={"classes": classes})
@@ -198,6 +198,13 @@ class BasedDungeon:
         self.map_data = []
         self.x, self.y = 0, 0
         self.points = self.get_start_points()
+
+    def get_end_points(self) -> list[int]:
+        for i in enumerate(self.map_data):
+            for j in range(len(i[1])):
+                if self.map_data[i[0]][j]["pos"] == 5:
+                    return [i[0], j]
+        return [0, 2]
 
     def get_start_points(self) -> list[int]:
         for i in enumerate(self.map_data):
@@ -292,7 +299,10 @@ class BasedFight:
 
     @staticmethod
     def apply_effect(effect_name: str, whom: NewUser | Enemy, duration_min: int) -> None:
-        effect = Effect.objects.get(name=effect_name, user__isnull=True, enemy__isnull=True)
+        try:
+            effect = Effect.objects.filter(name=effect_name, user__isnull=True, enemy__isnull=True).first()
+        except Effect.DoesNotExist:
+            return
         en_effect = Effect(**model_to_dict(effect, exclude=['id']))
         en_effect.deleted_time = datetime.datetime.now() + datetime.timedelta(minutes=duration_min)
         setattr(en_effect, 'user' if isinstance(whom, NewUser) else 'enemy', whom)
@@ -385,20 +395,16 @@ class BasedFight:
 
 
 class ChangeDungeonView(BasedDungeon, LoginRequiredMixin, View):
-    def get_end_points(self) -> list[int]:
-        for i in enumerate(self.map_data):
-            for j in range(len(i[1])):
-                if self.map_data[i[0]][j]["pos"] == 5:
-                    return [i[0], j]
-        return [0, 2]
 
     def initial_points(self, request: HttpRequest, page: str) -> str:
         request.session['is_boss'] = False
-        current_dungeon = DungeonLvl.objects.get(lvl=request.user.current_dungeon)
-        with open(settings.BASE_DIR + current_dungeon.map.url, 'r', encoding='utf-8') as f:
-            current_map = json.load(f)
         self.x, self.y = int(request.GET.get("x", request.session.get("x", 0))), \
-            int(request.GET.get("y", request.session.get("y", 0)))
+            int(request.GET.get("y", request.session.get("y", 0)))     
+        current_dungeon = DungeonLvl.objects.get(lvl=request.user.current_dungeon)
+        if self.get_end_points() == [self.x, self.y] and request.user.dungeon.lvl == 6:
+            return reverse("dungeon") + f"?x={self.x}&y={self.y}"
+        with open(settings.BASE_DIR + current_dungeon.map.url, 'r', encoding='utf-8') as f:
+            current_map = json.load(f)   
         if current_map[self.x][self.y]["pos"] == 5:
             self.dungeon = DungeonLvl.objects.get(lvl=request.user.current_dungeon + 1)
             request.user.current_dungeon += 1
@@ -445,17 +451,32 @@ class BossFightView(BasedFight):
             request.session['winner'] = True
             user.exp += 50
             user.balance += user.dungeon.lvl * 500
-            user.enemy.delete()
-            user.enemy.save()
             try:
                 user.dungeon = DungeonLvl.objects.get(lvl=user.dungeon.lvl + 1) 
             except (DungeonLvl.DoesNotExist):
-                response = redirect("final")
-                return response
-            user.save(update_fields=['exp', 'balance', 'dungeon'])
+                user.dungeon = None            
+            user.save(update_fields=['exp', 'balance', 'dungeon'])            
+            user.enemy.delete()
             request.session['is_boss'] = True
         elif self.is_winner is False:
             request.session['winner'] = False
             user.enemy.delete()
         response = self.generate_response(user, logs)
+        return response
+    
+    def generate_response(self, user: NewUser, log: list[str]):
+        if self.is_winner is None:
+            response = JsonResponse({
+                "enemy_hp": user.enemy.health,
+                "user_hp": user.health,
+                "user_stats": user.get_summary_stats(),
+                "enemy_stats": user.enemy.get_summary_stats(),
+                "winner": self.is_winner,
+                "log": log
+            }, status=200)
+        else:
+            response = JsonResponse({
+                "winner": self.is_winner,
+                "redirect_url": reverse("final" if user.dungeon == 6 else "fight_results"),
+            }, status=200)
         return response

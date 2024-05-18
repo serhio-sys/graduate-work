@@ -12,6 +12,11 @@
 </style>
 {% endblock %}
 {% block map %}
+{% if request.GET.message %}
+<div class="message">
+    <h1>{{request.GET.message}}</h1>
+</div>
+{% endif %}
 <div class="d-flex flex-column justify-content-center align-items-center h-100 w-100">
     <h1>{% trans "Ваші атрибути" %}</h1>
     <h3>{% trans "Вільних атрибутів для розподілу: " %}{{user.upgrade_points}}</h3>
@@ -45,6 +50,12 @@
 
 {% endblock %}
 {% block script %}
+<script>
+    var elem = document.querySelector(".message");
+    elem.addEventListener("click", () => {
+        elem.classList.add("hidden");
+    });
+</script>
 <script>
     var current_points = {{user.upgrade_points}};
     var max_points = {{user.upgrade_points}};

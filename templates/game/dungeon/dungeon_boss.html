@@ -14,11 +14,15 @@
 {% endblock %}
 {% block low %}
 <div class="w-100 h-100 d-flex flex-column align-items-center">
-    <h3>{% trans "Щоб пройти далі треба перемогти головного командиру захисників першого рівня?" %}</h3>
-    <p>{% trans "Готові до бою?" %}</p>
-    <form method="post">
-        {% csrf_token %}
-        <button class="btn btn-outline-light">{% trans "Готовий!" %}</button>
-    </form>
+    {% if request.user.dungeon.lvl == 6 %}
+        <h3>{% trans "Вітаємо ви повністю зачистили підземілля й стали його героєм. Усі жителі Гроссенбегра дуже вдячні вам." %}</h3>
+    {% else %}
+        <h3>{% trans "Щоб пройти далі треба перемогти головного командиру захисників першого рівня?" %}</h3>
+        <p>{% trans "Готові до бою?" %}</p>
+        <form method="post">
+            {% csrf_token %}
+            <button class="btn btn-outline-light">{% trans "Готовий!" %}</button>
+        </form>
+    {% endif %}
 </div>
 {% endblock %}

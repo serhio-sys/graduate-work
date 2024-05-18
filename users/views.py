@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic import View, ListView
@@ -6,6 +7,7 @@ from django.utils import translation
 from django.http import HttpRequest, JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
 from .forms import ChoiceLanguageForm, UserUpdateForm
 
 
@@ -67,5 +69,8 @@ def home(request: HttpRequest):
 
 @login_required
 def custom_logout(request):
-    logout(request)
-    return redirect("home")
+    if request.user.current_dungeon == 1 and request.session['x'] == 0 and request.session['y'] == 2:
+        logout(request) 
+        return redirect("home")
+    error_msg = _("Перед тим як вийти з акаунту ви маєте покинути активне підземелля.")
+    return redirect(reverse("home")+f"?error={error_msg}")

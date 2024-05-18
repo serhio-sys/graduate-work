@@ -21,7 +21,7 @@
         "fields": {
             "name": "Enemy_1_dungeon",
             "health": 100,
-            "attack": 7,
+            "attack": 5,
             "defence": 2,
             "agility": 2,
             "strength": 6,

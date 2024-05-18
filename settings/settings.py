@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
-from django.core.management.utils import get_random_secret_key
 from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 
@@ -28,10 +27,10 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', True)
 ALLOWED_HOSTS = ['*']
+ALLOWED_ADMIN_IPS = []
+SECRET_ADMIN_TOKEN = os.environ.get("SECRET_ADMIN_TOKEN")
 CORS_ORIGIN_ALLOW_ALL = True
-PROD_HOST = "20.56.1.155"
-
-ENVIRONMENT = os.environ.get('ENVIRONMENT', default='development')
+PROD_HOST = "dungeonapp.westeurope.cloudapp.azure.com"
 
 DEFAULT_HTTP_PROTOCOL = 'http'
 PROTOCOL = 'http'
@@ -44,6 +43,10 @@ ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
 INSTALLED_APPS = [
+    'daphne',
+    'channels',
+    'channels_redis',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -88,7 +91,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',    
+    'game.middleware.AdminMiddleware',
     'game.middleware.CustomUserMiddleware',
     'game.middleware.EffectMiddleware',
 ]
@@ -114,8 +118,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'settings.wsgi.application'
-
+ASGI_APPLICATION = 'settings.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -136,16 +139,10 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'settings.password_validators.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'settings.password_validators.NumericPasswordValidator',
     },
 ]
 
@@ -243,4 +240,12 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-#pgadmin4@pgadmin.org
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("redis", 6379)],
+        },
+    },
+}

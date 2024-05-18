@@ -1,6 +1,7 @@
 {% extends "home.html" %}
 
 {% load i18n %}
+{% load static %}
 {% load account %}
 {% load allauth %}
 {% load crispy_forms_filters %}
@@ -9,7 +10,7 @@
 
 {% block main %}
 <div class="w-100 p-3 d-flex flex-column align-items-center flex-wrap justify-content-between gap-5">
-    <h1 class="text-center">Best players</h1>
+    <h1 class="text-center">{% trans "Найкращі гравці" %}</h1>
     <div class="d-flex flex-wrap gap-5 w-100 justify-content-center">
         {% for user in page_obj %}
             <div class="d-flex">
@@ -19,14 +20,32 @@
                         <div>
                             {{user.username}} [{{user.check_exp}}]
                         </div>
-                        <div class="progress mt-1" style="height: 10px;">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: {{user.exp}}%;" aria-valuenow="{{user.exp}}" aria-valuemin="0" aria-valuemax="100">{% trans "досвід:" %}{{user.exp}}</div>
+                        <div class="progress mt-1 position-relative" style="height: 15px;">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: {{user.exp}}%;" aria-valuenow="{{user.exp}}" aria-valuemin="0" aria-valuemax="100"></div>
+                            <span class="progress-bar-text">{% trans "досвід: " %}{{user.exp}}</span>
                         </div>
                     </div>
-                    <div class="mt-1"><img src="{{user.get_class_img}}" style="width: 200px; height:300px; background:rgba(0,0,0,0.2);"/></div>
+                    <div class="mt-1 hero_img_block">
+                        <img src="{{user.get_class_img}}" class="hero_img"/>
+                        {% if user.dungeon is None %}
+                        <img src="{% static 'img/win.png' %}" class="win_img"/>
+                        {% endif %}
+                        <div class="hero_stats">
+                            <div>{% trans "Характеристики" %}</div>
+                            {% with user.get_summary_damage as dmg %}
+                            <div class="mt-2">{% trans "Атака: " %} {{dmg.total}} ({{dmg.hero}}+{{dmg.bonus}})</div>
+                            {% endwith %}
+                            <div>{% trans "Захист: " %} {{user.return_all_armor}} ({{user.defence}}{% if user.armor_equiped is not None %}+{{user.armor_equiped.armor_value}}{% endif %})</div>
+                            {% with user.get_summary_stats as stats %}
+                            <div class="user_str">{% trans "Сила: " %} {{stats.str.total}} ({{stats.str.hero}}{% if stats.str.sum >= 0 %}+{{stats.str.sum}}{% else %}{{stats.str.sum}}{% endif %})</div>
+                            <div class="user_ag">{% trans "Спритність: " %} {{stats.ag.total}} ({{stats.ag.hero}}{% if stats.ag.sum >= 0 %}+{{stats.ag.sum}}{% else %}{{stats.ag.sum}}{% endif %})</div>
+                            {% endwith %}
+                        </div>
+                    </div>
                     <div class="hero_health">
-                        <div class="progress mt-2" style="height: 10px;">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{user.get_current_hp}}%;" aria-valuenow="{{user.get_current_hp}}" aria-valuemin="0" aria-valuemax="{{user.get_max_hp}}">{% trans "здоров'я:" %}{{user.get_current_hp}}</div>
+                        <div class="progress mt-2 position-relative" style="height: 15px;">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: {{user.get_current_hp}}%;" aria-valuenow="{{user.get_current_hp}}" aria-valuemin="0" aria-valuemax="{{user.get_max_hp}}"></div>
+                            <span class="progress-bar-text user_hp">{% trans "здоров'я:" %}{{user.get_current_hp}}</span>
                         </div>
                     </div>
                 </div>
