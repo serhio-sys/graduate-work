@@ -3,7 +3,7 @@
         "model": "game.Effect",
         "fields": {
             "name": "Бог з тобою",
-            "desc": "Посилення спритності первонажу",
+            "desc": "Посилення спритності перcонажу",
             "is_church_ef": true,
             "agility": 3,
             "strength": 2
