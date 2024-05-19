@@ -18,7 +18,17 @@
     <p>{% trans "Якщо ви будете продовжувати рухатись є можливість, що бій почнеться й ворог атакує першим (50% шансу)." %}</p>
     <form method="post">
         {% csrf_token %}
-        <button class="btn btn-outline-light">{% trans "Почати бій, бо це найкращий захист" %}</button>
+        <button class="fight-btn btn btn-outline-light">{% trans "Почати бій, бо це найкращий захист" %}</button>
     </form>
 </div>
 {% endblock %}
+{% block script %}
+<script>
+    const body = document.querySelector('body')
+    body.onkeyup = function(event) {
+        if (event.keyCode === 13) {
+            document.querySelector('.fight-btn').click()
+        }
+    };
+</script>
+{% endblock script %}
