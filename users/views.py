@@ -4,23 +4,11 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic import View, ListView
 from django.utils import translation
-from django.http import HttpRequest, JsonResponse
+from django.http import HttpRequest
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
-from .forms import ChoiceLanguageForm, UserUpdateForm
-
-
-class SetLocale(View):
-    def post(self, request: HttpRequest, route):
-        form = ChoiceLanguageForm(request.POST)
-        route_name = route
-        if form.is_valid():
-            translation.activate(form.cleaned_data['locale'])
-            request.session['lang'] = form.cleaned_data['locale']
-        else:
-            return JsonResponse({"errors": form.errors})
-        return redirect(route_name)
+from .forms import UserUpdateForm
 
 
 class ProfileEdit(LoginRequiredMixin, View):
@@ -63,8 +51,6 @@ def delete_account(request: HttpRequest):
 
 
 def home(request: HttpRequest):
-    print(translation.get_language())
-    print(translation.get_language())
     return render(request=request, template_name="home.html")
 
 

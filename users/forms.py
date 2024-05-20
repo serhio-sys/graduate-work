@@ -23,12 +23,6 @@ from allauth.account.forms import PasswordField, SignupForm as SF, LoginForm,\
     ResetPasswordKeyForm, SetPasswordField
 from game.models import DungeonLvl
 
-CHOICE = [
-    ("en", "EN"),
-    ("uk", "UK")
-]
-
-
 class CustomLoginForm(LoginForm):
 
     error_messages = {
@@ -209,8 +203,3 @@ class CustomChangePasswordForm(ChangePasswordForm):
         label=_("Новий пароль")
     )
     password2 = PasswordField(label=_("Повторіть новий пароль"))
-
-
-class ChoiceLanguageForm(forms.Form):
-    locale = forms.ChoiceField(label=False, choices=CHOICE, 
-            widget=forms.Select(attrs={'class': 'form-control locale'}))
