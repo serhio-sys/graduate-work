@@ -12,7 +12,7 @@
     {% block styles %}
     {% endblock styles %}
   </head>
-  <body id="google_translate_element" style="min-width: 1200px;">
+  <body id="google_translate_element">
     <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand d-flex align-items-center gap-3" href="{% url 'home' %}">
@@ -22,40 +22,102 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarDark">
-            <ul class="navbar-nav ms-auto me-auto mb-xl-0">
-                <li class="nav-item dropdown">
-                    <a class="btn btn-info btn-sm me-1" href="{% url 'abilities' %}?name={{request.resolver_match.url_name}}">{% trans "Навички" %}</a>
-                    <a class="btn btn-info btn-sm me-5" href="{% url 'inventory' request.resolver_match.url_name %}">{% trans "Інвентар" %}</a>
-                    <a href="{% url 'back_to_main' request.resolver_match.url_name %}" class="btn btn-outline-light btn-sm">Повернутися на головну</a>
+            <ul class="navbar-nav w-100 menu justify-content-between mb-xl-0">
+                <li class="nav-item">
+                </li>
+                <li class="nav-item d-flex justify-content-between gap-2">
+                  <a class="btn btn-info btn-sm" href="{% url 'abilities' %}?name={{request.resolver_match.url_name}}">{% trans "Навички" %}</a>
+                  <a class="btn btn-info btn-sm" href="{% url 'inventory' request.resolver_match.url_name %}">{% trans "Інвентар" %}</a>
+                  <a href="{% url 'back_to_main' request.resolver_match.url_name %}" class="btn btn-outline-light btn-sm">Повернутися на головну</a>
+                </li>
+                <li class="nav-link lang-form">
+                  <form method="post" action="{% url 'locale' request.resolver_match.url_name %}" class="locale-form">{% csrf_token %}{{locale_form}}</form>
                 </li>
             </ul>
-            <form method="post" action="{% url 'locale' request.resolver_match.url_name %}" class="locale-form me-4">{% csrf_token %}{{locale_form}}</form>
           </div>
         </div>
     </nav>
+    <div class="device_message">
+        <h1 class="message_text">{% trans 'Будь ласка змініть орієнтацію мобільного пристрою за для усунення помилок інтерфейсу' %}</h1>
+    </div>
     <main class="main">
         {% block main %}
         {% endblock main %}
     </main>
-  <script>
-    document.querySelector('main').style.minHeight = `calc(100vh - ${document.querySelector('.navbar').offsetHeight}px)`;
-    document.querySelector(".locale").addEventListener("change", () => {
-      document.querySelector(".locale-form").submit();
-    })
-    var lang = "{{request.session.lang}}"
-    if (lang === "") {
-      lang = "uk"
-    }
-    document.querySelectorAll("option").forEach(it => {
-        if (it.value == lang){
-            it.setAttribute("selected", "selected");
-        }
-    })
-  </script>
+    <script>
+      function detectMob() {
+          const toMatch = [
+              /Android/i,
+              /webOS/i,
+              /iPhone/i,
+              /iPad/i,
+              /iPod/i,
+              /BlackBerry/i,
+              /Windows Phone/i
+          ];
+          
+          return toMatch.some((toMatchItem) => {
+              return navigator.userAgent.match(toMatchItem);
+          });
+      }
+
+      async function lockOrientation() {
+          if ("orientation" in screen && detectMob()) {
+              try {
+                  await screen.orientation.lock("landscape-primary");
+                  console.log("Orientation locked to landscape-primary.");
+              } catch (e) {
+                  showOrientationMessage();
+              }
+          } else {
+              showOrientationMessage();
+          }
+      }
+
+      function showOrientationMessage() {
+          function checkOrientation() {
+              if (window.innerHeight > window.innerWidth) {
+                  // Portrait
+                  document.querySelector('.device_message').style.display = 'flex';
+                  document.querySelector('body').style.background = 'rgba(0, 0, 0, 0.9)';
+                  document.querySelector('body').style.minWidth = 'auto';
+                  document.querySelector('.main').style.display = 'none';
+              } else {
+                  // Landscape
+                  document.querySelector('.device_message').style.display = 'none';
+                  document.querySelector('body').style.background = 'none';
+                  document.querySelector('body').style.minWidth = '1200px';
+                  document.querySelector('.main').style.display = 'block';
+              }
+          }
+
+          window.addEventListener('resize', checkOrientation);
+          window.addEventListener('orientationchange', checkOrientation);
+
+          // Initial check
+          checkOrientation();
+      }
+
+      lockOrientation();
+
+      document.querySelector('main').style.minHeight = `calc(100vh - ${document.querySelector('.navbar').offsetHeight}px)`;
+      document.querySelector(".locale").addEventListener("change", () => {
+        document.querySelector(".locale-form").submit();
+      })
+      var lang = "{{request.session.lang}}"
+      if (lang === "") {
+        lang = "uk"
+      }
+      document.querySelectorAll("option").forEach(it => {
+          if (it.value == lang){
+              it.setAttribute("selected", "selected");
+          }
+      })
+    </script>
     {% block script %}
-    <script src="{% static 'js/ajax.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     {% endblock script %}
+    <script src="{% static 'js/ajax.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
   </body>
 </html>

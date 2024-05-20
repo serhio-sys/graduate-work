@@ -69,7 +69,9 @@ def home(request: HttpRequest):
 
 @login_required
 def custom_logout(request):
-    if request.user.current_dungeon == 1 and request.session['x'] == 0 and request.session['y'] == 2:
+    x = request.session.get('x', 0)
+    y = request.session.get('y', 2)
+    if request.user.current_dungeon == 1 and x == 0 and y == 2:
         logout(request) 
         return redirect("home")
     error_msg = _("Перед тим як вийти з акаунту ви маєте покинути активне підземелля.")

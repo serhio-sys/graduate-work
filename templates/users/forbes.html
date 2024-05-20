@@ -27,7 +27,7 @@
                     </div>
                     <div class="mt-1 hero_img_block">
                         <img src="{{user.get_class_img}}" class="hero_img"/>
-                        {% if user.dungeon is None %}
+                        {% if user.dungeon.lvl == 6 %}
                         <img src="{% static 'img/win.png' %}" class="win_img"/>
                         {% endif %}
                         <div class="hero_stats">

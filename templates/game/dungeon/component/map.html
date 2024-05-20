@@ -66,22 +66,21 @@
     const active_right = document.querySelector('.active_right')
     const body = document.querySelector('body')
     body.onkeyup = function(event) {
-        switch (event.keyCode) {
-            case 83:
-                active_bottom.click()
-                break;
-            case 87:
-                active_top.click()
-                break;
-            case 68:
-                active_right.click()
-                break;
-            case 65:
-                active_left.click()
-                break;
-        }
-        if (event.keyCode === 83) {
-            active_bottom.click()
+        if (!document.activeElement.classList.contains('base_input')) {
+            switch (event.keyCode) {
+                case 83:
+                    active_bottom.click()
+                    break;
+                case 87:
+                    active_top.click()
+                    break;
+                case 68:
+                    active_right.click()
+                    break;
+                case 65:
+                    active_left.click()
+                    break;
+            }
         }
     };
 </script>

@@ -59,7 +59,7 @@
 <script>
     const roomName = '{{ request.resolver_match.url_name }}';
     const userId = '{{ request.user.id }}';
-    const wsStart = 'ws://' + window.location.host + '/chat/' + roomName + '/' + userId + '/';
+    const wsStart = 'ws://' + window.location.host + ':8000' + '/chat/' + roomName + '/' + userId + '/';
     const socket = new WebSocket(wsStart);
     const usersBlock = document.querySelector('.body_connected_users')
     const chatBlock = document.querySelector('.chat_block')

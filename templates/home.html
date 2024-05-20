@@ -34,7 +34,7 @@
         <h1>{{request.GET.error}}</h1>
     </div>
     {% endif %}
-    <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark" style="z-index: 1000;">
         <div class="container-fluid">
           <a class="navbar-brand d-flex align-items-center gap-3" href="{% url 'home' %}">
             <img src="{% static 'img/logo.ico' %}" alt="Logo" width="50" height="50">
@@ -44,7 +44,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarDark">
-            <ul class="navbar-nav ms-auto me-4 mb-xl-0">
+            <ul class="navbar-nav ms-auto menu mb-xl-0">
                <li class="nav-item">
                     <a class="nav-link" href="{% url 'forbes' %}">Forbes</a>
                </li>
@@ -66,9 +66,11 @@
                         </ul>
                     </li>
                {% endif %}
+               <li class="nav-link w-100">
+                <form method="post" action="{% url 'locale' request.resolver_match.url_name %}" class="locale-form">{% csrf_token %}{{locale_form}}</form>
+               </li>
             </ul>
-            <form method="post" action="{% url 'locale' request.resolver_match.url_name %}" class="locale-form me-4">{% csrf_token %}{{locale_form}}</form>
-          </div>
+            </div>
         </div>
     </nav>
     <main class="main text-light">
@@ -84,8 +86,10 @@
             {% else %}
                 <div class="position-absolute top-50 start-50 translate-middle">
                     <h1>{% trans "Ви повинні увійти в свій аккаунт." %}</h1>
-                    <a class="btn btn-light btn-lg" href="{% url 'account_login' %}">{% trans "Увійти" %}</a>
-                    <a class="btn btn-outline-light btn-lg" href="{% url 'account_signup' %}">{% trans "Зареєструватися" %}</a>
+                    <div class="d-flex gap-3">
+                      <a class="btn btn-light btn-lg" href="{% url 'account_login' %}">{% trans "Увійти" %}</a>
+                      <a class="btn btn-outline-light btn-lg" href="{% url 'account_signup' %}">{% trans "Зареєструватися" %}</a>
+                    </div>
                 </div>
             {% endif %}
         {% endblock main %}
