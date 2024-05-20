@@ -1,0 +1,2559 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#: .\templates\game\tavern.html:22
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-20 15:21+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\env\Lib\site-packages\click\_termui_impl.py:518
+#: .\env\Lib\site-packages\pipenv\vendor\click\_termui_impl.py:518
+#, python-brace-format
+msgid "{editor}: Editing failed"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\_termui_impl.py:522
+#: .\env\Lib\site-packages\pipenv\vendor\click\_termui_impl.py:522
+#, python-brace-format
+msgid "{editor}: Editing failed: {e}"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\core.py:1120
+#: .\env\Lib\site-packages\pipenv\vendor\click\core.py:1120
+msgid "Aborted!"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\core.py:1309
+#: .\env\Lib\site-packages\click\decorators.py:559
+#: .\env\Lib\site-packages\pipenv\vendor\click\core.py:1309
+#: .\env\Lib\site-packages\pipenv\vendor\click\decorators.py:559
+msgid "Show this message and exit."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\core.py:1340
+#: .\env\Lib\site-packages\click\core.py:1370
+#: .\env\Lib\site-packages\pipenv\vendor\click\core.py:1340
+#: .\env\Lib\site-packages\pipenv\vendor\click\core.py:1370
+#, python-brace-format
+msgid "(Deprecated) {text}"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\core.py:1387
+#: .\env\Lib\site-packages\pipenv\vendor\click\core.py:1387
+msgid "Options"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\core.py:1413
+#: .\env\Lib\site-packages\pipenv\vendor\click\core.py:1413
+#, python-brace-format
+msgid "Got unexpected extra argument ({args})"
+msgid_plural "Got unexpected extra arguments ({args})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\click\core.py:1429
+#: .\env\Lib\site-packages\pipenv\vendor\click\core.py:1429
+msgid "DeprecationWarning: The command {name!r} is deprecated."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\core.py:1636
+#: .\env\Lib\site-packages\pipenv\vendor\click\core.py:1636
+msgid "Commands"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\core.py:1668
+#: .\env\Lib\site-packages\pipenv\vendor\click\core.py:1668
+msgid "Missing command."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\core.py:1746
+#: .\env\Lib\site-packages\pipenv\vendor\click\core.py:1746
+msgid "No such command {name!r}."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\core.py:2310
+#: .\env\Lib\site-packages\pipenv\vendor\click\core.py:2310
+msgid "Value must be an iterable."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\core.py:2331
+#: .\env\Lib\site-packages\pipenv\vendor\click\core.py:2331
+#, python-brace-format
+msgid "Takes {nargs} values but 1 was given."
+msgid_plural "Takes {nargs} values but {len} were given."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\click\core.py:2778
+#: .\env\Lib\site-packages\pipenv\vendor\click\core.py:2778
+#, python-brace-format
+msgid "env var: {var}"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\core.py:2808
+#: .\env\Lib\site-packages\pipenv\vendor\click\core.py:2808
+msgid "(dynamic)"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\core.py:2821
+#: .\env\Lib\site-packages\pipenv\vendor\click\core.py:2821
+#, python-brace-format
+msgid "default: {default}"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\core.py:2834
+#: .\env\Lib\site-packages\pipenv\vendor\click\core.py:2834
+msgid "required"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\decorators.py:465
+#: .\env\Lib\site-packages\pipenv\vendor\click\decorators.py:465
+#, python-format
+msgid "%(prog)s, version %(version)s"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\decorators.py:528
+#: .\env\Lib\site-packages\pipenv\vendor\click\decorators.py:528
+msgid "Show the version and exit."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\exceptions.py:44
+#: .\env\Lib\site-packages\click\exceptions.py:80
+#: .\env\Lib\site-packages\pipenv\vendor\click\exceptions.py:44
+#: .\env\Lib\site-packages\pipenv\vendor\click\exceptions.py:80
+#, python-brace-format
+msgid "Error: {message}"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\exceptions.py:72
+#: .\env\Lib\site-packages\pipenv\vendor\click\exceptions.py:72
+#, python-brace-format
+msgid "Try '{command} {option}' for help."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\exceptions.py:121
+#: .\env\Lib\site-packages\pipenv\vendor\click\exceptions.py:121
+#, python-brace-format
+msgid "Invalid value: {message}"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\exceptions.py:123
+#: .\env\Lib\site-packages\pipenv\vendor\click\exceptions.py:123
+#, python-brace-format
+msgid "Invalid value for {param_hint}: {message}"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\exceptions.py:179
+#: .\env\Lib\site-packages\pipenv\vendor\click\exceptions.py:179
+msgid "Missing argument"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\exceptions.py:181
+#: .\env\Lib\site-packages\pipenv\vendor\click\exceptions.py:181
+msgid "Missing option"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\exceptions.py:183
+#: .\env\Lib\site-packages\pipenv\vendor\click\exceptions.py:183
+msgid "Missing parameter"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\exceptions.py:185
+#: .\env\Lib\site-packages\pipenv\vendor\click\exceptions.py:185
+#, python-brace-format
+msgid "Missing {param_type}"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\exceptions.py:192
+#: .\env\Lib\site-packages\pipenv\vendor\click\exceptions.py:192
+#, python-brace-format
+msgid "Missing parameter: {param_name}"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\exceptions.py:212
+#: .\env\Lib\site-packages\pipenv\vendor\click\exceptions.py:212
+#, python-brace-format
+msgid "No such option: {name}"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\exceptions.py:224
+#: .\env\Lib\site-packages\pipenv\vendor\click\exceptions.py:224
+#, python-brace-format
+msgid "Did you mean {possibility}?"
+msgid_plural "(Possible options: {possibilities})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\click\exceptions.py:262
+#: .\env\Lib\site-packages\pipenv\vendor\click\exceptions.py:262
+msgid "unknown error"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\exceptions.py:269
+#: .\env\Lib\site-packages\pipenv\vendor\click\exceptions.py:269
+msgid "Could not open file {filename!r}: {message}"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\parser.py:231
+#: .\env\Lib\site-packages\pipenv\vendor\click\parser.py:231
+msgid "Argument {name!r} takes {nargs} values."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\parser.py:413
+#: .\env\Lib\site-packages\pipenv\vendor\click\parser.py:413
+msgid "Option {name!r} does not take a value."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\parser.py:474
+#: .\env\Lib\site-packages\pipenv\vendor\click\parser.py:474
+msgid "Option {name!r} requires an argument."
+msgid_plural "Option {name!r} requires {nargs} arguments."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\click\shell_completion.py:319
+#: .\env\Lib\site-packages\pipenv\vendor\click\shell_completion.py:319
+msgid "Shell completion is not supported for Bash versions older than 4.4."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\shell_completion.py:326
+#: .\env\Lib\site-packages\pipenv\vendor\click\shell_completion.py:326
+msgid "Couldn't detect Bash version, shell completion is not supported."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\termui.py:158
+#: .\env\Lib\site-packages\pipenv\vendor\click\termui.py:158
+msgid "Repeat for confirmation"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\termui.py:174
+#: .\env\Lib\site-packages\pipenv\vendor\click\termui.py:174
+msgid "Error: The value you entered was invalid."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\termui.py:176
+#: .\env\Lib\site-packages\pipenv\vendor\click\termui.py:176
+#, python-brace-format
+msgid "Error: {e.message}"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\termui.py:187
+#: .\env\Lib\site-packages\pipenv\vendor\click\termui.py:187
+msgid "Error: The two entered values do not match."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\termui.py:243
+#: .\env\Lib\site-packages\pipenv\vendor\click\termui.py:243
+msgid "Error: invalid input"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\termui.py:773
+#: .\env\Lib\site-packages\pipenv\vendor\click\termui.py:773
+msgid "Press any key to continue..."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\types.py:266
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:266
+#, python-brace-format
+msgid ""
+"Choose from:\n"
+"\t{choices}"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\types.py:298
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:298
+msgid "{value!r} is not {choice}."
+msgid_plural "{value!r} is not one of {choices}."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\click\types.py:392
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:392
+msgid "{value!r} does not match the format {format}."
+msgid_plural "{value!r} does not match the formats {formats}."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\click\types.py:414
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:414
+msgid "{value!r} is not a valid {number_type}."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\types.py:470
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:470
+#, python-brace-format
+msgid "{value} is not in the range {range}."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\types.py:611
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:611
+msgid "{value!r} is not a valid boolean."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\types.py:635
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:635
+msgid "{value!r} is not a valid UUID."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\types.py:822
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:822
+msgid "file"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\types.py:824
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:824
+msgid "directory"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\types.py:826
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:826
+msgid "path"
+msgstr ""
+
+#: .\env\Lib\site-packages\click\types.py:877
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:877
+msgid "{name} {filename!r} does not exist."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\types.py:886
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:886
+msgid "{name} {filename!r} is a file."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\types.py:894
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:894
+#, python-brace-format
+msgid "{name} '{filename}' is a directory."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\types.py:903
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:903
+msgid "{name} {filename!r} is not readable."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\types.py:912
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:912
+msgid "{name} {filename!r} is not writable."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\types.py:921
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:921
+msgid "{name} {filename!r} is not executable."
+msgstr ""
+
+#: .\env\Lib\site-packages\click\types.py:988
+#: .\env\Lib\site-packages\pipenv\vendor\click\types.py:988
+#, python-brace-format
+msgid "{len_type} values are required, but {len_value} was given."
+msgid_plural "{len_type} values are required, but {len_value} were given."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\cloudinary\forms.py:55
+#: .\env\Lib\site-packages\cloudinary\forms.py:124
+msgid "No file selected!"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\contrib\messages\apps.py:15
+msgid "Messages"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\contrib\sitemaps\apps.py:8
+msgid "Site Maps"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\contrib\staticfiles\apps.py:9
+msgid "Static Files"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\contrib\syndication\apps.py:7
+msgid "Syndication"
+msgstr ""
+
+#. Translators: String used to replace omitted page numbers in elided page
+#. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
+#: .\env\Lib\site-packages\django\core\paginator.py:30
+msgid "…"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\paginator.py:50
+msgid "That page number is not an integer"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\paginator.py:52
+msgid "That page number is less than 1"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\paginator.py:54
+msgid "That page contains no results"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:22
+msgid "Enter a valid value."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:104
+#: .\env\Lib\site-packages\django\forms\fields.py:752
+msgid "Enter a valid URL."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:165
+msgid "Enter a valid integer."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:176
+msgid "Enter a valid email address."
+msgstr ""
+
+#. Translators: "letters" means latin letters: a-z and A-Z.
+#: .\env\Lib\site-packages\django\core\validators.py:259
+msgid ""
+"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:267
+msgid ""
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:279
+#: .\env\Lib\site-packages\django\core\validators.py:287
+#: .\env\Lib\site-packages\django\core\validators.py:316
+msgid "Enter a valid IPv4 address."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:296
+#: .\env\Lib\site-packages\django\core\validators.py:317
+msgid "Enter a valid IPv6 address."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:308
+#: .\env\Lib\site-packages\django\core\validators.py:315
+msgid "Enter a valid IPv4 or IPv6 address."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:351
+msgid "Enter only digits separated by commas."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:357
+#, python-format
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:392
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:401
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:410
+#, python-format
+msgid "Ensure this value is a multiple of step size %(limit_value)s."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:420
+#, python-format
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:438
+#, python-format
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:461
+#: .\env\Lib\site-packages\django\forms\fields.py:347
+#: .\env\Lib\site-packages\django\forms\fields.py:386
+msgid "Enter a number."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:463
+#, python-format
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgid_plural "Ensure that there are no more than %(max)s digits in total."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:468
+#, python-format
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:473
+#, python-format
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:544
+#, python-format
+msgid ""
+"File extension “%(extension)s” is not allowed. Allowed extensions are: "
+"%(allowed_extensions)s."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\core\validators.py:605
+msgid "Null characters are not allowed."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\base.py:1423
+#: .\env\Lib\site-packages\django\forms\models.py:893
+msgid "and"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\base.py:1425
+#, python-format
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\constraints.py:17
+#, python-format
+msgid "Constraint “%(name)s” is violated."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:128
+#, python-format
+msgid "Value %(value)r is not a valid choice."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:129
+msgid "This field cannot be null."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:130
+msgid "This field cannot be blank."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:131
+#, python-format
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr ""
+
+#. Translators: The 'lookup_type' is one of 'date', 'year' or
+#. 'month'. Eg: "Title must be unique for pub_date year"
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:135
+#, python-format
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:173
+#, python-format
+msgid "Field of type: %(field_type)s"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1094
+#, python-format
+msgid "“%(value)s” value must be either True or False."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1095
+#, python-format
+msgid "“%(value)s” value must be either True, False, or None."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1097
+msgid "Boolean (Either True or False)"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1147
+#, python-format
+msgid "String (up to %(max_length)s)"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1149
+msgid "String (unlimited)"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1253
+msgid "Comma-separated integers"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1354
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1358
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1493
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1362
+msgid "Date (without time)"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1489
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD HH:MM[:ss[."
+"uuuuuu]][TZ] format."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1497
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1502
+msgid "Date (with time)"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1626
+#, python-format
+msgid "“%(value)s” value must be a decimal number."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1628
+msgid "Decimal number"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1789
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in [DD] [[HH:]MM:]ss[."
+"uuuuuu] format."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1793
+msgid "Duration"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1845
+msgid "Email address"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1870
+msgid "File path"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1948
+#, python-format
+msgid "“%(value)s” value must be a float."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1950
+msgid "Floating point number"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1990
+#, python-format
+msgid "“%(value)s” value must be an integer."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:1992
+msgid "Integer"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2088
+msgid "Big (8 byte) integer"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2105
+msgid "Small integer"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2113
+msgid "IPv4 address"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2144
+msgid "IP address"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2237
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2238
+#, python-format
+msgid "“%(value)s” value must be either None, True or False."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2240
+msgid "Boolean (Either True, False or None)"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2291
+msgid "Positive big integer"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2306
+msgid "Positive integer"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2321
+msgid "Positive small integer"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2337
+#, python-format
+msgid "Slug (up to %(max_length)s)"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2373
+msgid "Text"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2448
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"format."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2452
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"invalid time."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2456
+msgid "Time"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2564
+msgid "URL"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2588
+msgid "Raw binary data"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2653
+#, python-format
+msgid "“%(value)s” is not a valid UUID."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\__init__.py:2655
+msgid "Universally unique identifier"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\files.py:232
+msgid "File"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\files.py:393
+msgid "Image"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\json.py:26
+msgid "A JSON object"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\json.py:28
+msgid "Value must be valid JSON."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\related.py:919
+#, python-format
+msgid "%(model)s instance with %(field)s %(value)r does not exist."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\related.py:921
+msgid "Foreign Key (type determined by related field)"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\related.py:1212
+msgid "One-to-one relationship"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\related.py:1269
+#, python-format
+msgid "%(from)s-%(to)s relationship"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\related.py:1271
+#, python-format
+msgid "%(from)s-%(to)s relationships"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\db\models\fields\related.py:1319
+msgid "Many-to-many relationship"
+msgstr ""
+
+#. Translators: If found as last label character, these punctuation
+#. characters will prevent the default label_suffix to be appended to the label
+#: .\env\Lib\site-packages\django\forms\boundfield.py:184
+msgid ":?.!"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:91
+msgid "This field is required."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:298
+msgid "Enter a whole number."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:467
+#: .\env\Lib\site-packages\django\forms\fields.py:1241
+msgid "Enter a valid date."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:490
+#: .\env\Lib\site-packages\django\forms\fields.py:1242
+msgid "Enter a valid time."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:517
+msgid "Enter a valid date/time."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:551
+msgid "Enter a valid duration."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:552
+#, python-brace-format
+msgid "The number of days must be between {min_days} and {max_days}."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:621
+msgid "No file was submitted. Check the encoding type on the form."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:622
+msgid "No file was submitted."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:623
+msgid "The submitted file is empty."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:625
+#, python-format
+msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgid_plural ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:630
+msgid "Please either submit a file or check the clear checkbox, not both."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:694
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:857
+#: .\env\Lib\site-packages\django\forms\fields.py:949
+#: .\env\Lib\site-packages\django\forms\models.py:1566
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:951
+#: .\env\Lib\site-packages\django\forms\fields.py:1070
+#: .\env\Lib\site-packages\django\forms\models.py:1564
+msgid "Enter a list of values."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:1071
+msgid "Enter a complete value."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:1310
+msgid "Enter a valid UUID."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\fields.py:1340
+msgid "Enter a valid JSON."
+msgstr ""
+
+#. Translators: This is the default suffix added to form field labels
+#: .\env\Lib\site-packages\django\forms\forms.py:98
+msgid ":"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\forms.py:244
+#: .\env\Lib\site-packages\django\forms\forms.py:328
+#, python-format
+msgid "(Hidden field %(name)s) %(error)s"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\formsets.py:63
+#, python-format
+msgid ""
+"ManagementForm data is missing or has been tampered with. Missing fields: "
+"%(field_names)s. You may need to file a bug report if the issue persists."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\formsets.py:67
+#, python-format
+msgid "Please submit at most %(num)d form."
+msgid_plural "Please submit at most %(num)d forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\django\forms\formsets.py:72
+#, python-format
+msgid "Please submit at least %(num)d form."
+msgid_plural "Please submit at least %(num)d forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\django\forms\formsets.py:484
+#: .\env\Lib\site-packages\django\forms\formsets.py:491
+msgid "Order"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\formsets.py:499
+msgid "Delete"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\models.py:886
+#, python-format
+msgid "Please correct the duplicate data for %(field)s."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\models.py:891
+#, python-format
+msgid "Please correct the duplicate data for %(field)s, which must be unique."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\models.py:898
+#, python-format
+msgid ""
+"Please correct the duplicate data for %(field_name)s which must be unique "
+"for the %(lookup)s in %(date_field)s."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\models.py:907
+msgid "Please correct the duplicate values below."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\models.py:1338
+msgid "The inline value did not match the parent instance."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\models.py:1429
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\models.py:1568
+#, python-format
+msgid "“%(pk)s” is not a valid value."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\utils.py:226
+#, python-format
+msgid ""
+"%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\widgets.py:463
+msgid "Clear"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\widgets.py:464
+msgid "Currently"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\widgets.py:465
+msgid "Change"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\widgets.py:794
+msgid "Unknown"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\widgets.py:795
+msgid "Yes"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\forms\widgets.py:796
+msgid "No"
+msgstr ""
+
+#. Translators: Please do not add spaces around commas.
+#: .\env\Lib\site-packages\django\template\defaultfilters.py:861
+msgid "yes,no,maybe"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\template\defaultfilters.py:891
+#: .\env\Lib\site-packages\django\template\defaultfilters.py:908
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\django\template\defaultfilters.py:910
+#, python-format
+msgid "%s KB"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\template\defaultfilters.py:912
+#, python-format
+msgid "%s MB"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\template\defaultfilters.py:914
+#, python-format
+msgid "%s GB"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\template\defaultfilters.py:916
+#, python-format
+msgid "%s TB"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\template\defaultfilters.py:918
+#, python-format
+msgid "%s PB"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dateformat.py:73
+msgid "p.m."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dateformat.py:74
+msgid "a.m."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dateformat.py:79
+msgid "PM"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dateformat.py:80
+msgid "AM"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dateformat.py:152
+msgid "midnight"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dateformat.py:154
+msgid "noon"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:7
+msgid "Monday"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:8
+msgid "Tuesday"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:9
+msgid "Wednesday"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:10
+msgid "Thursday"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:11
+msgid "Friday"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:12
+msgid "Saturday"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:13
+msgid "Sunday"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:16
+msgid "Mon"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:17
+msgid "Tue"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:18
+msgid "Wed"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:19
+msgid "Thu"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:20
+msgid "Fri"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:21
+msgid "Sat"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:22
+msgid "Sun"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:25
+msgid "January"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:26
+msgid "February"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:27
+msgid "March"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:28
+msgid "April"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:29
+msgid "May"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:30
+msgid "June"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:31
+msgid "July"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:32
+msgid "August"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:33
+msgid "September"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:34
+msgid "October"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:35
+msgid "November"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:36
+msgid "December"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:39
+msgid "jan"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:40
+msgid "feb"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:41
+msgid "mar"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:42
+msgid "apr"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:43
+msgid "may"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:44
+msgid "jun"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:45
+msgid "jul"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:46
+msgid "aug"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:47
+msgid "sep"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:48
+msgid "oct"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:49
+msgid "nov"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:50
+msgid "dec"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:53
+msgctxt "abbrev. month"
+msgid "Jan."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:54
+msgctxt "abbrev. month"
+msgid "Feb."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:55
+msgctxt "abbrev. month"
+msgid "March"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:56
+msgctxt "abbrev. month"
+msgid "April"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:57
+msgctxt "abbrev. month"
+msgid "May"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:58
+msgctxt "abbrev. month"
+msgid "June"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:59
+msgctxt "abbrev. month"
+msgid "July"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:60
+msgctxt "abbrev. month"
+msgid "Aug."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:61
+msgctxt "abbrev. month"
+msgid "Sept."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:62
+msgctxt "abbrev. month"
+msgid "Oct."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:63
+msgctxt "abbrev. month"
+msgid "Nov."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:64
+msgctxt "abbrev. month"
+msgid "Dec."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:67
+msgctxt "alt. month"
+msgid "January"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:68
+msgctxt "alt. month"
+msgid "February"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:69
+msgctxt "alt. month"
+msgid "March"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:70
+msgctxt "alt. month"
+msgid "April"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:71
+msgctxt "alt. month"
+msgid "May"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:72
+msgctxt "alt. month"
+msgid "June"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:73
+msgctxt "alt. month"
+msgid "July"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:74
+msgctxt "alt. month"
+msgid "August"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:75
+msgctxt "alt. month"
+msgid "September"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:76
+msgctxt "alt. month"
+msgid "October"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:77
+msgctxt "alt. month"
+msgid "November"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\dates.py:78
+msgctxt "alt. month"
+msgid "December"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\ipv6.py:8
+msgid "This is not a valid IPv6 address."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\text.py:137
+#, python-format
+msgctxt "String to return when truncating text"
+msgid "%(truncated_text)s…"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\text.py:322
+msgid "or"
+msgstr ""
+
+#. Translators: This string is used as a separator between list elements
+#: .\env\Lib\site-packages\django\utils\text.py:341
+#: .\env\Lib\site-packages\django\utils\timesince.py:135
+msgid ", "
+msgstr ""
+
+#: .\env\Lib\site-packages\django\utils\timesince.py:8
+#, python-format
+msgid "%(num)d year"
+msgid_plural "%(num)d years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\django\utils\timesince.py:9
+#, python-format
+msgid "%(num)d month"
+msgid_plural "%(num)d months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\django\utils\timesince.py:10
+#, python-format
+msgid "%(num)d week"
+msgid_plural "%(num)d weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\django\utils\timesince.py:11
+#, python-format
+msgid "%(num)d day"
+msgid_plural "%(num)d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\django\utils\timesince.py:12
+#, python-format
+msgid "%(num)d hour"
+msgid_plural "%(num)d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\django\utils\timesince.py:13
+#, python-format
+msgid "%(num)d minute"
+msgid_plural "%(num)d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\env\Lib\site-packages\django\views\csrf.py:111
+msgid "Forbidden"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\csrf.py:112
+msgid "CSRF verification failed. Request aborted."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\csrf.py:116
+msgid ""
+"You are seeing this message because this HTTPS site requires a “Referer "
+"header” to be sent by your web browser, but none was sent. This header is "
+"required for security reasons, to ensure that your browser is not being "
+"hijacked by third parties."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\csrf.py:122
+msgid ""
+"If you have configured your browser to disable “Referer” headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for “same-"
+"origin” requests."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\csrf.py:127
+msgid ""
+"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
+"including the “Referrer-Policy: no-referrer” header, please remove them. The "
+"CSRF protection requires the “Referer” header to do strict referer checking. "
+"If you’re concerned about privacy, use alternatives like <a rel=\"noreferrer"
+"\" …> for links to third-party sites."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\csrf.py:136
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when "
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\csrf.py:142
+msgid ""
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for “same-origin” requests."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\csrf.py:148
+msgid "More information is available with DEBUG=True."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\generic\dates.py:44
+msgid "No year specified"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\generic\dates.py:64
+#: .\env\Lib\site-packages\django\views\generic\dates.py:115
+#: .\env\Lib\site-packages\django\views\generic\dates.py:214
+msgid "Date out of range"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\generic\dates.py:94
+msgid "No month specified"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\generic\dates.py:147
+msgid "No day specified"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\generic\dates.py:194
+msgid "No week specified"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\generic\dates.py:349
+#: .\env\Lib\site-packages\django\views\generic\dates.py:380
+#, python-format
+msgid "No %(verbose_name_plural)s available"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\generic\dates.py:652
+#, python-format
+msgid ""
+"Future %(verbose_name_plural)s not available because %(class_name)s."
+"allow_future is False."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\generic\dates.py:692
+#, python-format
+msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\generic\detail.py:56
+#, python-format
+msgid "No %(verbose_name)s found matching the query"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\generic\list.py:70
+msgid "Page is not “last”, nor can it be converted to an int."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\generic\list.py:77
+#, python-format
+msgid "Invalid page (%(page_number)s): %(message)s"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\generic\list.py:169
+#, python-format
+msgid "Empty list and “%(class_name)s.allow_empty” is False."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\static.py:38
+msgid "Directory indexes are not allowed here."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\static.py:40
+#, python-format
+msgid "“%(path)s” does not exist"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\static.py:79
+#, python-format
+msgid "Index of %(directory)s"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\templates\default_urlconf.html:7
+#: .\env\Lib\site-packages\django\views\templates\default_urlconf.html:220
+msgid "The install worked successfully! Congratulations!"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\templates\default_urlconf.html:206
+#, python-format
+msgid ""
+"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
+"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\templates\default_urlconf.html:221
+#, python-format
+msgid ""
+"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
+"%(version)s/ref/settings/#debug\" target=\"_blank\" rel=\"noopener"
+"\">DEBUG=True</a> is in your settings file and you have not configured any "
+"URLs."
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\templates\default_urlconf.html:229
+msgid "Django Documentation"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\templates\default_urlconf.html:230
+msgid "Topics, references, &amp; how-to’s"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\templates\default_urlconf.html:238
+msgid "Tutorial: A Polling App"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\templates\default_urlconf.html:239
+msgid "Get started with Django"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\templates\default_urlconf.html:247
+msgid "Django Community"
+msgstr ""
+
+#: .\env\Lib\site-packages\django\views\templates\default_urlconf.html:248
+msgid "Connect, get help, or contribute"
+msgstr ""
+
+#: .\env\Lib\site-packages\isort\main.py:158
+msgid "show this help message and exit"
+msgstr ""
+
+#: .\game\forms.py:11 .\game\forms.py:17
+msgid "Спритність"
+msgstr "Dexterity"
+
+#: .\game\forms.py:20 .\game\forms.py:24
+msgid "Сила"
+msgstr "Strength"
+
+#: .\game\forms.py:36
+msgid "Голова"
+msgstr "Head"
+
+#: .\game\forms.py:37
+msgid "Тіло"
+msgstr "Body"
+
+#: .\game\forms.py:38
+msgid "Ноги"
+msgstr "Legs"
+
+#: .\game\forms.py:40
+msgid "Атака"
+msgstr "Attack"
+
+#: .\game\forms.py:41 .\templates\game\inventory.html:94
+#: .\templates\game\shop.html:41 .\templates\game\shop.html:49
+msgid "Захист"
+msgstr "Defense"
+
+#: .\game\logs.py:5
+#, python-format
+msgid ""
+"<a href=\"#\">%s</a> провів атаку по <a href=\"#\">%s</a> завдавши %d шкоди."
+msgstr ""
+"<a href=\"#\">%s</a> attacked <a href=\"#\">%s</a> dealing %d damage."
+
+#: .\game\logs.py:7
+#, python-format
+msgid ""
+"<a href=\"#\">%s</a> збільшивши відстань між ворогом <a href=\"#\">%s</a> "
+"робить декілька пострілів лишивши поранення у вигляді %d шкоди."
+msgstr ""
+"<a href=\"#\">%s</a> increased the distance from the enemy <a href=\"#\">%s</a> "
+"and made several shots causing %d damage."
+
+#: .\game\logs.py:11
+#, python-format
+msgid ""
+"<a href=\"#\">%s</a> ухиляючись від атаки наносить по <a href=\"#\">%s</a> "
+"колюче поранення в розмірі %d шкоди."
+msgstr ""
+"<a href=\"#\">%s</a> dodged the attack and inflicted a stab wound on <a href=\"#\">%s</a> "
+"causing %d damage."
+
+#: .\game\logs.py:15
+#, python-format
+msgid "<a href=\"#\">%s</a> заблокував атаку <a href=\"#\">%s</a>."
+msgstr ""
+"<a href=\"#\">%s</a> blocked the attack of <a href=\"#\">%s</a>."
+
+#: .\game\logs.py:16 .\game\logs.py:18
+#, python-format
+msgid ""
+"<a href=\"#\">%s</a> відчувши атаку ворога <a href=\"#\">%s</a> було "
+"заблоковано атаку."
+msgstr ""
+"<a href=\"#\">%s</a> sensed the enemy's attack and blocked the attack of <a href=\"#\">%s</a>."
+
+#: .\game\logs.py:22
+#, python-format
+msgid ""
+"<a href=\"#\">%s</a> дуже прудким і ріжучим ударом у <a href=\"#\">%s</a> "
+"сталася сильна кровотеча."
+msgstr ""
+"<a href=\"#\">%s</a> made a very swift and sharp strike on <a href=\"#\">%s</a> "
+"causing severe bleeding."
+
+#: .\game\logs.py:24
+#, python-format
+msgid ""
+"<a href=\"#\">%s</a> сильним ударом ноги у <a href=\"#\">%s</a> було "
+"накладено ефект перелому."
+msgstr ""
+"<a href=\"#\">%s</a> delivered a strong kick to <a href=\"#\">%s</a> causing a fracture."
+
+#: .\game\logs.py:31
+msgid "Історія"
+msgstr "History"
+
+#: .\game\logs.py:33
+msgid ""
+"Колись давно було собі невеличке місто Гроссенберг, який мав славу через "
+"своє велике підземелля, в якому видобувалися різні корисні копалини "
+"починаючи з вугілля й закінчуючи сапфірами й діамантами. Але в один день "
+"прийшла армія загарбників й захопила славетне підземелля."
+msgstr ""
+"Once upon a time, there was a small town of Grossenberg, known for its great dungeon, "
+"where various valuable minerals were mined, from coal to sapphires and diamonds. But one day, "
+"an army of invaders came and captured the famous dungeon."
+
+#: .\game\logs.py:40
+msgid "Привітання!"
+msgstr "Greetings!"
+
+#: .\game\logs.py:42
+msgid ""
+"Ласкаво проси вас до гри \"Бійцівський клуб\". Тут на вас чекають: цікаві "
+"пригоди в підземеллі й нескінченні бої з іншими гравцями й боссами "
+"підземель. Ваша роль звільнити підземелля від ворогів й стати його "
+"захистником до кінця своїх днів."
+msgstr ""
+"Welcome to the game \"Boycowskiy Club\". Here you will find: exciting adventures in the dungeon and endless fights with other players and dungeon bosses. "
+"Your role is to liberate the dungeon from enemies and become its defender for the rest of your days."
+
+#: .\game\logs.py:50
+msgid "Орієнтування по мапі"
+msgstr "Map Navigation"
+
+#: .\game\logs.py:52
+msgid ""
+"У грі є дві основні локації це:<br/> Центр міста – тут ви зможете дістатися "
+"локації церкви, щоб зняти негативні ефекти, зайти до магазину де зможете "
+"згідно свого рівня купити знаряддя.<br/> Окраїна міста – найбільш популярна "
+"локація через яку можна дістатися до підземілля й також увійти в таверну щоб "
+"помірятися силою з іншими гравцями."
+msgstr ""
+"The game has two main locations:<br/> Town Center – here you can reach the church to remove negative effects, "
+"enter the shop to buy equipment according to your level.<br/> Town Outskirts – the most popular location through which you can reach the dungeon and also enter the tavern to "
+"test your strength against other players."
+
+#: .\game\logs.py:60
+msgid "Покращення навичок"
+msgstr "Skill Improvement"
+
+#: .\game\logs.py:62
+msgid ""
+"З кожним підвищеним рівнем персонажу дається по 3 вільних очків розподілу "
+"рівня атрибутів персонажу, тому не забувайте розподіляти вільні очки "
+"покращення персонажу."
+msgstr ""
+"With each level up, the character is given 3 free points to distribute to the character's attribute levels, so don't forget to allocate free points for character improvement."
+
+#: .\game\logs.py:68
+msgid "Купівля предметів"
+msgstr "Item Purchase"
+
+#: .\game\logs.py:70
+msgid ""
+"У магазині ви матимете різні предмети для персонажів різного класу. В "
+"залежності від цього якщо ви ловкач ви зможете купити й одягти меч силача, "
+"тільки щоб зробити це вам потрібно буде покращувати атрибут сили, бо кожен "
+"предмет має мінімальний рівень кожного з атрибутів персонажу."
+msgstr ""
+"In the store, you will have different items for characters of different classes. Depending on this, if you are a dexterous character, you can buy and equip a strongman's sword, "
+"but to do this you will need to improve the strength attribute, because each item has a minimum level of each character's attributes."
+
+#: .\game\logs.py:77
+msgid "Таверна"
+msgstr "Tavern"
+
+#: .\game\logs.py:79
+msgid ""
+"Таверна мабуть найцікавіша локація, де гравці зможуть створювати й "
+"приєднуватися до інших бойових кімнат за для перевірки своєї сили між іншими "
+"гравцями. Також ваша"
+msgstr ""
+"The tavern is perhaps the most interesting location, where players can create and join other battle rooms to test their strength against other players. Also, your"
+
+#: .\game\logs.py:85
+msgid "Підземілля"
+msgstr "Dungeon"
+
+#: .\game\logs.py:86
+msgid ""
+"Підземілля – це головне місце для набивання грошей і проходження квестів з "
+"таверни."
+msgstr ""
+"The dungeon is the main place for earning money and completing quests from the tavern."
+
+#: .\game\logs.py:91
+msgid "Бої"
+msgstr "Fights"
+
+#: .\game\logs.py:93
+msgid ""
+"Основна механіка бою після обирання місця оборони й атаки натиснути на "
+"кнопку \"Уперед!\". Після чого в логах можна буде побачити результат вашого "
+"ходу."
+msgstr ""
+"The main battle mechanic is to choose a place to defend and attack, then press the \"Forward!\" button. You will then see the result of your move in the logs."
+
+#: .\game\services.py:41
+msgid "Недостатньо коштів на вашому рахунку"
+msgstr "Insufficient funds in your account"
+
+#: .\game\services.py:54
+msgid "Бог схильний до вас."
+msgstr "The god is favorable to you."
+
+#: .\game\services.py:55
+msgid "Ви отримали благословення бога."
+msgstr "You have received the god's blessing."
+
+#: .\game\services.py:107 .\game\services.py:131
+msgid "Не вистачає коштів"
+msgstr "Not enough funds"
+
+#: .\game\services.py:112 .\game\services.py:136
+msgid "Недостатньо атрибутів для цього предмету"
+msgstr "Not enough attributes for this item"
+
+#: .\game\services.py:117 .\game\services.py:141
+msgid "Цей предмет вже є у вас в інвентарі."
+msgstr "This item is already in your inventory."
+
+#: .\game\services.py:167
+msgid "Ловкач"
+msgstr "Dexterous"
+
+#: .\game\services.py:169
+msgid ""
+"Головний атрибут: Спритність.\n"
+" Якщо супротивник дуже повільний і буде ловити гав, то є можливість зробити "
+"подвійну атаку.\n"
+" Особливість:можливість ухилитися від атаки та контр атакувати."
+msgstr ""
+"Main attribute: Dexterity.\n"
+" If the opponent is very slow and not attentive, there is a chance to make a double attack.\n"
+" Feature: ability to dodge attacks and counter-attack."
+
+#: .\game\services.py:176
+msgid "Силач"
+msgstr "Strongman"
+
+#: .\game\services.py:178
+msgid ""
+"Головний атрибут: Сила.\n"
+" Чим більша сила, тим більше болю може зазнати супротивник.\n"
+" Особливість: наносити тяжкі поранення."
+msgstr ""
+"Main attribute: Strength.\n"
+" The greater the strength, the more pain the opponent can endure.\n"
+" Feature: inflicting heavy wounds."
+
+#: .\game\views.py:216
+msgid "Ваші атрибути зросли. Поспішіть перевірити свою силу в підземеллі."
+msgstr "Your attributes have increased. Hurry to test your strength in the dungeon."
+
+#: .\settings\password_validators.py:25
+#, python-format
+msgid "Пароль закороткий. Він має містити понад %(min_length)d символів."
+msgid_plural ""
+"Пароль закороткий. Він має містити понад %(min_length)d символів."
+msgstr[0] ""
+"The password is too short. It must contain more than %(min_length)d characters."
+msgstr[1] ""
+"The password is too short. It must contain more than %(min_length)d characters."
+
+#: .\settings\password_validators.py:37
+#, python-format
+msgid "Your password must contain at least %(min_length)d character."
+msgid_plural "Your password must contain at least %(min_length)d characters."
+msgstr[0] ""
+"Your password must contain at least %(min_length)d character."
+msgstr[1] ""
+"Your password must contain at least %(min_length)d characters."
+
+#: .\settings\password_validators.py:51
+msgid "Пароль містить тільки цифри."
+msgstr "The password contains only numbers."
+
+#: .\settings\password_validators.py:56
+msgid "Your password can’t be entirely numeric."
+msgstr "Your password can’t be entirely numeric."
+
+#: .\settings\settings.py:158
+msgid "English"
+msgstr "English"
+
+#: .\settings\settings.py:159
+msgid "Ukrainian"
+msgstr "Ukrainian"
+
+#: .\templates\account\email_confirm.html:8 .\templates\account\signup.html:7
+#: .\templates\account\signup.html:13
+#: .\templates\account\verification_sent.html:7
+#: .\templates\socialaccount\signup.html:6
+#: .\templates\socialaccount\signup.html:12 .\templates\users\forbes.html:9
+#: .\templates\users\profile.html:8
+msgid "Реєстрація"
+msgstr "Registration"
+
+#: .\templates\account\email_confirm.html:14
+#: .\templates\account\verification_sent.html:13
+msgid "Підтвердження вашої електронної адреси"
+msgstr "Email verification"
+
+#: .\templates\account\email_confirm.html:19
+#, python-format
+msgid ""
+"Будь ласка перевірте <a href=\"mailto:%(email)s\">%(email)s</a> чи цей емайл "
+"налижить користувачу %(user_display)s."
+msgstr ""
+"Please check <a href=\"mailto:%(email)s\">%(email)s</a> to verify if this email belongs to user %(user_display)s."
+
+#: .\templates\account\email_confirm.html:25
+msgid "Підтвердити"
+msgstr "Confirm"
+
+#: .\templates\account\email_confirm.html:30
+#, python-format
+msgid ""
+"Неможливо підтвердити %(email)s, бо цей емайл вже є підтвердженим іншим "
+"корустувачем."
+msgstr ""
+"Cannot confirm %(email)s, as this email is already verified by another user."
+
+#: .\templates\account\email_confirm.html:36
+#, python-format
+msgid ""
+"Посилання застаріло. Будь ласка перейдіть по <a href=\"%(email_url)s"
+"\">відправити новий запит на підтвердження</a>."
+msgstr ""
+"The link has expired. Please click <a href=\"%(email_url)s\">send a new confirmation request</a>."
+
+#: .\templates\account\login.html:8 .\templates\account\login.html:14
+msgid "Вхід"
+msgstr "Login"
+
+#: .\templates\account\login.html:15
+#, python-format
+msgid ""
+"Не маєте акаунту? Тоді зареєструйтесь <a href=\"%(signup_url)s\">реєстрація</"
+"a>."
+msgstr ""
+"Don't have an account? Then sign up <a href=\"%(signup_url)s\">registration</a>."
+
+#: .\templates\account\login.html:26 .\templates\home.html:103
+msgid "Увійти"
+msgstr "Log in"
+
+#: .\templates\account\password_change.html:7
+#: .\templates\account\password_change.html:13
+#: .\templates\account\password_reset.html:7
+#: .\templates\account\password_reset_from_key_done.html:7
+#: .\templates\users\profile.html:38
+msgid "Зміна паролю"
+msgstr "Change password"
+
+#: .\templates\account\password_change.html:24
+#: .\templates\account\password_reset_from_key.html:24
+#: .\templates\account\password_set.html:24
+msgid "Встановити новий пароль"
+msgstr "Set a new password"
+
+#: .\templates\account\password_reset.html:13
+#: .\templates\account\password_reset_done.html:6
+msgid "Скидання паролю"
+msgstr "Password reset"
+
+#: .\templates\account\password_reset.html:14
+msgid ""
+"Трохи нижче вам потрібно вписати свою електронну пошту, для скидання паролю."
+msgstr ""
+"Below, you need to enter your email address to reset the password."
+
+#: .\templates\account\password_reset.html:25
+msgid "Скинути пароль"
+msgstr "Reset password"
+
+#: .\templates\account\password_reset_done.html:12
+msgid "Вам було відправлено повідомлення на електронну пошту."
+msgstr "A message has been sent to your email."
+
+#: .\templates\account\password_reset_from_key.html:7
+#: .\templates\account\password_reset_from_key.html:13
+#: .\templates\account\password_set.html:7
+#: .\templates\account\password_set.html:13
+msgid "Встановлення нового паролю"
+msgstr "Set a new password"
+
+#: .\templates\account\password_reset_from_key_done.html:13
+msgid "Пароль успішно оновлено"
+msgstr "Password successfully updated"
+
+#: .\templates\account\password_reset_from_key_done.html:22
+msgid "Вас буде перенесено на сторінку авторизації через - "
+msgstr "You will be redirected to the login page in - "
+
+#: .\templates\account\signup.html:14
+#, python-format
+msgid ""
+"Вже маєте акаунт? Тоді залогуйтесь <a href=\"%(login_url)s\">залогуватися</"
+"a>."
+msgstr ""
+"Already have an account? Then log in <a href=\"%(login_url)s\">log in</a>."
+
+#: .\templates\account\signup.html:25 .\templates\home.html:104
+#: .\templates\socialaccount\signup.html:25
+msgid "Зареєструватися"
+msgstr "Register"
+
+#: .\templates\account\verification_sent.html:14
+msgid ""
+"Вам було відправлено повідомлення на підтвердження вашої електронної пошти."
+msgstr ""
+"A verification message has been sent to your email."
+
+#: .\templates\components\enemy.html:14 .\templates\components\hero.html:21
+#: .\templates\game\inventory.html:28 .\templates\users\forbes.html:34
+#: .\templates\users\forbes.html:57
+msgid "Характеристики"
+msgstr "Characteristics"
+
+#: .\templates\components\enemy.html:16 .\templates\components\hero.html:23
+#: .\templates\game\inventory.html:30 .\templates\users\forbes.html:36
+#: .\templates\users\forbes.html:58
+msgid "Атака: "
+msgstr "Attack: "
+
+#: .\templates\components\enemy.html:18 .\templates\components\hero.html:25
+#: .\templates\game\inventory.html:32 .\templates\users\forbes.html:38
+#: .\templates\users\forbes.html:59
+msgid "Захист: "
+msgstr "Defense: "
+
+#: .\templates\components\enemy.html:20 .\templates\components\hero.html:27
+#: .\templates\game\fight\fight.html:72 .\templates\game\fight\fight.html:74
+#: .\templates\game\inventory.html:34 .\templates\users\forbes.html:40
+#: .\templates\users\forbes.html:60
+msgid "Сила: "
+msgstr "Strength: "
+
+#: .\templates\components\enemy.html:21 .\templates\components\hero.html:28
+#: .\templates\game\fight\fight.html:73 .\templates\game\inventory.html:35
+#: .\templates\users\forbes.html:41 .\templates\users\forbes.html:61
+msgid "Спритність: "
+msgstr "Dexterity: "
+
+#: .\templates\components\enemy.html:27 .\templates\components\hero.html:34
+#: .\templates\game\fight\fight.html:99 .\templates\game\fight\fight.html:103
+#: .\templates\game\inventory.html:42 .\templates\users\forbes.html:48
+msgid "здоров'я:"
+msgstr "Health: "
+
+#: .\templates\components\enemy.html:31 .\templates\components\hero.html:39
+msgid "Ефекти"
+msgstr "Effects"
+
+#: .\templates\components\enemy.html:38 .\templates\components\hero.html:46
+#: .\templates\game\fight\fight.html:85 .\templates\game\fight\fight.html:92
+msgid "Немає жодних ефектів накладених на героя."
+msgstr "No effects applied to the hero."
+
+#: .\templates\components\hero.html:12 .\templates\users\forbes.html:25
+msgid "досвід: "
+msgstr "Experience: "
+
+#: .\templates\components\hero.html:37 .\templates\game\inventory.html:45
+#: .\templates\game\inventory.html:131 .\templates\users\forbes.html:62
+msgid "Рахунок: "
+msgstr "Score: "
+
+#: .\templates\game\abilities.html:4
+msgid "Abilities"
+msgstr "Abilities"
+
+#: .\templates\game\abilities.html:21
+msgid "Ваші атрибути"
+msgstr "Your Attributes"
+
+#: .\templates\game\abilities.html:22 .\templates\game\abilities.html:62
+msgid "Вільних атрибутів для розподілу: "
+msgstr "Free attributes to distribute: "
+
+#: .\templates\game\abilities.html:36
+msgid "Підтвердити зміни"
+msgstr "Confirm Changes"
+
+#: .\templates\game\abilities.html:45
+msgid "Покращення статистик персонажа"
+msgstr "Character Stats Improvement"
+
+#: .\templates\game\abilities.html:46
+msgid "Повернутися до гри"
+msgstr "Return to Game"
+
+#: .\templates\game\base.html:8 .\templates\home.html:8
+msgid "Boycowskiy Club"
+msgstr "Boycowskiy Club"
+
+#: .\templates\game\base.html:19 .\templates\home.html:41
+msgid "Бійцівський Клуб"
+msgstr "Boycowskiy Club"
+
+#: .\templates\game\base.html:29
+msgid "Навички"
+msgstr "Skills"
+
+#: .\templates\game\base.html:30 .\templates\game\inventory.html:106
+msgid "Інвентар"
+msgstr "Inventory"
+
+#: .\templates\game\base.html:41
+msgid ""
+"Будь ласка змініть орієнтацію мобільного пристрою за для усунення помилок "
+"інтерфейсу"
+msgstr ""
+"Please change the orientation of your mobile device to correct interface errors"
+
+#: .\templates\game\church.html:4
+msgid "Church Location"
+msgstr "Church Location"
+
+#: .\templates\game\church.html:11
+msgid "Вийти з церкви"
+msgstr "Exit Church"
+
+#: .\templates\game\church.html:17
+msgid "Ви зараз знаходитесь у церкві."
+msgstr "You are now in the church."
+
+#: .\templates\game\church.html:22
+msgid "Ціна пожертвування (10$)"
+msgstr "Donation Price ($10)"
+
+#: .\templates\game\church.html:25
+msgid "Зробити пожертвування"
+msgstr "Make a Donation"
+
+#: .\templates\game\church_success.html:5 .\templates\game\shop_err.html:5
+#: .\templates\game\shop_success.html:5
+msgid "Success"
+msgstr "Success"
+
+#: .\templates\game\church_success.html:14
+msgid "Повернутися до церкви."
+msgstr "Return to Church."
+
+#: .\templates\game\city_center.html:4 .\templates\game\outskirts.html:4
+#: .\templates\game\shop.html:4
+msgid "City Location"
+msgstr "City Location"
+
+#: .\templates\game\city_center.html:11
+msgid "Повернутися додому"
+msgstr "Return Home"
+
+#: .\templates\game\city_center.html:12
+msgid "Увійти до церкви"
+msgstr "Enter Church"
+
+#: .\templates\game\city_center.html:13
+msgid "Увійти до магазину"
+msgstr "Enter Shop"
+
+#: .\templates\game\city_center.html:14
+msgid "Піти на окраїну міста"
+msgstr "Go to the Outskirts"
+
+#: .\templates\game\city_center.html:20
+msgid "Ви зараз знаходитесь у центрі міста"
+msgstr "You are now in the city center"
+
+#: .\templates\game\dungeon\component\map.html:54
+msgid "Покинути підземілля"
+msgstr "Leave the Dungeon"
+
+#: .\templates\game\dungeon\component\map.html:58
+msgid "Спуститися на рівень нижче"
+msgstr "Descend to Lower Level"
+
+#: .\templates\game\dungeon\dungeon.html:4
+#: .\templates\game\dungeon\dungeon_boss.html:4
+#: .\templates\game\dungeon\dungeon_change.html:4
+#: .\templates\game\dungeon\dungeon_enemy.html:4
+#: .\templates\game\dungeon\dungeon_inside.html:3
+msgid "Dungeon"
+msgstr "Dungeon"
+
+#: .\templates\game\dungeon\dungeon.html:11
+msgid "Увійти в підземілля"
+msgstr "Enter the Dungeon"
+
+#: .\templates\game\dungeon\dungeon.html:12
+msgid "Повернутися на окраїну міста"
+msgstr "Return to the Outskirts"
+
+#: .\templates\game\dungeon\dungeon.html:18
+#: .\templates\game\dungeon\dungeon_inside.html:11
+msgid "Підземілля | Рівень:"
+msgstr "Dungeon | Level:"
+
+#: .\templates\game\dungeon\dungeon_boss.html:12
+#: .\templates\game\dungeon\dungeon_change.html:12
+#: .\templates\game\dungeon\dungeon_enemy.html:12
+msgid "Рівень підземелля | "
+msgstr "Dungeon Level | "
+
+#: .\templates\game\dungeon\dungeon_boss.html:18
+msgid ""
+"Вітаємо ви повністю зачистили підземілля й стали його героєм. Усі жителі "
+"Гроссенбегра дуже вдячні вам."
+msgstr ""
+"Congratulations, you have completely cleared the dungeon and become its hero. All the residents of Grossenberg are very grateful to you."
+
+#: .\templates\game\dungeon\dungeon_boss.html:20
+msgid ""
+"Щоб пройти далі треба перемогти головного командиру захисників першого рівня?"
+msgstr ""
+"To proceed further, you need to defeat the chief commander of the first level defenders."
+
+#: .\templates\game\dungeon\dungeon_boss.html:21
+msgid "Готові до бою?"
+msgstr "Ready to Fight?"
+
+#: .\templates\game\dungeon\dungeon_boss.html:24
+msgid "Готовий!"
+msgstr "Ready!"
+
+#: .\templates\game\dungeon\dungeon_change.html:17
+msgid ""
+"Ви перемогли головного командувача. І тепер можете перейти на новий рівень."
+msgstr ""
+"You have defeated the chief commander. Now you can move to a new level."
+
+#: .\templates\game\dungeon\dungeon_change.html:18
+msgid ""
+"При переході на новий рівень вам для виходу з підземілля вам потрібно буде "
+"повертатися на самий перший рівень."
+msgstr ""
+"When moving to a new level, you will need to return to the very first level to exit the dungeon."
+
+#: .\templates\game\dungeon\dungeon_change.html:19
+msgid "Перейти"
+msgstr "Proceed"
+
+#: .\templates\game\dungeon\dungeon_enemy.html:17
+msgid "Перед вами стоїть ворог. Що ви будете робити?"
+msgstr "An enemy stands before you. What will you do?"
+
+#: .\templates\game\dungeon\dungeon_enemy.html:18
+#, python-format
+msgid ""
+"Якщо ви будете продовжувати рухатись є можливість, що бій почнеться й ворог "
+"атакує першим (50%% шансу)."
+msgstr ""
+"If you continue moving, there is a chance the fight will begin, and the enemy will attack first (50%% chance)."
+
+#: .\templates\game\dungeon\dungeon_enemy.html:21
+msgid "Почати бій, бо це найкращий захист"
+msgstr "Start the fight, because it's the best defense"
+
+#: .\templates\game\dungeon\final.html:10
+msgid "FINAL"
+msgstr "FINAL"
+
+#: .\templates\game\dungeon\final.html:15
+msgid ""
+"Вітаємо. Ви врятували селище Гроссенберг і стали його героєм. Усі жителі "
+"Гроссенберга будуть вам вдячні до кінця життя."
+msgstr ""
+"Congratulations. You saved the village of Grossenberg and became its hero. All the residents of Grossenberg will be grateful to you for life."
+
+#: .\templates\game\dungeon\final.html:16
+#: .\templates\game\fight\fight_results.html:17
+#: .\templates\game\fight\fight_results.html:20
+#: .\templates\game\fight\fight_results.html:24
+msgid "Повернутися до підземілля"
+msgstr "Return to Dungeon"
+
+#: .\templates\game\fight\fight.html:8
+msgid "Fight"
+msgstr "Fight"
+
+#: .\templates\game\fight\fight.html:26
+msgid "Вперед"
+msgstr "Forward"
+
+#: .\templates\game\fight\fight.html:33
+msgid "Логи бою"
+msgstr "Fight Logs"
+
+#: .\templates\game\fight\fight.html:75
+msgid "Спритність:: "
+msgstr "Dexterity:: "
+
+#: .\templates\game\fight\fight_results.html:10
+msgid "Fight Results"
+msgstr "Fight Results"
+
+#: .\templates\game\fight\fight_results.html:16
+msgid "Вітаємо. Ви перемогли головнокомандувача ["
+msgstr "Congratulations. You defeated the chief commander ["
+
+#: .\templates\game\fight\fight_results.html:16
+#: .\templates\game\fight\fight_results.html:19
+msgid "] рівня"
+msgstr "] level"
+
+#: .\templates\game\fight\fight_results.html:19
+msgid "Вітаємо. Ви перемогли ворога ["
+msgstr "Congratulations. You defeated the enemy ["
+
+#: .\templates\game\fight\fight_results.html:23
+msgid "На жаль ви ще поки слабкі для цього противника."
+msgstr "Unfortunately, you are still too weak for this opponent."
+
+#: .\templates\game\instruction.html:4
+msgid "Instruction"
+msgstr "Instruction"
+
+#: .\templates\game\instruction.html:26
+msgid "Навчання."
+msgstr "Training."
+
+#: .\templates\game\instruction.html:33
+msgid "Повернутися назад"
+msgstr "Go Back"
+
+#: .\templates\game\instruction.html:36
+msgid "Наступний крок"
+msgstr "Next Step"
+
+#: .\templates\game\inventory.html:10 .\templates\game\main.html:10
+msgid "Game Main"
+msgstr "Game Main"
+
+#: .\templates\game\inventory.html:22
+msgid "досвід:"
+msgstr "Experience:"
+
+#: .\templates\game\inventory.html:65 .\templates\game\shop.html:23
+msgid "Зброя"
+msgstr "Weapon"
+
+#: .\templates\game\inventory.html:75 .\templates\game\shop.html:31
+msgid "Урон:"
+msgstr "Damage:"
+
+#: .\templates\game\inventory.html:80
+msgid "Намає зброї в наявності. Придбайте в магазині."
+msgstr "No weapons available. Purchase in the shop."
+
+#: .\templates\game\inventory.html:84
+msgid "Броня"
+msgstr "Armor"
+
+#: .\templates\game\inventory.html:99
+msgid "Намає броні в наявності. Придбайте в магазині."
+msgstr "No armor available. Purchase in the shop."
+
+#: .\templates\game\inventory.html:108
+msgid "Повернутися в гру"
+msgstr "Return to Game"
+
+#: .\templates\game\main.html:27
+msgid "Йти до міста"
+msgstr "Go to the City"
+
+#: .\templates\game\main.html:34
+msgid "Ви зараз знаходитесь на головній локації"
+msgstr "You are now at the main location"
+
+#: .\templates\game\main.html:44
+msgid "Поділіться чимось цікавим з іншими гравцями."
+msgstr "Share something interesting with other players."
+
+#: .\templates\game\main.html:45
+msgid "Відправити"
+msgstr "Send"
+
+#: .\templates\game\main.html:49
+msgid "Користувачі локації"
+msgstr "Location Users"
+
+#: .\templates\game\outskirts.html:11
+msgid "Повернутися до центру міста"
+msgstr "Return to the City Center"
+
+#: .\templates\game\outskirts.html:12
+msgid "Увійти до таверни"
+msgstr "Enter the Tavern"
+
+#: .\templates\game\outskirts.html:13
+msgid "Піти до підземілля"
+msgstr "Go to the Dungeon"
+
+#: .\templates\game\outskirts.html:14
+msgid "Відправитися додому"
+msgstr "Go Home"
+
+#: .\templates\game\outskirts.html:20
+msgid "Ви зараз знаходитесь у окраїні міста"
+msgstr "You are now in the city outskirts"
+
+#: .\templates\game\select_class.html:6
+msgid "Class"
+msgstr "Class"
+
+#: .\templates\game\select_class.html:16
+msgid "Оберіть ваш ігровий клас"
+msgstr "Choose your game class"
+
+#: .\templates\game\shop.html:12
+msgid "Покинути магазин"
+msgstr "Leave the Shop"
+
+#: .\templates\game\shop.html:18
+msgid "Локація: Магазин"
+msgstr "Location: Shop"
+
+#: .\templates\game\shop.html:32
+msgid "Ціна:"
+msgstr "Price:"
+
+#: .\templates\game\shop.html:33 .\templates\game\shop.html:51
+msgid "Рівень гравця:"
+msgstr "Player Level:"
+
+#: .\templates\game\shop.html:34 .\templates\game\shop.html:52
+msgid "Потрібна спритність:"
+msgstr "Required Dexterity:"
+
+#: .\templates\game\shop.html:35 .\templates\game\shop.html:53
+msgid "Потрібна сила:"
+msgstr "Required Strength:"
+
+#: .\templates\game\shop.html:36 .\templates\game\shop.html:54
+msgid "Купити"
+msgstr "Buy"
+
+#: .\templates\game\shop.html:50
+msgid "Ціна"
+msgstr "Price"
+
+#: .\templates\game\shop_err.html:10
+msgid "Помилка покупки."
+msgstr "Purchase Error."
+
+#: .\templates\game\shop_err.html:14 .\templates\game\shop_success.html:13
+msgid "Повернутися до магазину."
+msgstr "Return to Shop."
+
+#: .\templates\game\shop_success.html:11
+msgid "Успішна покупка. Тепер це знарядження є у вашому інвентарі."
+msgstr "Successful purchase. The equipment is now in your inventory."
+
+#: .\templates\game\tavern.html:4
+msgid "Tavern Location"
+msgstr "Tavern Location"
+
+#: .\templates\game\tavern.html:12
+msgid "Покинути таверну"
+msgstr "Leave the Tavern"
+
+#: .\templates\game\tavern.html:18
+msgid "Локація: Таверна"
+msgstr "Location: Tavern"
+
+#: .\templates\home.html:58
+msgid "Мій профіль"
+msgstr "My Profile"
+
+#: .\templates\home.html:63
+msgid "Вийти"
+msgstr "Logout"
+
+#: .\templates\home.html:94 .\templates\home.html:96
+msgid "Почати гру"
+msgstr "Start Game"
+
+#: .\templates\home.html:101
+msgid "Ви повинні увійти в свій аккаунт."
+msgstr "You must log in to your account."
+
+#: .\templates\socialaccount\signup.html:13
+msgid "Останній крок, для завершення реєстрації заповніть форму."
+msgstr "Last step, complete the form to finish registration."
+
+#: .\templates\users\forbes.html:13
+msgid "Найкращі гравці"
+msgstr "Top Players"
+
+#: .\templates\users\profile.html:14
+msgid "Ваш профіль"
+msgstr "Your Profile"
+
+#: .\templates\users\profile.html:23
+msgid "Зберегти зміни"
+msgstr "Save Changes"
+
+#: .\templates\users\profile.html:26
+msgid "Email: активовано"
+msgstr "Email: Activated"
+
+#: .\templates\users\profile.html:29
+msgid "Щоб редагувати Email треба його активувати"
+msgstr "To edit the Email, it must be activated"
+
+#: .\templates\users\profile.html:30
+msgid "Активувати Email"
+msgstr "Activate Email"
+
+#: .\templates\users\profile.html:33
+msgid "Видалити аккаунт"
+msgstr "Delete Account"
+
+#: .\templates\users\profile.html:41
+msgid "Змінити пароль"
+msgstr "Change Password"
+
+#: .\users\forms.py:35
+msgid "Неактивований акаунт."
+msgstr "Unactivated account."
+
+#: .\users\forms.py:37
+msgid "Електронна пошта й/або пароль введені некоректно. Будь ласка перевірте вхідні дані."
+msgstr "The email and/or password are incorrect. Please check the input data."
+
+#: .\users\forms.py:40
+msgid "Не знайдено жодного користувача за вхідними даними.  Будь ласка перевірте вхідні дані."
+msgstr "No user found for the entered data. Please check the input data."
+
+#: .\users\forms.py:48 .\users\forms.py:50 .\users\forms.py:72
+#: .\users\forms.py:73 .\users\forms.py:135 .\users\forms.py:141
+#: .\users\forms.py:169
+msgid "Ім'я користувача"
+msgstr "Username"
+
+#: .\users\forms.py:56 .\users\forms.py:77 .\users\forms.py:136
+msgid "Пароль"
+msgstr "Password"
+
+#: .\users\forms.py:62
+msgid "Забули пароль?"
+msgstr "Forgot Password?"
+
+#: .\users\forms.py:75 .\users\forms.py:76 .\users\forms.py:161
+#: .\users\forms.py:163 .\users\forms.py:165 .\users\forms.py:195
+#: .\users\forms.py:196
+msgid "Електронна пошта"
+msgstr "Email"
+
+#: .\users\forms.py:79
+msgid "Пароль (знову)"
+msgstr "Password (again)"
+
+#: .\users\forms.py:93
+msgid "На цю електронну пошту вже є зареєстрований користувач."
+msgstr "A user is already registered with this email."
+
+#: .\users\forms.py:122
+msgid "Паролі не співпадають."
+msgstr "Passwords do not match."
+
+#: .\users\forms.py:170
+msgid "Аватар (Не обов'язковий)."
+msgstr "Avatar (Optional)."
+
+#: .\users\forms.py:200 .\users\forms.py:209
+msgid "Новий пароль"
+msgstr "New Password"
+
+#: .\users\forms.py:201
+msgid "Повторіть пароль"
+msgstr "Repeat Password"
+
+#: .\users\forms.py:206
+msgid "Поточний пароль"
+msgstr "Current Password"
+
+#: .\users\forms.py:211
+msgid "Повторіть новий пароль"
+msgstr "Repeat New Password"
+
+#: .\users\views.py:78
+msgid "Перед тим як вийти з акаунту ви маєте покинути активне підземелля."
+msgstr "Before logging out, you must leave the active dungeon."

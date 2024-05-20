@@ -31,7 +31,20 @@
                   <a href="{% url 'back_to_main' request.resolver_match.url_name %}" class="btn btn-outline-light btn-sm">Повернутися на головну</a>
                 </li>
                 <li class="nav-link lang-form">
-                  <form method="post" action="{% url 'locale' request.resolver_match.url_name %}" class="locale-form">{% csrf_token %}{{locale_form}}</form>
+                  {% get_current_language_bidi as LANGUAGE_BIDI %}
+                  {% get_current_language as LANGUAGE_CODE %}
+                  <form action="{% url 'set_language' %}" class="locale-form" method="post">{% csrf_token %}
+                      <input name="next" type="hidden" value="{{request.path}}">
+                      <select name="language" class="form-control" onchange="this.form.submit()">
+                          {% get_available_languages as LANGUAGES %}
+                          {% get_language_info_list for LANGUAGES as languages %}
+                          {% for language in languages %}
+                              <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                                  {{ language.name_local }} ({{ language.code }})
+                              </option>
+                          {% endfor %}
+                      </select>
+                  </form>
                 </li>
             </ul>
           </div>

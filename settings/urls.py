@@ -11,6 +11,7 @@ urlpatterns = [
     path(BASE_URL + 'game/', include('game.urls')),
     path(BASE_URL + 'accounts/', include('allauth.urls')),
     path(BASE_URL + "__debug__/", include("debug_toolbar.urls")),
+    path(BASE_URL + 'i18n/', include('django.conf.urls.i18n')),
 ]
 
 if settings.DEBUG:

@@ -63,7 +63,8 @@ def delete_account(request: HttpRequest):
 
 
 def home(request: HttpRequest):
-    translation.activate(request.session.get('lang'))
+    print(translation.get_language())
+    print(translation.get_language())
     return render(request=request, template_name="home.html")
 
 
