@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['*']
 ALLOWED_ADMIN_IPS = []
 SECRET_ADMIN_TOKEN = os.environ.get("SECRET_ADMIN_TOKEN")
 CORS_ORIGIN_ALLOW_ALL = True
-PROD_HOST = "dungeonapp.westeurope.cloudapp.azure.com"
+PROD_HOST = "boycowskiy-club.germanywestcentral.cloudapp.azure.com"
 
 DEFAULT_HTTP_PROTOCOL = 'http'
 PROTOCOL = 'http'
