@@ -3,12 +3,14 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+BASE_URL = "webapp/"
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('users.urls')),
-    path('game/', include('game.urls')),
-    path('accounts/', include('allauth.urls')),
-    path("__debug__/", include("debug_toolbar.urls")),
+    path(BASE_URL + 'admin/', admin.site.urls),
+    path(BASE_URL + '', include('users.urls')),
+    path(BASE_URL + 'game/', include('game.urls')),
+    path(BASE_URL + 'accounts/', include('allauth.urls')),
+    path(BASE_URL + "__debug__/", include("debug_toolbar.urls")),
 ]
 
 if settings.DEBUG:
