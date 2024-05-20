@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, delete_account, SetLocale, ProfileEdit, ForbesView, custom_logout
+from .views import home, delete_account, ProfileEdit, ForbesView, custom_logout
 
 urlpatterns = [
     path('', home, name='home'),

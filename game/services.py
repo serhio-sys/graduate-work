@@ -51,8 +51,8 @@ def post_church(request: HttpRequest) -> HttpResponse:
     request.user.save()
     user_effect.save()
     return render(request=request, template_name="game/church_success.html",
-                  context={"head": _("Бог схильний до вас."),
-                           "msg": _("Ви отримали благословення бога.")})
+                  context={"head": _("Свята пожертва."),
+                           "msg": _("Ви отримали ефект святої пожертви.")})
 
 
 def post_equip_armor(request: HttpRequest) -> JsonResponse:

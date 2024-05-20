@@ -3,7 +3,6 @@ from django.urls import reverse
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.views.generic import View, ListView
-from django.utils import translation
 from django.http import HttpRequest
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model

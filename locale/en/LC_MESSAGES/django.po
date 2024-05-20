@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-20 15:21+0300\n"
+"POT-Creation-Date: 2024-05-20 22:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1611,8 +1611,7 @@ msgstr "Defense"
 #, python-format
 msgid ""
 "<a href=\"#\">%s</a> провів атаку по <a href=\"#\">%s</a> завдавши %d шкоди."
-msgstr ""
-"<a href=\"#\">%s</a> attacked <a href=\"#\">%s</a> dealing %d damage."
+msgstr "<a href=\"#\">%s</a> attacked <a href=\"#\">%s</a> dealing %d damage."
 
 #: .\game\logs.py:7
 #, python-format
@@ -1620,8 +1619,8 @@ msgid ""
 "<a href=\"#\">%s</a> збільшивши відстань між ворогом <a href=\"#\">%s</a> "
 "робить декілька пострілів лишивши поранення у вигляді %d шкоди."
 msgstr ""
-"<a href=\"#\">%s</a> increased the distance from the enemy <a href=\"#\">%s</a> "
-"and made several shots causing %d damage."
+"<a href=\"#\">%s</a> increased the distance from the enemy <a href=\"#\">%s</"
+"a> and made several shots causing %d damage."
 
 #: .\game\logs.py:11
 #, python-format
@@ -1629,14 +1628,13 @@ msgid ""
 "<a href=\"#\">%s</a> ухиляючись від атаки наносить по <a href=\"#\">%s</a> "
 "колюче поранення в розмірі %d шкоди."
 msgstr ""
-"<a href=\"#\">%s</a> dodged the attack and inflicted a stab wound on <a href=\"#\">%s</a> "
-"causing %d damage."
+"<a href=\"#\">%s</a> dodged the attack and inflicted a stab wound on <a href="
+"\"#\">%s</a> causing %d damage."
 
 #: .\game\logs.py:15
 #, python-format
 msgid "<a href=\"#\">%s</a> заблокував атаку <a href=\"#\">%s</a>."
-msgstr ""
-"<a href=\"#\">%s</a> blocked the attack of <a href=\"#\">%s</a>."
+msgstr "<a href=\"#\">%s</a> blocked the attack of <a href=\"#\">%s</a>."
 
 #: .\game\logs.py:16 .\game\logs.py:18
 #, python-format
@@ -1644,7 +1642,8 @@ msgid ""
 "<a href=\"#\">%s</a> відчувши атаку ворога <a href=\"#\">%s</a> було "
 "заблоковано атаку."
 msgstr ""
-"<a href=\"#\">%s</a> sensed the enemy's attack and blocked the attack of <a href=\"#\">%s</a>."
+"<a href=\"#\">%s</a> sensed the enemy's attack and blocked the attack of <a "
+"href=\"#\">%s</a>."
 
 #: .\game\logs.py:22
 #, python-format
@@ -1652,8 +1651,8 @@ msgid ""
 "<a href=\"#\">%s</a> дуже прудким і ріжучим ударом у <a href=\"#\">%s</a> "
 "сталася сильна кровотеча."
 msgstr ""
-"<a href=\"#\">%s</a> made a very swift and sharp strike on <a href=\"#\">%s</a> "
-"causing severe bleeding."
+"<a href=\"#\">%s</a> made a very swift and sharp strike on <a href=\"#\">%s</"
+"a> causing severe bleeding."
 
 #: .\game\logs.py:24
 #, python-format
@@ -1661,7 +1660,8 @@ msgid ""
 "<a href=\"#\">%s</a> сильним ударом ноги у <a href=\"#\">%s</a> було "
 "накладено ефект перелому."
 msgstr ""
-"<a href=\"#\">%s</a> delivered a strong kick to <a href=\"#\">%s</a> causing a fracture."
+"<a href=\"#\">%s</a> delivered a strong kick to <a href=\"#\">%s</a> causing "
+"a fracture."
 
 #: .\game\logs.py:31
 msgid "Історія"
@@ -1674,9 +1674,10 @@ msgid ""
 "починаючи з вугілля й закінчуючи сапфірами й діамантами. Але в один день "
 "прийшла армія загарбників й захопила славетне підземелля."
 msgstr ""
-"Once upon a time, there was a small town of Grossenberg, known for its great dungeon, "
-"where various valuable minerals were mined, from coal to sapphires and diamonds. But one day, "
-"an army of invaders came and captured the famous dungeon."
+"Once upon a time, there was a small town of Grossenberg, known for its great "
+"dungeon, where various valuable minerals were mined, from coal to sapphires "
+"and diamonds. But one day, an army of invaders came and captured the famous "
+"dungeon."
 
 #: .\game\logs.py:40
 msgid "Привітання!"
@@ -1689,8 +1690,10 @@ msgid ""
 "підземель. Ваша роль звільнити підземелля від ворогів й стати його "
 "захистником до кінця своїх днів."
 msgstr ""
-"Welcome to the game \"Boycowskiy Club\". Here you will find: exciting adventures in the dungeon and endless fights with other players and dungeon bosses. "
-"Your role is to liberate the dungeon from enemies and become its defender for the rest of your days."
+"Welcome to the game \"Boycowskiy Club\". Here you will find: exciting "
+"adventures in the dungeon and endless fights with other players and dungeon "
+"bosses. Your role is to liberate the dungeon from enemies and become its "
+"defender for the rest of your days."
 
 #: .\game\logs.py:50
 msgid "Орієнтування по мапі"
@@ -1704,9 +1707,11 @@ msgid ""
 "локація через яку можна дістатися до підземілля й також увійти в таверну щоб "
 "помірятися силою з іншими гравцями."
 msgstr ""
-"The game has two main locations:<br/> Town Center – here you can reach the church to remove negative effects, "
-"enter the shop to buy equipment according to your level.<br/> Town Outskirts – the most popular location through which you can reach the dungeon and also enter the tavern to "
-"test your strength against other players."
+"The game has two main locations:<br/> Town Center – here you can reach the "
+"church to remove negative effects, enter the shop to buy equipment according "
+"to your level.<br/> Town Outskirts – the most popular location through which "
+"you can reach the dungeon and also enter the tavern to test your strength "
+"against other players."
 
 #: .\game\logs.py:60
 msgid "Покращення навичок"
@@ -1718,7 +1723,9 @@ msgid ""
 "рівня атрибутів персонажу, тому не забувайте розподіляти вільні очки "
 "покращення персонажу."
 msgstr ""
-"With each level up, the character is given 3 free points to distribute to the character's attribute levels, so don't forget to allocate free points for character improvement."
+"With each level up, the character is given 3 free points to distribute to "
+"the character's attribute levels, so don't forget to allocate free points "
+"for character improvement."
 
 #: .\game\logs.py:68
 msgid "Купівля предметів"
@@ -1731,8 +1738,11 @@ msgid ""
 "тільки щоб зробити це вам потрібно буде покращувати атрибут сили, бо кожен "
 "предмет має мінімальний рівень кожного з атрибутів персонажу."
 msgstr ""
-"In the store, you will have different items for characters of different classes. Depending on this, if you are a dexterous character, you can buy and equip a strongman's sword, "
-"but to do this you will need to improve the strength attribute, because each item has a minimum level of each character's attributes."
+"In the store, you will have different items for characters of different "
+"classes. Depending on this, if you are a dexterous character, you can buy "
+"and equip a strongman's sword, but to do this you will need to improve the "
+"strength attribute, because each item has a minimum level of each "
+"character's attributes."
 
 #: .\game\logs.py:77
 msgid "Таверна"
@@ -1744,7 +1754,9 @@ msgid ""
 "приєднуватися до інших бойових кімнат за для перевірки своєї сили між іншими "
 "гравцями. Також ваша"
 msgstr ""
-"The tavern is perhaps the most interesting location, where players can create and join other battle rooms to test their strength against other players. Also, your"
+"The tavern is perhaps the most interesting location, where players can "
+"create and join other battle rooms to test their strength against other "
+"players. Also, your"
 
 #: .\game\logs.py:85
 msgid "Підземілля"
@@ -1755,7 +1767,8 @@ msgid ""
 "Підземілля – це головне місце для набивання грошей і проходження квестів з "
 "таверни."
 msgstr ""
-"The dungeon is the main place for earning money and completing quests from the tavern."
+"The dungeon is the main place for earning money and completing quests from "
+"the tavern."
 
 #: .\game\logs.py:91
 msgid "Бої"
@@ -1767,19 +1780,21 @@ msgid ""
 "кнопку \"Уперед!\". Після чого в логах можна буде побачити результат вашого "
 "ходу."
 msgstr ""
-"The main battle mechanic is to choose a place to defend and attack, then press the \"Forward!\" button. You will then see the result of your move in the logs."
+"The main battle mechanic is to choose a place to defend and attack, then "
+"press the \"Forward!\" button. You will then see the result of your move in "
+"the logs."
 
 #: .\game\services.py:41
 msgid "Недостатньо коштів на вашому рахунку"
 msgstr "Insufficient funds in your account"
 
 #: .\game\services.py:54
-msgid "Бог схильний до вас."
-msgstr "The god is favorable to you."
+msgid "Свята пожертва."
+msgstr "Holy sacrifice."
 
 #: .\game\services.py:55
-msgid "Ви отримали благословення бога."
-msgstr "You have received the god's blessing."
+msgid "Ви отримали ефект святої пожертви."
+msgstr "You have received the effect of the holy sacrifice."
 
 #: .\game\services.py:107 .\game\services.py:131
 msgid "Не вистачає коштів"
@@ -1805,7 +1820,8 @@ msgid ""
 " Особливість:можливість ухилитися від атаки та контр атакувати."
 msgstr ""
 "Main attribute: Dexterity.\n"
-" If the opponent is very slow and not attentive, there is a chance to make a double attack.\n"
+" If the opponent is very slow and not attentive, there is a chance to make a "
+"double attack.\n"
 " Feature: ability to dodge attacks and counter-attack."
 
 #: .\game\services.py:176
@@ -1824,7 +1840,8 @@ msgstr ""
 
 #: .\game\views.py:216
 msgid "Ваші атрибути зросли. Поспішіть перевірити свою силу в підземеллі."
-msgstr "Your attributes have increased. Hurry to test your strength in the dungeon."
+msgstr ""
+"Your attributes have increased. Hurry to test your strength in the dungeon."
 
 #: .\settings\password_validators.py:25
 #, python-format
@@ -1832,18 +1849,18 @@ msgid "Пароль закороткий. Він має містити пона�
 msgid_plural ""
 "Пароль закороткий. Він має містити понад %(min_length)d символів."
 msgstr[0] ""
-"The password is too short. It must contain more than %(min_length)d characters."
+"The password is too short. It must contain more than %(min_length)d "
+"characters."
 msgstr[1] ""
-"The password is too short. It must contain more than %(min_length)d characters."
+"The password is too short. It must contain more than %(min_length)d "
+"characters."
 
 #: .\settings\password_validators.py:37
 #, python-format
 msgid "Your password must contain at least %(min_length)d character."
 msgid_plural "Your password must contain at least %(min_length)d characters."
-msgstr[0] ""
-"Your password must contain at least %(min_length)d character."
-msgstr[1] ""
-"Your password must contain at least %(min_length)d characters."
+msgstr[0] "Your password must contain at least %(min_length)d character."
+msgstr[1] "Your password must contain at least %(min_length)d characters."
 
 #: .\settings\password_validators.py:51
 msgid "Пароль містить тільки цифри."
@@ -1853,11 +1870,11 @@ msgstr "The password contains only numbers."
 msgid "Your password can’t be entirely numeric."
 msgstr "Your password can’t be entirely numeric."
 
-#: .\settings\settings.py:158
+#: .\settings\settings.py:157
 msgid "English"
 msgstr "English"
 
-#: .\settings\settings.py:159
+#: .\settings\settings.py:158
 msgid "Ukrainian"
 msgstr "Ukrainian"
 
@@ -1881,7 +1898,8 @@ msgid ""
 "Будь ласка перевірте <a href=\"mailto:%(email)s\">%(email)s</a> чи цей емайл "
 "налижить користувачу %(user_display)s."
 msgstr ""
-"Please check <a href=\"mailto:%(email)s\">%(email)s</a> to verify if this email belongs to user %(user_display)s."
+"Please check <a href=\"mailto:%(email)s\">%(email)s</a> to verify if this "
+"email belongs to user %(user_display)s."
 
 #: .\templates\account\email_confirm.html:25
 msgid "Підтвердити"
@@ -1901,7 +1919,8 @@ msgid ""
 "Посилання застаріло. Будь ласка перейдіть по <a href=\"%(email_url)s"
 "\">відправити новий запит на підтвердження</a>."
 msgstr ""
-"The link has expired. Please click <a href=\"%(email_url)s\">send a new confirmation request</a>."
+"The link has expired. Please click <a href=\"%(email_url)s\">send a new "
+"confirmation request</a>."
 
 #: .\templates\account\login.html:8 .\templates\account\login.html:14
 msgid "Вхід"
@@ -1913,7 +1932,8 @@ msgid ""
 "Не маєте акаунту? Тоді зареєструйтесь <a href=\"%(signup_url)s\">реєстрація</"
 "a>."
 msgstr ""
-"Don't have an account? Then sign up <a href=\"%(signup_url)s\">registration</a>."
+"Don't have an account? Then sign up <a href=\"%(signup_url)s\">registration</"
+"a>."
 
 #: .\templates\account\login.html:26 .\templates\home.html:103
 msgid "Увійти"
@@ -1941,8 +1961,7 @@ msgstr "Password reset"
 #: .\templates\account\password_reset.html:14
 msgid ""
 "Трохи нижче вам потрібно вписати свою електронну пошту, для скидання паролю."
-msgstr ""
-"Below, you need to enter your email address to reset the password."
+msgstr "Below, you need to enter your email address to reset the password."
 
 #: .\templates\account\password_reset.html:25
 msgid "Скинути пароль"
@@ -1983,8 +2002,7 @@ msgstr "Register"
 #: .\templates\account\verification_sent.html:14
 msgid ""
 "Вам було відправлено повідомлення на підтвердження вашої електронної пошти."
-msgstr ""
-"A verification message has been sent to your email."
+msgstr "A verification message has been sent to your email."
 
 #: .\templates\components\enemy.html:14 .\templates\components\hero.html:21
 #: .\templates\game\inventory.html:28 .\templates\users\forbes.html:34
@@ -2066,7 +2084,9 @@ msgid "Повернутися до гри"
 msgstr "Return to Game"
 
 #: .\templates\game\base.html:8 .\templates\home.html:8
-msgid "Boycowskiy Club"
+#, fuzzy
+#| msgid "Boycowskiy Club"
+msgid "Boycovskiy Club"
 msgstr "Boycowskiy Club"
 
 #: .\templates\game\base.html:19 .\templates\home.html:41
@@ -2081,12 +2101,17 @@ msgstr "Skills"
 msgid "Інвентар"
 msgstr "Inventory"
 
-#: .\templates\game\base.html:41
+#: .\templates\game\base.html:31
+msgid "Повернутися на головну"
+msgstr "Return to the main page"
+
+#: .\templates\game\base.html:54
 msgid ""
 "Будь ласка змініть орієнтацію мобільного пристрою за для усунення помилок "
 "інтерфейсу"
 msgstr ""
-"Please change the orientation of your mobile device to correct interface errors"
+"Please change the orientation of your mobile device to correct interface "
+"errors"
 
 #: .\templates\game\church.html:4
 msgid "Church Location"
@@ -2182,13 +2207,15 @@ msgid ""
 "Вітаємо ви повністю зачистили підземілля й стали його героєм. Усі жителі "
 "Гроссенбегра дуже вдячні вам."
 msgstr ""
-"Congratulations, you have completely cleared the dungeon and become its hero. All the residents of Grossenberg are very grateful to you."
+"Congratulations, you have completely cleared the dungeon and become its "
+"hero. All the residents of Grossenberg are very grateful to you."
 
 #: .\templates\game\dungeon\dungeon_boss.html:20
 msgid ""
 "Щоб пройти далі треба перемогти головного командиру захисників першого рівня?"
 msgstr ""
-"To proceed further, you need to defeat the chief commander of the first level defenders."
+"To proceed further, you need to defeat the chief commander of the first "
+"level defenders."
 
 #: .\templates\game\dungeon\dungeon_boss.html:21
 msgid "Готові до бою?"
@@ -2209,7 +2236,8 @@ msgid ""
 "При переході на новий рівень вам для виходу з підземілля вам потрібно буде "
 "повертатися на самий перший рівень."
 msgstr ""
-"When moving to a new level, you will need to return to the very first level to exit the dungeon."
+"When moving to a new level, you will need to return to the very first level "
+"to exit the dungeon."
 
 #: .\templates\game\dungeon\dungeon_change.html:19
 msgid "Перейти"
@@ -2225,7 +2253,8 @@ msgid ""
 "Якщо ви будете продовжувати рухатись є можливість, що бій почнеться й ворог "
 "атакує першим (50%% шансу)."
 msgstr ""
-"If you continue moving, there is a chance the fight will begin, and the enemy will attack first (50%% chance)."
+"If you continue moving, there is a chance the fight will begin, and the "
+"enemy will attack first (50%% chance)."
 
 #: .\templates\game\dungeon\dungeon_enemy.html:21
 msgid "Почати бій, бо це найкращий захист"
@@ -2240,7 +2269,8 @@ msgid ""
 "Вітаємо. Ви врятували селище Гроссенберг і стали його героєм. Усі жителі "
 "Гроссенберга будуть вам вдячні до кінця життя."
 msgstr ""
-"Congratulations. You saved the village of Grossenberg and became its hero. All the residents of Grossenberg will be grateful to you for life."
+"Congratulations. You saved the village of Grossenberg and became its hero. "
+"All the residents of Grossenberg will be grateful to you for life."
 
 #: .\templates\game\dungeon\final.html:16
 #: .\templates\game\fight\fight_results.html:17
@@ -2490,70 +2520,74 @@ msgstr "Delete Account"
 msgid "Змінити пароль"
 msgstr "Change Password"
 
-#: .\users\forms.py:35
+#: .\users\forms.py:29
 msgid "Неактивований акаунт."
 msgstr "Unactivated account."
 
-#: .\users\forms.py:37
-msgid "Електронна пошта й/або пароль введені некоректно. Будь ласка перевірте вхідні дані."
+#: .\users\forms.py:31
+msgid ""
+"Електронна пошта й/або пароль введені некоректно. Будь ласка перевірте "
+"вхідні дані."
 msgstr "The email and/or password are incorrect. Please check the input data."
 
-#: .\users\forms.py:40
-msgid "Не знайдено жодного користувача за вхідними даними.  Будь ласка перевірте вхідні дані."
+#: .\users\forms.py:34
+msgid ""
+"Не знайдено жодного користувача за вхідними даними.  Будь ласка перевірте "
+"вхідні дані."
 msgstr "No user found for the entered data. Please check the input data."
 
-#: .\users\forms.py:48 .\users\forms.py:50 .\users\forms.py:72
-#: .\users\forms.py:73 .\users\forms.py:135 .\users\forms.py:141
-#: .\users\forms.py:169
+#: .\users\forms.py:42 .\users\forms.py:44 .\users\forms.py:66
+#: .\users\forms.py:67 .\users\forms.py:129 .\users\forms.py:135
+#: .\users\forms.py:163
 msgid "Ім'я користувача"
 msgstr "Username"
 
-#: .\users\forms.py:56 .\users\forms.py:77 .\users\forms.py:136
+#: .\users\forms.py:50 .\users\forms.py:71 .\users\forms.py:130
 msgid "Пароль"
 msgstr "Password"
 
-#: .\users\forms.py:62
+#: .\users\forms.py:56
 msgid "Забули пароль?"
 msgstr "Forgot Password?"
 
-#: .\users\forms.py:75 .\users\forms.py:76 .\users\forms.py:161
-#: .\users\forms.py:163 .\users\forms.py:165 .\users\forms.py:195
-#: .\users\forms.py:196
+#: .\users\forms.py:69 .\users\forms.py:70 .\users\forms.py:155
+#: .\users\forms.py:157 .\users\forms.py:159 .\users\forms.py:189
+#: .\users\forms.py:190
 msgid "Електронна пошта"
 msgstr "Email"
 
-#: .\users\forms.py:79
+#: .\users\forms.py:73
 msgid "Пароль (знову)"
 msgstr "Password (again)"
 
-#: .\users\forms.py:93
+#: .\users\forms.py:87
 msgid "На цю електронну пошту вже є зареєстрований користувач."
 msgstr "A user is already registered with this email."
 
-#: .\users\forms.py:122
+#: .\users\forms.py:116
 msgid "Паролі не співпадають."
 msgstr "Passwords do not match."
 
-#: .\users\forms.py:170
+#: .\users\forms.py:164
 msgid "Аватар (Не обов'язковий)."
 msgstr "Avatar (Optional)."
 
-#: .\users\forms.py:200 .\users\forms.py:209
+#: .\users\forms.py:194 .\users\forms.py:203
 msgid "Новий пароль"
 msgstr "New Password"
 
-#: .\users\forms.py:201
+#: .\users\forms.py:195
 msgid "Повторіть пароль"
 msgstr "Repeat Password"
 
-#: .\users\forms.py:206
+#: .\users\forms.py:200
 msgid "Поточний пароль"
 msgstr "Current Password"
 
-#: .\users\forms.py:211
+#: .\users\forms.py:205
 msgid "Повторіть новий пароль"
 msgstr "Repeat New Password"
 
-#: .\users\views.py:78
+#: .\users\views.py:63
 msgid "Перед тим як вийти з акаунту ви маєте покинути активне підземелля."
 msgstr "Before logging out, you must leave the active dungeon."

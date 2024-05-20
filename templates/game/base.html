@@ -28,7 +28,7 @@
                 <li class="nav-item d-flex justify-content-between gap-2">
                   <a class="btn btn-info btn-sm" href="{% url 'abilities' %}?name={{request.resolver_match.url_name}}">{% trans "Навички" %}</a>
                   <a class="btn btn-info btn-sm" href="{% url 'inventory' request.resolver_match.url_name %}">{% trans "Інвентар" %}</a>
-                  <a href="{% url 'back_to_main' request.resolver_match.url_name %}" class="btn btn-outline-light btn-sm">Повернутися на головну</a>
+                  <a href="{% url 'back_to_main' request.resolver_match.url_name %}" class="btn btn-outline-light btn-sm">{% trans "Повернутися на головну" %}</a>
                 </li>
                 <li class="nav-link lang-form">
                   {% get_current_language_bidi as LANGUAGE_BIDI %}
