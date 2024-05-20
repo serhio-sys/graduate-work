@@ -3,7 +3,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
-BASE_URL = "webapp/"
+BASE_URL = ""
 
 urlpatterns = [
     path(BASE_URL + 'admin/', admin.site.urls),
