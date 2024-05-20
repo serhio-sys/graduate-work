@@ -112,3 +112,21 @@
 .device_message .hidden {
     top: -100%;
 }
+.message_text {
+    text-align: center;
+}
+.menu {
+    display: flex;
+    gap: 1.5em;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 1.5rem !important;
+}
+@media (max-width: 1024px) {
+    .menu {
+        padding-right: 0 !important;
+    }
+    .lang-form {
+        width: 100% !important;
+    }
+}

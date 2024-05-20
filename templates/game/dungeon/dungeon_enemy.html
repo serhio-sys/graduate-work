@@ -22,13 +22,3 @@
     </form>
 </div>
 {% endblock %}
-{% block script %}
-<script>
-    const body = document.querySelector('body')
-    body.onkeyup = function(event) {
-        if (event.keyCode === 13) {
-            document.querySelector('.fight-btn').click()
-        }
-    };
-</script>
-{% endblock script %}

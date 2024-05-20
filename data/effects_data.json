@@ -2,7 +2,7 @@
     {
         "model": "game.Effect",
         "fields": {
-            "name": "Бог з тобою",
+            "name": "Свята пожертва",
             "desc": "Посилення спритності перcонажу",
             "is_church_ef": true,
             "agility": 3,
@@ -23,7 +23,7 @@
         "model": "game.Effect",
         "fields": {
             "name": "Перелом кістки",
-            "desc": "Послаблення всього",
+            "desc": "Послаблення всіх атрибутів персонажу",
             "agility": -3,
             "strength": -1,
             "is_positive": false
