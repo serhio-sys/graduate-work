@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['*']
 ALLOWED_ADMIN_IPS = []
 SECRET_ADMIN_TOKEN = os.environ.get("SECRET_ADMIN_TOKEN")
 CORS_ORIGIN_ALLOW_ALL = True
-PROD_HOST = "boycowskiy-club.germanywestcentral.cloudapp.azure.com"
+PROD_HOST = "113-30-189-214.cloud-xip.com"
 
 DEFAULT_HTTP_PROTOCOL = 'http'
 PROTOCOL = 'http'
