@@ -11,6 +11,7 @@ from django.urls import reverse
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.forms import model_to_dict
+from channels.db import database_sync_to_async
 from users.models import NewUser
 from .models import Weapon, Armor, Effect, Enemy, DungeonLvl
 from .logs import get_text_effect, INSTRUCTION_LOGS
@@ -299,6 +300,19 @@ class BasedFight:
 
     @staticmethod
     def apply_effect(effect_name: str, whom: NewUser | Enemy, duration_min: int) -> None:
+        try:
+            effect = Effect.objects.filter(name=effect_name, user__isnull=True, enemy__isnull=True).first()
+        except Effect.DoesNotExist:
+            return
+        en_effect = Effect(**model_to_dict(effect, exclude=['id']))
+        en_effect.deleted_time = datetime.datetime.now() + datetime.timedelta(minutes=duration_min)
+        setattr(en_effect, 'user' if isinstance(whom, NewUser) else 'enemy', whom)
+        if en_effect.user is not None or en_effect.enemy is not None:
+            en_effect.save()
+
+    @staticmethod
+    @database_sync_to_async
+    def async_apply_effect(effect_name: str, whom: NewUser | Enemy, duration_min: int) -> None:
         try:
             effect = Effect.objects.filter(name=effect_name, user__isnull=True, enemy__isnull=True).first()
         except Effect.DoesNotExist:

@@ -3,13 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: .\templates\game\tavern.html:22
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-20 22:58+0300\n"
+"POT-Creation-Date: 2024-06-06 21:30+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1607,6 +1606,18 @@ msgstr "Attack"
 msgid "Захист"
 msgstr "Defense"
 
+#: .\game\forms.py:48
+msgid "Ім'я кімнати"
+msgstr "Room name"
+
+#: .\game\forms.py:49
+msgid "Початковий взнесок"
+msgstr "Initial contribution"
+
+#: .\game\forms.py:50
+msgid "Пароль кімнати (Не обов'язково)"
+msgstr "Room password (Optional)."
+
 #: .\game\logs.py:5
 #, python-format
 msgid ""
@@ -1784,35 +1795,35 @@ msgstr ""
 "press the \"Forward!\" button. You will then see the result of your move in "
 "the logs."
 
-#: .\game\services.py:41
+#: .\game\services.py:42
 msgid "Недостатньо коштів на вашому рахунку"
 msgstr "Insufficient funds in your account"
 
-#: .\game\services.py:54
+#: .\game\services.py:55
 msgid "Свята пожертва."
 msgstr "Holy sacrifice."
 
-#: .\game\services.py:55
+#: .\game\services.py:56
 msgid "Ви отримали ефект святої пожертви."
 msgstr "You have received the effect of the holy sacrifice."
 
-#: .\game\services.py:107 .\game\services.py:131
+#: .\game\services.py:108 .\game\services.py:132
 msgid "Не вистачає коштів"
 msgstr "Not enough funds"
 
-#: .\game\services.py:112 .\game\services.py:136
+#: .\game\services.py:113 .\game\services.py:137
 msgid "Недостатньо атрибутів для цього предмету"
 msgstr "Not enough attributes for this item"
 
-#: .\game\services.py:117 .\game\services.py:141
+#: .\game\services.py:118 .\game\services.py:142
 msgid "Цей предмет вже є у вас в інвентарі."
 msgstr "This item is already in your inventory."
 
-#: .\game\services.py:167
+#: .\game\services.py:168
 msgid "Ловкач"
 msgstr "Dexterous"
 
-#: .\game\services.py:169
+#: .\game\services.py:170
 msgid ""
 "Головний атрибут: Спритність.\n"
 " Якщо супротивник дуже повільний і буде ловити гав, то є можливість зробити "
@@ -1824,11 +1835,11 @@ msgstr ""
 "double attack.\n"
 " Feature: ability to dodge attacks and counter-attack."
 
-#: .\game\services.py:176
+#: .\game\services.py:177
 msgid "Силач"
 msgstr "Strongman"
 
-#: .\game\services.py:178
+#: .\game\services.py:179
 msgid ""
 "Головний атрибут: Сила.\n"
 " Чим більша сила, тим більше болю може зазнати супротивник.\n"
@@ -1838,10 +1849,34 @@ msgstr ""
 " The greater the strength, the more pain the opponent can endure.\n"
 " Feature: inflicting heavy wounds."
 
-#: .\game\views.py:216
+#: .\game\views.py:138 .\game\views.py:421
+msgid "Бій вже почався."
+msgstr ""
+
+#: .\game\views.py:141
+#, fuzzy
+#| msgid "Недостатньо коштів на вашому рахунку"
+msgid "На рахунку не достатньо коштів для поєдинку."
+msgstr "Insufficient funds in your account"
+
+#: .\game\views.py:241
 msgid "Ваші атрибути зросли. Поспішіть перевірити свою силу в підземеллі."
 msgstr ""
 "Your attributes have increased. Hurry to test your strength in the dungeon."
+
+#: .\game\views.py:399
+msgid ""
+"Не достатньо коштів на балансі, щоб створити кімнату з вказаним початковим "
+"взнеском."
+msgstr "Insufficient funds on balance to create a room with the specified initial contribution."
+
+#: .\game\views.py:418 .\game\views.py:445
+msgid "Кімнату було видалено."
+msgstr "The room was deleted."
+
+#: .\game\views.py:449
+msgid "Ви не є бійцем цієї кімнати."
+msgstr "You are not a fighter in this room."
 
 #: .\settings\password_validators.py:25
 #, python-format
@@ -2004,51 +2039,68 @@ msgid ""
 "Вам було відправлено повідомлення на підтвердження вашої електронної пошти."
 msgstr "A verification message has been sent to your email."
 
-#: .\templates\components\enemy.html:14 .\templates\components\hero.html:21
-#: .\templates\game\inventory.html:28 .\templates\users\forbes.html:34
-#: .\templates\users\forbes.html:57
+#: .\templates\components\enemy.html:15 .\templates\components\hero.html:21
+#: .\templates\components\user_enemy.html:18 .\templates\game\inventory.html:28
+#: .\templates\users\forbes.html:34 .\templates\users\forbes.html:57
 msgid "Характеристики"
 msgstr "Characteristics"
 
-#: .\templates\components\enemy.html:16 .\templates\components\hero.html:23
-#: .\templates\game\inventory.html:30 .\templates\users\forbes.html:36
-#: .\templates\users\forbes.html:58
+#: .\templates\components\enemy.html:17 .\templates\components\hero.html:23
+#: .\templates\components\user_enemy.html:20 .\templates\game\inventory.html:30
+#: .\templates\users\forbes.html:36 .\templates\users\forbes.html:58
 msgid "Атака: "
 msgstr "Attack: "
 
-#: .\templates\components\enemy.html:18 .\templates\components\hero.html:25
-#: .\templates\game\inventory.html:32 .\templates\users\forbes.html:38
-#: .\templates\users\forbes.html:59
+#: .\templates\components\enemy.html:19 .\templates\components\hero.html:25
+#: .\templates\components\user_enemy.html:22 .\templates\game\inventory.html:32
+#: .\templates\users\forbes.html:38 .\templates\users\forbes.html:59
 msgid "Захист: "
 msgstr "Defense: "
 
-#: .\templates\components\enemy.html:20 .\templates\components\hero.html:27
-#: .\templates\game\fight\fight.html:72 .\templates\game\fight\fight.html:74
-#: .\templates\game\inventory.html:34 .\templates\users\forbes.html:40
-#: .\templates\users\forbes.html:60
+#: .\templates\components\enemy.html:21 .\templates\components\hero.html:27
+#: .\templates\components\user_enemy.html:24
+#: .\templates\game\battle\battle.html:141
+#: .\templates\game\battle\battle.html:143 .\templates\game\fight\fight.html:72
+#: .\templates\game\fight\fight.html:74 .\templates\game\inventory.html:34
+#: .\templates\users\forbes.html:40 .\templates\users\forbes.html:60
 msgid "Сила: "
 msgstr "Strength: "
 
-#: .\templates\components\enemy.html:21 .\templates\components\hero.html:28
-#: .\templates\game\fight\fight.html:73 .\templates\game\inventory.html:35
-#: .\templates\users\forbes.html:41 .\templates\users\forbes.html:61
+#: .\templates\components\enemy.html:22 .\templates\components\hero.html:28
+#: .\templates\components\user_enemy.html:25
+#: .\templates\game\battle\battle.html:142
+#: .\templates\game\battle\battle.html:144 .\templates\game\fight\fight.html:73
+#: .\templates\game\inventory.html:35 .\templates\users\forbes.html:41
+#: .\templates\users\forbes.html:61
 msgid "Спритність: "
 msgstr "Dexterity: "
 
-#: .\templates\components\enemy.html:27 .\templates\components\hero.html:34
-#: .\templates\game\fight\fight.html:99 .\templates\game\fight\fight.html:103
-#: .\templates\game\inventory.html:42 .\templates\users\forbes.html:48
+#: .\templates\components\enemy.html:28 .\templates\components\hero.html:34
+#: .\templates\components\user_enemy.html:31
+#: .\templates\game\battle\battle.html:168
+#: .\templates\game\battle\battle.html:172 .\templates\game\fight\fight.html:99
+#: .\templates\game\fight\fight.html:103 .\templates\game\inventory.html:42
+#: .\templates\users\forbes.html:48
 msgid "здоров'я:"
 msgstr "Health: "
 
-#: .\templates\components\enemy.html:31 .\templates\components\hero.html:39
+#: .\templates\components\enemy.html:32 .\templates\components\hero.html:39
+#: .\templates\components\user_enemy.html:35
 msgid "Ефекти"
 msgstr "Effects"
 
-#: .\templates\components\enemy.html:38 .\templates\components\hero.html:46
-#: .\templates\game\fight\fight.html:85 .\templates\game\fight\fight.html:92
+#: .\templates\components\enemy.html:39 .\templates\components\hero.html:46
+#: .\templates\components\user_enemy.html:42
+#: .\templates\game\battle\battle.html:154
+#: .\templates\game\battle\battle.html:161 .\templates\game\fight\fight.html:85
+#: .\templates\game\fight\fight.html:92
 msgid "Немає жодних ефектів накладених на героя."
 msgstr "No effects applied to the hero."
+
+#: .\templates\components\enemy.html:85
+#: .\templates\components\user_enemy.html:88
+msgid "Очікуємо іншого гравця."
+msgstr "Waiting for another player."
 
 #: .\templates\components\hero.html:12 .\templates\users\forbes.html:25
 msgid "досвід: "
@@ -2112,6 +2164,69 @@ msgid ""
 msgstr ""
 "Please change the orientation of your mobile device to correct interface "
 "errors"
+
+#: .\templates\game\battle\battle.html:8 .\templates\game\fight\fight.html:8
+msgid "Fight"
+msgstr "Бій"
+
+#: .\templates\game\battle\battle.html:21
+#: .\templates\game\battle\battle.html:66
+msgid "Cуперник очікує вашої атаки."
+msgstr "The opponent is waiting for your attack."
+
+#: .\templates\game\battle\battle.html:27 .\templates\game\fight\fight.html:26
+msgid "Вперед"
+msgstr "Forward"
+
+#: .\templates\game\battle\battle.html:34 .\templates\game\fight\fight.html:33
+msgid "Логи бою"
+msgstr "Fight Logs"
+
+#: .\templates\game\battle\battle.html:67
+msgid "Процес атаки... Очікуйте."
+msgstr "Attack in progress... Please wait."
+
+#: .\templates\game\battle\battle.html:68
+msgid "На атаку залишилося: "
+msgstr "Time left for attack: "
+
+#: .\templates\game\battle\create_room.html:8
+msgid "Створення кімнати"
+msgstr "Creating a Room"
+
+#: .\templates\game\battle\create_room.html:14
+msgid "Створення бійцівської кімнати"
+msgstr "Creating a Fight Room"
+
+#: .\templates\game\battle\create_room.html:22 .\templates\game\tavern.html:16
+msgid "Створити кімнату"
+msgstr "Create Room"
+
+#: .\templates\game\battle\winner.html:10
+#: .\templates\game\fight\fight_results.html:10
+msgid "Fight Results"
+msgstr "Fight Results"
+
+#: .\templates\game\battle\winner.html:15
+msgid "Вітаємо. Ви перемогли в поєдинку ваша винагорода - ["
+msgstr "Congratulations. You won the fight, your reward is - ["
+
+#: .\templates\game\battle\winner.html:15
+msgid "$]"
+msgstr " $]"
+
+#: .\templates\game\battle\winner.html:16
+#: .\templates\game\battle\winner.html:19
+msgid "Повернутися до таверни"
+msgstr "Return to Tavern"
+
+#: .\templates\game\battle\winner.html:18
+msgid "На жаль ви програли. ["
+msgstr "Unfortunately, you lost. ["
+
+#: .\templates\game\battle\winner.html:18
+msgid "]$"
+msgstr "]$"
 
 #: .\templates\game\church.html:4
 msgid "Church Location"
@@ -2279,25 +2394,9 @@ msgstr ""
 msgid "Повернутися до підземілля"
 msgstr "Return to Dungeon"
 
-#: .\templates\game\fight\fight.html:8
-msgid "Fight"
-msgstr "Fight"
-
-#: .\templates\game\fight\fight.html:26
-msgid "Вперед"
-msgstr "Forward"
-
-#: .\templates\game\fight\fight.html:33
-msgid "Логи бою"
-msgstr "Fight Logs"
-
 #: .\templates\game\fight\fight.html:75
 msgid "Спритність:: "
 msgstr "Dexterity:: "
-
-#: .\templates\game\fight\fight_results.html:10
-msgid "Fight Results"
-msgstr "Fight Results"
 
 #: .\templates\game\fight\fight_results.html:16
 msgid "Вітаємо. Ви перемогли головнокомандувача ["
@@ -2460,13 +2559,25 @@ msgstr "Successful purchase. The equipment is now in your inventory."
 msgid "Tavern Location"
 msgstr "Tavern Location"
 
-#: .\templates\game\tavern.html:12
+#: .\templates\game\tavern.html:8
+msgid "Введіть пароль від кімнати"
+msgstr ""
+
+#: .\templates\game\tavern.html:9 .\templates\game\tavern.html:17
+msgid "Приєднатися"
+msgstr "Connect"
+
+#: .\templates\game\tavern.html:26
 msgid "Покинути таверну"
 msgstr "Leave the Tavern"
 
-#: .\templates\game\tavern.html:18
+#: .\templates\game\tavern.html:32
 msgid "Локація: Таверна"
 msgstr "Location: Tavern"
+
+#: .\templates\game\tavern.html:36
+msgid "Поєдинки"
+msgstr "Duels"
 
 #: .\templates\home.html:58
 msgid "Мій профіль"

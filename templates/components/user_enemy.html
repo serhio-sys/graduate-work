@@ -6,11 +6,14 @@
     <div class="d-flex flex-column align-items-end">
         <div class="hero_health and name">
             <div>
-                {{enemy.name}} [{{enemy.lvl}}]
+                {{enemy.username}} [{{enemy.lvl}}]
             </div>
         </div>
         <div class="mt-1 hero_img_block">
-            <img src="{{ enemy.get_img_url }}" class="hero_img"/>
+            <img src="{{ enemy.get_class_img }}" class="hero_img"/>
+            {% if enemy.dungeon.lvl == 6 %}
+            <img src="{% static 'img/win.png' %}" class="win_img"/>
+            {% endif %}
             <div class="hero_stats">
                 <div>{% trans "Характеристики" %}</div>
                 {% with enemy.get_summary_damage as dmg %}
@@ -81,7 +84,7 @@
         {% endif %}
     </div>
     {% else %}
-     <div class="message">
+     <div class="message" style="background-color: black;">
         <h1>{% trans "Очікуємо іншого гравця." %}</h1>
      </div>
     {% endif %}

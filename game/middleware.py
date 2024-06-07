@@ -3,6 +3,8 @@ from django.http import HttpRequest, HttpResponseForbidden
 from django.shortcuts import reverse as reverse_lazy
 from django.contrib.auth import get_user_model
 from django.conf import settings
+from django.db.models import Q
+from game.models import Room
 
 
 class EffectMiddleware:
@@ -12,6 +14,9 @@ class EffectMiddleware:
 
     def process_view(self, request, view_func, view_args, view_kwargs): # pylint: disable=W0613
         paths_to_disable_middlewares = [reverse_lazy("fight"), reverse_lazy("dungeon_enemy")]
+        if "room_pk" in view_kwargs:
+            paths_to_disable_middlewares.append(reverse_lazy("battle", kwargs=view_kwargs))
+            paths_to_disable_middlewares.append(reverse_lazy("battle_result", kwargs=view_kwargs))
 
         if request.path in paths_to_disable_middlewares:
             return None

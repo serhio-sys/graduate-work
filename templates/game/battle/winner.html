@@ -1,0 +1,30 @@
+{% extends "game/base.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/game/main.css' %}">
+{% endblock %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Fight Results" %}{% endblock %}
+
+{% block main %}
+<div class="w-100 h-100 p-3 position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center justify-content-center">
+    {% if is_winner %}
+        <h1>{% trans "Вітаємо. Ви перемогли в поєдинку ваша винагорода - [" %}{{money}}{% trans "$]" %}</h1>
+        <div><a class="btn btn-warning" href="{% url 'tavern' %}">{% trans "Повернутися до таверни" %}</a></div>
+    {% else %}
+        <h1>{% trans "На жаль ви програли. [" %}{{money}}{% trans "]$" %}</h1>
+        <div><a class="btn btn-warning" href="{% url 'tavern' %}">{% trans "Повернутися до таверни" %}</a></div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    const room_id = {{ room_id }};
+    const wsStart = 'ws://' + window.location.host + '/chat-delete/' + room_id + '/';
+    const socket = new WebSocket(wsStart);
+</script>
+{% endblock script %}

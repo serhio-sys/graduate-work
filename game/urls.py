@@ -6,7 +6,8 @@ from .views import SelectClassView, DungeonView, DungeonEnemyView,\
     back_to_starter_page, CityLocation, get_start_game_page, ShopLocation,\
     FightView, FightResultsView, sell_armor, sell_weapon, TavernLocation,\
     BossFightView, DungeonBossView, DungeonChangeView, instruction_page,\
-    instruction_finished_page, FinalView
+    instruction_finished_page, FinalView, get_rooms, CreateRoomView, BattleView,\
+    connect_to_room, BattleResultsView
 
 urlpatterns = [
     path('', SelectClassView.as_view(), name='select_class'),
@@ -37,4 +38,9 @@ urlpatterns = [
     path('equip_weapon/', equip_weapon, name='equip_w'),
     path('back_to_start/<name>', back_to_starter_page, name='back_to_main'),
     path('final/', FinalView.as_view(), name="final"),
+    path('create-room/', CreateRoomView.as_view(), name="create-room"),
+    path('battle/<room_pk>/', BattleView.as_view(), name="battle"),
+    path('battle-result/<room_pk>/', BattleResultsView.as_view(), name="battle_result"),
+    path('api/connect/', connect_to_room, name="connect"),
+    path('api/rooms/', get_rooms, name="rooms"),
 ]

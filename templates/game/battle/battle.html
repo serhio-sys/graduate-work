@@ -1,0 +1,189 @@
+{% extends "game/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_filters %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/game/main.css' %}">
+{% endblock %}
+{% block head_title %}{% trans "Fight" %}{% endblock %}
+{% block main %}
+{% if error %}
+<div class="message">
+    <h1>{{error}}</h1>
+</div>
+{% endif %}
+<div class="w-100 h-100 p-3 d-flex flex-column justify-content-between">
+    <div class="d-flex justify-content-between h-100">
+        {% include "components/hero.html" %}
+        <div class="m-4 p-2 d-flex w-100 h-100 flex-column justify-content-center align-items-center">
+            <div style="width: 300px; min-height: 260px;" class="rounded bg-dark d-flex justify-content-center align-items-center">
+                <div>
+                    <div class="countdown_timer" style="margin-bottom: 1em;">{% trans "Cуперник очікує вашої атаки." %}</div>
+                    <form method="post" class="attack_form w-100 d-flex flex-column align-items-center gap-2">
+                        {% csrf_token %}
+                        <div class="d-flex gap-5">
+                            {{ form|crispy }}
+                        </div>
+                        <button class="btn btn-outline-warning attack_submit" type="submit">{% trans 'Вперед' %}</button>
+                    </form>
+                </div>
+            </div>
+            <div class="w-100">
+                <hr>
+                <div class="logs">
+                    <h1 class="text-center">{% trans "Логи бою" %}</h1>
+                    <div class="logs_chat p-4 overflow-auto" style="height: 200px;">
+                        {% for log in request.session.logs %}
+                        <span>{{log}}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+        {% include "components/user_enemy.html" %}
+        {% block map %}
+        
+        {% endblock %}
+    </div>
+    {% block location %}
+    
+    {% endblock %}
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    const userId = {{ request.user.id }};
+    const room_id = {{ room.id }};
+    const first_player = {{ room.first_player.id }};
+    {% if room.second_player %}
+    const second_player = {{ room.second_player.id }};
+    {% endif %}
+    const enemy = "{{ enemy }}";
+    const wsStart = 'ws://' + window.location.host + '/battle/' + room_id + '/' + userId + '/';
+    const socket = new WebSocket(wsStart);
+    const waiting_both_attack = "{% trans 'Cуперник очікує вашої атаки.' %}";
+    const attack_process = "{% trans 'Процес атаки... Очікуйте.' %}";
+    const attack_countdown = "{% trans 'На атаку залишилося: ' %}";
+    const finish_redirect = "{% url 'battle_result' room.id %}";
+
+    socket.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        if (data.is_connected && enemy === "None") {
+            window.location.reload();
+        } else if (data.selected != null) {
+            switch (data.selected.attack){
+                case "head": document.querySelector("#id_attack_0").checked = true; break;
+                case "body": document.querySelector("#id_attack_1").checked = true; break;
+                case "legs": document.querySelector("#id_attack_2").checked = true; break;
+            }
+            switch (data.selected.defence){
+                case "head": document.querySelector("#id_defence_0").checked = true; break;
+                case "body": document.querySelector("#id_defence_1").checked = true; break;
+                case "legs": document.querySelector("#id_defence_2").checked = true; break;
+            }
+            document.querySelector(".attack_submit").classList.add("disabled");
+        } else if (data.attack_data) {
+            const parsed_data = JSON.parse(data.attack_data);
+            if (parsed_data.is_finish === true) {
+                window.location.replace(finish_redirect);
+            } 
+            if (userId !== parsed_data.id) {
+                SetEffects(parsed_data.user_stats, parsed_data.enemy_stats);
+                SetHp(parsed_data.user_hp, parsed_data.enemy_hp);
+            } else {    
+                SetEffects(parsed_data.enemy_stats, parsed_data.user_stats);
+                SetHp(parsed_data.enemy_hp, parsed_data.user_hp);  
+            } 
+            AddLog(parsed_data.log);  
+            document.querySelector(".countdown_timer").innerHTML = waiting_both_attack;
+            document.querySelector(".attack_submit").classList.remove("disabled");
+        } else if (data.time != null && data.time[userId]) {
+            document.querySelector(".countdown_timer").innerHTML = attack_countdown + data.time[userId];
+        } 
+        if (data.logs) {
+            AddLogs(data.logs);
+        }
+    };
+
+    document.querySelector('.attack_form').addEventListener('submit', async (e) => {
+        e.preventDefault()
+        var attack_data = e.target.elements['attack'].value;
+        var defence_data = e.target.elements['defence'].value;
+        var data = {
+            'attack': attack_data,
+            'defence': defence_data
+        };
+
+        socket.send(JSON.stringify(data));
+        document.querySelector(".countdown_timer").innerHTML = attack_process;
+        document.querySelector(".attack_submit").classList.add("disabled");
+    });
+</script>
+<script>
+    var csrftoken = "{{csrf_token}}";
+    var enemy_effects = document.querySelector('.enemy_effects');
+    var user_effects = document.querySelector('.user_effects');
+    
+    var enemy_hp = document.querySelector('.enemy_hp');
+    var user_hp = document.querySelector('.user_hp');
+
+    
+    var enemy_str = document.querySelector('.str_enemy');
+    var user_str = document.querySelector('.user_str');
+    var enemy_ag = document.querySelector('.ag_enemy');
+    var user_ag = document.querySelector('.user_ag');
+
+    var logs_chat = document.querySelector('.logs_chat');
+
+    function SetEffects(enemy, user) {
+        enemy_str.innerHTML = `{% trans "Сила: " %} ${enemy.str.total} (${enemy.str.hero}${enemy.str.sum >= 0 ? "+"+enemy.str.sum : enemy.str.sum})`
+        enemy_ag.innerHTML = `{% trans "Спритність: " %} ${enemy.ag.total} (${enemy.ag.hero}${enemy.ag.sum >= 0 ? "+"+enemy.ag.sum : enemy.ag.sum})`
+        user_str.innerHTML = `{% trans "Сила: " %} ${user.str.total} (${user.str.hero}${user.str.sum >= 0 ? "+"+user.str.sum : user.str.sum})`
+        user_ag.innerHTML = `{% trans "Спритність: " %} ${user.ag.total} (${user.ag.hero}${user.ag.sum >= 0 ? "+"+user.ag.sum : user.ag.sum})`
+        
+        var user_effects_txt = ""
+        var enemy_effects_txt = ""
+
+        if (enemy.effects.length > 0) {
+            enemy.effects.forEach(item => {
+                enemy_effects_txt += `<span>${item.name}: ${item.desc} | ${item.deleted_time}</span><br>`
+            })
+        } else {
+            enemy_effects_txt = '<span>{% trans "Немає жодних ефектів накладених на героя." %}</span>'
+        }
+        if (user.effects.length > 0) {
+            user.effects.forEach(item => {
+                user_effects_txt += `<span>${item.name}: ${item.desc} | ${item.deleted_time}</span><br>`
+            })
+        } else {
+            user_effects_txt = '<span>{% trans "Немає жодних ефектів накладених на героя." %}</span>'
+        }
+
+        user_effects.innerHTML = user_effects_txt;
+        enemy_effects.innerHTML = enemy_effects_txt;
+    }
+    function SetHp(user_health, enemy_health) {
+        user_hp.innerHTML = `{% trans "здоров'я:" %} ${user_health}`;
+        user_hp.ariaValueNow = user_health;
+        user_hp.parentElement.querySelector(".progress-bar").style.width = `${user_health}%`;
+        
+        enemy_hp.innerHTML = `{% trans "здоров'я:" %} ${enemy_health}`;
+        enemy_hp.ariaValueNow = enemy_health;
+        enemy_hp.parentElement.querySelector(".progress-bar").style.width = `${enemy_health}%`;
+    }
+    function AddLog(logs) {
+        logs_chat.innerHTML += `<span>${logs}</span><br>`
+        logs_chat.scrollTop = logs_chat.scrollHeight
+    }
+    function AddLogs(logs) {
+        var add_text = ""
+        logs.forEach(item => {
+            add_text += `<span>${item}</span><br>`
+        })
+        logs_chat.innerHTML += add_text
+        logs_chat.scrollTop = logs_chat.scrollHeight
+    }
+</script>
+{% endblock %}

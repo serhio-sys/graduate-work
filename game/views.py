@@ -1,4 +1,6 @@
+import json
 import random
+import asyncio
 from django.shortcuts import redirect
 from django.urls.exceptions import NoReverseMatch
 from django.views import View
@@ -9,13 +11,15 @@ from django.contrib.auth import get_user_model
 from django.views.decorators.http import require_POST, require_GET
 from django.templatetags.static import static
 from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
+from .serializers import RoomSerializer
 from .services import get_select_classview, get_with_user_context, \
     post_select_classview, get_inventory_classview, \
     post_church, post_equip_armor, post_equip_weapon, get_buy_armor, get_buy_weapon, \
     BasedDungeon, BasedFight, reverse, get_instructions_page, \
     ChangeDungeonView, BossFightView
-from .models import Weapon, Armor
-from .forms import UserIncreaseStatsForm, AttackForm
+from .models import Weapon, Armor, Room
+from .forms import UserIncreaseStatsForm, AttackForm, RoomCreateForm
 from .logs import select_log
 from .mixins import DungeonMixin, InstructionMixin
 
@@ -118,6 +122,27 @@ def buy_armor(request: HttpRequest, pk: int):
 def buy_weapon(request: HttpRequest, pk: int):
     return get_buy_weapon(request=request, pk=pk)
 
+@login_required
+@require_GET
+def get_rooms(request: HttpRequest):
+    rooms = Room.objects.filter(second_player__isnull = True)
+    serializer = RoomSerializer(rooms, many=True)
+    return JsonResponse(serializer.data, safe=False, status=200)
+
+@login_required
+@require_POST
+def connect_to_room(request: HttpRequest):
+    data = json.loads(request.body)
+    room = Room.objects.get(pk=data.get("room_id"))
+    if room.second_player != None:
+        err_msg = _("Бій вже почався.")
+        return JsonResponse(reverse("tavern") + f"error={err_msg}", safe=False, status=400)
+    if room.rate > request.user.balance:
+        err_msg = _("На рахунку не достатньо коштів для поєдинку.")
+        return JsonResponse(reverse("tavern") + f"?msg={err_msg}", safe=False, status=400)
+    room.second_player = request.user
+    room.save(update_fields={"second_player"})
+    return JsonResponse(reverse("battle", kwargs={"room_pk": room.pk}), safe=False, status=200)
 
 class InventoryView(DungeonMixin, View):
     template_name = "game/inventory.html"
@@ -348,6 +373,7 @@ class DungeonChangeView(ChangeDungeonView):
 class BossFightView(FightView, BossFightView):
     pass
 
+
 class FinalView(LoginRequiredMixin, View):
 
     template_name = "game/dungeon/final.html"
@@ -355,3 +381,85 @@ class FinalView(LoginRequiredMixin, View):
     def get(self, request: HttpRequest):
         response = get_with_user_context(request=request, template_name=self.template_name)
         return response
+    
+
+class CreateRoomView(LoginRequiredMixin, View):
+
+    form_class = RoomCreateForm
+    template_name = "game/battle/create_room.html"
+
+    def get(self, request: HttpRequest):
+        response = get_with_user_context(request=request, template_name=self.template_name)
+        response.context_data['form'] = RoomCreateForm()
+        return response
+    
+    def post(self, request: HttpRequest):
+        form = RoomCreateForm(request.POST)
+        if request.user.balance < int(form.data['rate']):
+            form.add_error("rate", ValidationError(_("Не достатньо коштів на балансі, щоб створити кімнату з вказаним початковим взнеском.")))
+        if form.is_valid():
+            room = form.save(commit=False)
+            room.first_player = request.user
+            room.save()
+            return redirect("battle", room.pk)
+        else:
+            response = get_with_user_context(request=request, template_name=self.template_name)
+            response.context_data['form'] = form
+            return response
+
+
+class BattleView(LoginRequiredMixin, View):
+
+    template_name = "game/battle/battle.html"
+
+    def get(self, request: HttpRequest, room_pk: int):
+        room = Room.objects.get(pk=room_pk)
+        if room is None:
+            err_msg = _("Кімнату було видалено.")
+            return redirect(reverse("tavern") + f"?msg={err_msg}")
+        if room.second_player != request.user and room.first_player != request.user:
+            err_msg = _("Бій вже почався.")
+            return redirect(reverse("tavern") + f"?msg={err_msg}")
+        response = get_with_user_context(request=request, template_name=self.template_name)
+        response.context_data['room'] = room
+        base_sql = get_user_model().objects.select_related('weapon2_equiped','armor_equiped', 'weapon_equiped', 'dungeon')
+        if room.first_player == request.user:
+            if room.second_player != None:
+                enemy = base_sql.get(pk=room.second_player.pk)
+            else:
+                enemy = None
+        else:
+            enemy = base_sql.get(pk=room.first_player.pk)
+        response.context_data['enemy'] = enemy
+        response.context_data['form'] = AttackForm()
+        return response
+    
+class BattleResultsView(LoginRequiredMixin, View):
+
+    template_name = "game/battle/winner.html"
+
+    def get(self, request: HttpRequest, room_pk: int):
+        try:
+            room = Room.objects.select_related('first_player', 'second_player').get(pk=room_pk)
+        except Room.DoesNotExist:
+            err_msg = _("Кімнату було видалено.")
+            return redirect(reverse("tavern") + f"?msg={err_msg}")
+        user = request.user
+        if room.second_player.pk != user.pk and room.first_player.pk != user.pk:
+            err_msg = _("Ви не є бійцем цієї кімнати.")
+            return redirect(reverse("tavern") + f"?msg={err_msg}")
+        if room.first_player.health != 0 and room.second_player.health != 0:
+            return redirect("battle", room.pk)
+        response = get_with_user_context(request=request, template_name=self.template_name)
+        response.context_data['room_id'] = room.pk
+        if user.health == 0:
+            response.context_data['money'] = -room.rate
+            response.context_data['is_winner'] = False
+            return response
+        else:
+            user.balance += room.rate * 2
+            user.save(update_fields={"balance"})
+            response.context_data['money'] = room.rate * 2
+            response.context_data['is_winner'] = True
+            return response
+        

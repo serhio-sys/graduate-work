@@ -4,7 +4,8 @@ from .models import (
     Weapon,
     Enemy,
     Effect,
-    DungeonLvl
+    DungeonLvl,
+    Room
 )
 
 admin.site.register(Armor)
@@ -12,3 +13,4 @@ admin.site.register(Weapon)
 admin.site.register(Enemy)
 admin.site.register(Effect)
 admin.site.register(DungeonLvl)
+admin.site.register(Room)

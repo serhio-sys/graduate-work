@@ -4,6 +4,20 @@
 {% block head_title %}{% trans "Tavern Location" %}{% endblock %}
 
 {% block map %}
+<div class="message hidden room_password" style="flex-direction: column; z-index: 101; gap: 1em;"> 
+    <div><input type="text" placeholder="{% trans 'Введіть пароль від кімнати' %}" class="password_input form-control"/></div>
+    <div><button class="btn btn-outline-warning connect_password_btn">{% trans "Приєднатися" %}</button></div>
+</div>
+<div class="message hidden rooms">
+    <div style="display: flex; flex-direction:column; gap: 1em; background: rgba(0, 0, 0, 0.8); padding: 1em; box-shadow: 0 2px 10px rgba(255, 255, 255, 0.5); border-radius: 0.5em;">
+        <div class="room_list">
+        </div>
+        <div class="p-1 d-flex justify-content-center gap-4">
+            <a href="{% url 'create-room' %}" class="btn btn-small btn-warning create-room">{% trans "Створити кімнату" %}</a>
+            <a class="btn btn-small btn-outline-warning connect-btn disabled">{% trans "Приєднатися" %}</a>
+        </div>
+    </div>
+</div>
 <div class="navigation">
     <div class="map">
         <img src="{% static 'img/locations/tavern_loc.jpg' %}" class="image_map"/>
@@ -19,5 +33,149 @@
 </div>
 {% endblock %}
 {% block low %}
-<div><a href="">{% trans "" %}</a></div>
+<div class="w-100 d-flex justify-content-center"><button class="btn btn-outline-light duels">{% trans "Поєдинки" %}</button></div>
 {% endblock %}
+{% block script %}
+<script>
+    const rooms_url = "{% url 'rooms' %}";
+    const rooms_connect_url = "{% url 'connect' %}";
+    const button_create = document.querySelector(".create-room");
+    const rooms_block = document.querySelector(".rooms");
+    const button_connect = document.querySelector(".connect-btn");
+    const connect_password_btn = document.querySelector(".connect_password_btn");
+    const password_input = document.querySelector(".password_input");
+
+    const csrftoken = '{{ csrf_token }}';
+    let selected = null;
+
+    document.querySelector(".duels").addEventListener("click", async (event) => {
+        document.querySelector(".rooms").classList.toggle("hidden");
+        await fetchRoomsData();
+    });
+
+    rooms_block.addEventListener("click", event => {
+        if (event.currentTarget === rooms_block) {
+            rooms_block.classList.add("hidden");
+        }
+    });
+
+    connect_password_btn.addEventListener("click", async event => {
+        event.cancelBubble = true;
+        if (selected !== null) {
+            let decoded_pass = decoding(selected.password)
+            if (decoded_pass === password_input.value) {
+                await connectionProcess();
+            }
+        }
+    });
+
+    password_input.addEventListener("click", event => {
+        event.cancelBubble = true;
+    });
+
+    button_create.addEventListener("click", event => {
+        event.cancelBubble = true;
+    });
+
+    button_connect.addEventListener("click", async event => {
+        await connectToRoom(event);
+    });
+
+    setInterval(fetchRoomsData, 5000)
+
+    function openPasswordInput() {
+        document.querySelector(".room_password").classList.remove("hidden")
+    }
+
+    async function fetchRoomsData() {
+        if (!rooms_block.classList.contains("hidden")) {
+            await fetch(rooms_url, {
+                method: "GET",
+            }).then(res => {
+                return res.json();
+            }).then(data => {
+                updateRoomList(data);
+            });
+        }
+    }
+
+    async function connectToRoom(event) {
+        event.cancelBubble = true;
+        if (selected !== null) {
+            if (decoding(selected.password) !== "null") {
+                openPasswordInput();
+                return;
+            }    
+            await connectionProcess();
+        }
+    }
+
+    async function connectionProcess() {
+        if (selected?.id !== undefined) {
+            await fetch(rooms_connect_url, {
+                method: "POST",
+                headers: {'Content-Type': 'application/json', 'X-CSRFToken': csrftoken},
+                body: JSON.stringify({"room_id": selected.id})
+            }).then(res => {
+                return res.json();
+            }).then(data => {
+                window.location.replace(data);
+            });
+        }
+    }
+
+    function encoding(password) {
+        let new_password = password
+        for (let i = 0; i < 5; i++) {
+            new_password = window.btoa(new_password)
+        }
+        return new_password
+    }
+
+    function decoding(password) {
+        let new_password = password
+        for (let i = 0; i < 5; i++) {
+            new_password = window.atob(new_password)
+        }
+        return new_password
+    }
+
+    function updateRoomList(data) {
+        const rooms_list = document.querySelector(".room_list");
+        let innerHTML = "";
+        data.forEach(item => {
+            if (item.id === Number.parseInt(selected?.id)) {
+                innerHTML += `<div class="d-flex justify-content-between gap-3 p-2 room selected_room" id="${item.id}" password="${encoding(item.password)}"><div>${item.first_player.username}[${item.first_player.lvl}]</div><div>Назва кімнати: ${item.name}</div><div>Взнесок: ${item.rate}</div></div>`;
+            } else {
+                innerHTML += `<div class="d-flex justify-content-between gap-3 p-2 room" id="${item.id}" password="${encoding(item.password)}"><div>${item.first_player.username}[${item.first_player.lvl}]</div><div>Назва кімнати: ${item.name}</div><div>Взнесок: ${item.rate}</div></div>`;
+            }
+        })
+        rooms_list.innerHTML = innerHTML;
+        document.querySelectorAll(".room").forEach(item => {
+            item.addEventListener("click", event => {
+                event.cancelBubble = true;
+                let id = item.getAttribute("id")
+                if (selected?.id === id) {    
+                    selected = null;
+                    document.querySelector(".connect-btn").classList.add("disabled")
+                } else {
+                    if (selected !== null) {
+                        document.getElementById(selected).classList.remove("selected_room")
+                    }
+                    selected = {"id": id, "password": item.getAttribute("password")};
+                    document.querySelector(".connect-btn").classList.remove("disabled")
+                }
+                event.currentTarget.classList.toggle("selected_room")
+            })
+        })
+    }
+    var elem = document.querySelector(".room_password");
+    elem.addEventListener("click", () => {
+        elem.classList.add("hidden");
+    });
+    let elem2 = document.querySelector(".message");
+    elem2.addEventListener("click", () => {
+        elem2.classList.add("hidden");
+    });
+</script>
+{% endblock script %}
