@@ -169,8 +169,8 @@ class BattleConsumer(AsyncWebsocketConsumer):
             BattleConsumer.logs[self.room_group_name].append(get_text_effect(who.get_name(), whom.get_name(), "bones"))
 
     async def attack(self, who: NewUser, whom: NewUser) -> int:
-        total_dmg = who.return_all_damage_taken()
-        total_defence = whom.return_all_defence()
+        total_dmg = await who.async_return_all_damage_taken()
+        total_defence = await whom.async_return_all_defence()
         attack = round(total_dmg - total_defence if total_defence < total_dmg else 1)
         attack_selection = BattleConsumer.fight_selection[self.room_group_name][who.id]['attack']
         defence_selection = BattleConsumer.fight_selection[self.room_group_name][whom.id]['defence']

@@ -53,22 +53,24 @@
 
 {% block script %}
 <script>
-    var csrftoken = "{{csrf_token}}"
-    var enemy_effects = document.querySelector('.enemy_effects')
-    var user_effects = document.querySelector('.user_effects')
+    // VARIABLES
+    const csrftoken = "{{csrf_token}}"
+    const enemy_effects = document.querySelector('.enemy_effects')
+    const user_effects = document.querySelector('.user_effects')
     
-    var enemy_hp = document.querySelector('.enemy_hp')
-    var user_hp = document.querySelector('.user_hp')
+    const enemy_hp = document.querySelector('.enemy_hp')
+    const user_hp = document.querySelector('.user_hp')
 
     
-    var enemy_str = document.querySelector('.str_enemy')
-    var user_str = document.querySelector('.user_str')
-    var enemy_ag = document.querySelector('.ag_enemy')
-    var user_ag = document.querySelector('.user_ag')
+    const enemy_str = document.querySelector('.str_enemy')
+    const user_str = document.querySelector('.user_str')
+    const enemy_ag = document.querySelector('.ag_enemy')
+    const user_ag = document.querySelector('.user_ag')
 
-    var logs_chat = document.querySelector('.logs_chat')
+    const logs_chat = document.querySelector('.logs_chat')
+    // VARIABLES
 
-    function SetEffects(enemy, user) {
+    function setEffects(enemy, user) {
         enemy_str.innerHTML = `{% trans "Сила: " %} ${enemy.str.total} (${enemy.str.hero}${enemy.str.sum >= 0 ? "+"+enemy.str.sum : enemy.str.sum})`
         enemy_ag.innerHTML = `{% trans "Спритність: " %} ${enemy.ag.total} (${enemy.ag.hero}${enemy.ag.sum >= 0 ? "+"+enemy.ag.sum : enemy.ag.sum})`
         user_str.innerHTML = `{% trans "Сила: " %} ${user.str.total} (${user.str.hero}${user.str.sum >= 0 ? "+"+user.str.sum : user.str.sum})`
@@ -76,7 +78,7 @@
         
         var user_effects_txt = ""
         var enemy_effects_txt = ""
-
+    
         if (enemy.effects.length > 0) {
             enemy.effects.forEach(item => {
                 enemy_effects_txt += `<span>${item.name}: ${item.desc} | ${item.deleted_time}</span><br>`
@@ -91,11 +93,12 @@
         } else {
             user_effects_txt = '<span>{% trans "Немає жодних ефектів накладених на героя." %}</span>'
         }
-
+    
         user_effects.innerHTML = user_effects_txt
         enemy_effects.innerHTML = enemy_effects_txt
     }
-    function SetHp(user_health, enemy_health) {
+    
+    function setHp(user_health, enemy_health) {
         user_hp.innerHTML = `{% trans "здоров'я:" %} ${user_health}`
         user_hp.ariaValueNow = user_health
         user_hp.parentElement.querySelector(".progress-bar").style.width = `${user_health}%`
@@ -104,7 +107,8 @@
         enemy_hp.ariaValueNow = enemy_health
         enemy_hp.parentElement.querySelector(".progress-bar").style.width = `${enemy_health}%`
     }
-    function AddLog(logs) {
+    
+    function addLog(logs) {
         var add_text = ""
         logs.forEach(item => {
             add_text += `<span>${item}</span><br>`
@@ -112,31 +116,6 @@
         logs_chat.innerHTML += add_text
         logs_chat.scrollTop = logs_chat.scrollHeight
     }
-
-    document.querySelector('.attack_form').addEventListener('submit', async (e) => {
-        e.preventDefault()
-        var attack_data = e.target.elements['attack'].value
-        var defence_data = e.target.elements['defence'].value
-        var formData = new FormData();
-
-        formData.append('attack', attack_data);
-        formData.append('defence', defence_data);
-        await fetch("{{request.path}}", {
-            method: "POST",
-            headers: {'X-CSRFToken': csrftoken}, 
-            body: formData
-        }).then(res => res.json())
-        .then(data => {
-            if (data.winner === false){
-                window.location.replace(data.redirect_url)
-            }
-            else if (data.winner === true){
-                window.location.replace(data.redirect_url)
-            }
-            SetEffects(data.enemy_stats, data.user_stats)
-            SetHp(data.user_hp, data.enemy_hp)
-            AddLog(data.log)
-        });
-    })
 </script>
+<script src="{% static 'js/fight/dungeon_fight.js' %}"></script>
 {% endblock %}

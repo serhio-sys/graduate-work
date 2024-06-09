@@ -4,6 +4,7 @@ import datetime
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template.response import TemplateResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import get_user_model
 from django.views import View
 from django.templatetags.static import static
 from django.shortcuts import render, redirect
@@ -13,7 +14,7 @@ from django.utils.translation import gettext_lazy as _
 from django.forms import model_to_dict
 from channels.db import database_sync_to_async
 from users.models import NewUser
-from .models import Weapon, Armor, Effect, Enemy, DungeonLvl
+from .models import Weapon, Armor, Effect, Enemy, DungeonLvl, Room
 from .logs import get_text_effect, INSTRUCTION_LOGS
 from .forms import AttackForm
 
@@ -493,4 +494,56 @@ class BossFightView(BasedFight):
                 "winner": self.is_winner,
                 "redirect_url": reverse("final" if user.dungeon == 6 else "fight_results"),
             }, status=200)
+        return response
+    
+
+def get_battle_view(request: HttpRequest, template_name: str, room_pk: int) -> HttpResponse:
+    try:
+        room = Room.objects.select_related('first_player', 'second_player').get(pk=room_pk)
+    except Room.DoesNotExist:
+        return redirect("tavern")
+    if room.second_player != request.user and room.first_player != request.user:
+        err_msg = _("Бій вже почався.")
+        return redirect(reverse("tavern") + f"?msg={err_msg}")
+    if room.second_player != None and (room.first_player.health == 0 or room.second_player.health == 0):
+        room.delete()
+        return redirect("tavern")
+    response = get_with_user_context(request=request, template_name=template_name)
+    response.context_data['room'] = room
+    base_sql = get_user_model().objects.select_related('weapon2_equiped','armor_equiped', 'weapon_equiped', 'dungeon')
+    if room.first_player == request.user:
+        if room.second_player != None:
+            enemy = base_sql.get(pk=room.second_player.pk)
+        else:
+            enemy = None
+    else:
+        enemy = base_sql.get(pk=room.first_player.pk)
+    response.context_data['enemy'] = enemy
+    response.context_data['form'] = AttackForm()
+    return response
+
+
+def get_battle_result_view(request: HttpRequest, template_name: str, room_pk: int) -> HttpResponse:
+    try:
+        room = Room.objects.select_related('first_player', 'second_player').get(pk=room_pk)
+    except Room.DoesNotExist:
+        err_msg = _("Кімнату було видалено.")
+        return redirect(reverse("tavern") + f"?msg={err_msg}")
+    user = request.user
+    if room.second_player.pk != user.pk and room.first_player.pk != user.pk:
+        err_msg = _("Ви не є бійцем цієї кімнати.")
+        return redirect(reverse("tavern") + f"?msg={err_msg}")
+    if room.first_player.health != 0 and room.second_player.health != 0:
+        return redirect("battle", room.pk)
+    response = get_with_user_context(request=request, template_name=template_name)
+    response.context_data['room_id'] = room.pk
+    if user.health == 0:
+        response.context_data['money'] = -room.rate
+        response.context_data['is_winner'] = False
+        return response
+    else:
+        user.balance += room.rate * 2
+        user.save(update_fields={"balance"})
+        response.context_data['money'] = room.rate * 2
+        response.context_data['is_winner'] = True
         return response

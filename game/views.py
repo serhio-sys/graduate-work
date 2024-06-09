@@ -17,7 +17,7 @@ from .services import get_select_classview, get_with_user_context, \
     post_select_classview, get_inventory_classview, \
     post_church, post_equip_armor, post_equip_weapon, get_buy_armor, get_buy_weapon, \
     BasedDungeon, BasedFight, reverse, get_instructions_page, \
-    ChangeDungeonView, BossFightView
+    ChangeDungeonView, BossFightView, get_battle_result_view, get_battle_view 
 from .models import Weapon, Armor, Room
 from .forms import UserIncreaseStatsForm, AttackForm, RoomCreateForm
 from .logs import select_log
@@ -413,53 +413,15 @@ class BattleView(LoginRequiredMixin, View):
     template_name = "game/battle/battle.html"
 
     def get(self, request: HttpRequest, room_pk: int):
-        room = Room.objects.get(pk=room_pk)
-        if room is None:
-            err_msg = _("Кімнату було видалено.")
-            return redirect(reverse("tavern") + f"?msg={err_msg}")
-        if room.second_player != request.user and room.first_player != request.user:
-            err_msg = _("Бій вже почався.")
-            return redirect(reverse("tavern") + f"?msg={err_msg}")
-        response = get_with_user_context(request=request, template_name=self.template_name)
-        response.context_data['room'] = room
-        base_sql = get_user_model().objects.select_related('weapon2_equiped','armor_equiped', 'weapon_equiped', 'dungeon')
-        if room.first_player == request.user:
-            if room.second_player != None:
-                enemy = base_sql.get(pk=room.second_player.pk)
-            else:
-                enemy = None
-        else:
-            enemy = base_sql.get(pk=room.first_player.pk)
-        response.context_data['enemy'] = enemy
-        response.context_data['form'] = AttackForm()
-        return response
+        return get_battle_view(request=request, 
+                               template_name=self.template_name, 
+                               room_pk=room_pk)
     
 class BattleResultsView(LoginRequiredMixin, View):
 
     template_name = "game/battle/winner.html"
 
     def get(self, request: HttpRequest, room_pk: int):
-        try:
-            room = Room.objects.select_related('first_player', 'second_player').get(pk=room_pk)
-        except Room.DoesNotExist:
-            err_msg = _("Кімнату було видалено.")
-            return redirect(reverse("tavern") + f"?msg={err_msg}")
-        user = request.user
-        if room.second_player.pk != user.pk and room.first_player.pk != user.pk:
-            err_msg = _("Ви не є бійцем цієї кімнати.")
-            return redirect(reverse("tavern") + f"?msg={err_msg}")
-        if room.first_player.health != 0 and room.second_player.health != 0:
-            return redirect("battle", room.pk)
-        response = get_with_user_context(request=request, template_name=self.template_name)
-        response.context_data['room_id'] = room.pk
-        if user.health == 0:
-            response.context_data['money'] = -room.rate
-            response.context_data['is_winner'] = False
-            return response
-        else:
-            user.balance += room.rate * 2
-            user.save(update_fields={"balance"})
-            response.context_data['money'] = room.rate * 2
-            response.context_data['is_winner'] = True
-            return response
-        
+        return get_battle_result_view(request=request, 
+                                      template_name=self.template_name, 
+                                      room_pk=room_pk)

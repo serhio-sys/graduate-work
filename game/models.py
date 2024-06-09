@@ -207,8 +207,32 @@ class BaseEntity(models.Model):
             if chance <= 10:
                 return attack * 1.8
         return attack
+    
+    @database_sync_to_async
+    def async_return_all_damage_taken(self) -> int:
+        bonus = round(settings.ROLES[self.role]['dmg'] * self.agility)
+        if self.weapon_equiped is not None:
+            bonus += self.weapon_equiped.damage
+        if self.weapon2_equiped is not None:
+            bonus += self.weapon2_equiped.damage
+        attack = self.attack + bonus
+        if self.role == 'strength':
+            return attack * 1.2
+        if settings.ROLES[self.role]['double_dmg']:
+            chance = random.randint(0, 100)
+            if chance <= 10:
+                return attack * 1.8
+        return attack
 
     def return_all_defence(self) -> int:
+        bonus = round(settings.ROLES[self.role]['dmg'] * self.agility)
+        if self.armor_equiped is not None:
+            bonus += self.armor_equiped.armor_value
+        attack = self.defence + bonus
+        return attack
+    
+    @database_sync_to_async
+    def async_return_all_defence(self) -> int:
         bonus = round(settings.ROLES[self.role]['dmg'] * self.agility)
         if self.armor_equiped is not None:
             bonus += self.armor_equiped.armor_value

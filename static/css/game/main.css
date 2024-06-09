@@ -145,7 +145,7 @@
 .room_list {
     max-height: 300px;
     min-height: 300px;
-    min-width: 250px;
+    min-width: 350px;
     padding: 0.5em;
     height: 100%;
     display: flex;
