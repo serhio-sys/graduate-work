@@ -1,4 +1,6 @@
+import json
 import random
+import asyncio
 from django.shortcuts import redirect
 from django.urls.exceptions import NoReverseMatch
 from django.views import View
@@ -9,13 +11,15 @@ from django.contrib.auth import get_user_model
 from django.views.decorators.http import require_POST, require_GET
 from django.templatetags.static import static
 from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
+from .serializers import RoomSerializer
 from .services import get_select_classview, get_with_user_context, \
     post_select_classview, get_inventory_classview, \
     post_church, post_equip_armor, post_equip_weapon, get_buy_armor, get_buy_weapon, \
     BasedDungeon, BasedFight, reverse, get_instructions_page, \
-    ChangeDungeonView, BossFightView
-from .models import Weapon, Armor
-from .forms import UserIncreaseStatsForm, AttackForm
+    ChangeDungeonView, BossFightView, get_battle_result_view, get_battle_view 
+from .models import Weapon, Armor, Room
+from .forms import UserIncreaseStatsForm, AttackForm, RoomCreateForm
 from .logs import select_log
 from .mixins import DungeonMixin, InstructionMixin
 
@@ -118,6 +122,27 @@ def buy_armor(request: HttpRequest, pk: int):
 def buy_weapon(request: HttpRequest, pk: int):
     return get_buy_weapon(request=request, pk=pk)
 
+@login_required
+@require_GET
+def get_rooms(request: HttpRequest):
+    rooms = Room.objects.filter(second_player__isnull = True)
+    serializer = RoomSerializer(rooms, many=True)
+    return JsonResponse(serializer.data, safe=False, status=200)
+
+@login_required
+@require_POST
+def connect_to_room(request: HttpRequest):
+    data = json.loads(request.body)
+    room = Room.objects.get(pk=data.get("room_id"))
+    if room.second_player != None:
+        err_msg = _("Бій вже почався.")
+        return JsonResponse(reverse("tavern") + f"error={err_msg}", safe=False, status=400)
+    if room.rate > request.user.balance:
+        err_msg = _("На рахунку не достатньо коштів для поєдинку.")
+        return JsonResponse(reverse("tavern") + f"?msg={err_msg}", safe=False, status=400)
+    room.second_player = request.user
+    room.save(update_fields={"second_player"})
+    return JsonResponse(reverse("battle", kwargs={"room_pk": room.pk}), safe=False, status=200)
 
 class InventoryView(DungeonMixin, View):
     template_name = "game/inventory.html"
@@ -348,6 +373,7 @@ class DungeonChangeView(ChangeDungeonView):
 class BossFightView(FightView, BossFightView):
     pass
 
+
 class FinalView(LoginRequiredMixin, View):
 
     template_name = "game/dungeon/final.html"
@@ -355,3 +381,47 @@ class FinalView(LoginRequiredMixin, View):
     def get(self, request: HttpRequest):
         response = get_with_user_context(request=request, template_name=self.template_name)
         return response
+    
+
+class CreateRoomView(LoginRequiredMixin, View):
+
+    form_class = RoomCreateForm
+    template_name = "game/battle/create_room.html"
+
+    def get(self, request: HttpRequest):
+        response = get_with_user_context(request=request, template_name=self.template_name)
+        response.context_data['form'] = RoomCreateForm()
+        return response
+    
+    def post(self, request: HttpRequest):
+        form = RoomCreateForm(request.POST)
+        if request.user.balance < int(form.data['rate']):
+            form.add_error("rate", ValidationError(_("Не достатньо коштів на балансі, щоб створити кімнату з вказаним початковим взнеском.")))
+        if form.is_valid():
+            room = form.save(commit=False)
+            room.first_player = request.user
+            room.save()
+            return redirect("battle", room.pk)
+        else:
+            response = get_with_user_context(request=request, template_name=self.template_name)
+            response.context_data['form'] = form
+            return response
+
+
+class BattleView(LoginRequiredMixin, View):
+
+    template_name = "game/battle/battle.html"
+
+    def get(self, request: HttpRequest, room_pk: int):
+        return get_battle_view(request=request, 
+                               template_name=self.template_name, 
+                               room_pk=room_pk)
+    
+class BattleResultsView(LoginRequiredMixin, View):
+
+    template_name = "game/battle/winner.html"
+
+    def get(self, request: HttpRequest, room_pk: int):
+        return get_battle_result_view(request=request, 
+                                      template_name=self.template_name, 
+                                      room_pk=room_pk)

@@ -28,10 +28,23 @@
                 <li class="nav-item d-flex justify-content-between gap-2">
                   <a class="btn btn-info btn-sm" href="{% url 'abilities' %}?name={{request.resolver_match.url_name}}">{% trans "Навички" %}</a>
                   <a class="btn btn-info btn-sm" href="{% url 'inventory' request.resolver_match.url_name %}">{% trans "Інвентар" %}</a>
-                  <a href="{% url 'back_to_main' request.resolver_match.url_name %}" class="btn btn-outline-light btn-sm">Повернутися на головну</a>
+                  <a href="{% url 'back_to_main' request.resolver_match.url_name %}" class="btn btn-outline-light btn-sm">{% trans "Повернутися на головну" %}</a>
                 </li>
                 <li class="nav-link lang-form">
-                  <form method="post" action="{% url 'locale' request.resolver_match.url_name %}" class="locale-form">{% csrf_token %}{{locale_form}}</form>
+                  {% get_current_language_bidi as LANGUAGE_BIDI %}
+                  {% get_current_language as LANGUAGE_CODE %}
+                  <form action="{% url 'set_language' %}" class="locale-form" method="post">{% csrf_token %}
+                      <input name="next" type="hidden" value="{{request.path}}">
+                      <select name="language" class="form-control" onchange="this.form.submit()">
+                          {% get_available_languages as LANGUAGES %}
+                          {% get_language_info_list for LANGUAGES as languages %}
+                          {% for language in languages %}
+                              <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                                  {{ language.name_local }} ({{ language.code }})
+                              </option>
+                          {% endfor %}
+                      </select>
+                  </form>
                 </li>
             </ul>
           </div>
@@ -44,80 +57,11 @@
         {% block main %}
         {% endblock main %}
     </main>
-    <script>
-      function detectMob() {
-          const toMatch = [
-              /Android/i,
-              /webOS/i,
-              /iPhone/i,
-              /iPad/i,
-              /iPod/i,
-              /BlackBerry/i,
-              /Windows Phone/i
-          ];
-          
-          return toMatch.some((toMatchItem) => {
-              return navigator.userAgent.match(toMatchItem);
-          });
-      }
-
-      async function lockOrientation() {
-          if ("orientation" in screen && detectMob()) {
-              try {
-                  await screen.orientation.lock("landscape-primary");
-                  console.log("Orientation locked to landscape-primary.");
-              } catch (e) {
-                  showOrientationMessage();
-              }
-          } else {
-              showOrientationMessage();
-          }
-      }
-
-      function showOrientationMessage() {
-          function checkOrientation() {
-              if (window.innerHeight > window.innerWidth) {
-                  // Portrait
-                  document.querySelector('.device_message').style.display = 'flex';
-                  document.querySelector('body').style.background = 'rgba(0, 0, 0, 0.9)';
-                  document.querySelector('body').style.minWidth = 'auto';
-                  document.querySelector('.main').style.display = 'none';
-              } else {
-                  // Landscape
-                  document.querySelector('.device_message').style.display = 'none';
-                  document.querySelector('body').style.background = 'none';
-                  document.querySelector('body').style.minWidth = '1200px';
-                  document.querySelector('.main').style.display = 'block';
-              }
-          }
-
-          window.addEventListener('resize', checkOrientation);
-          window.addEventListener('orientationchange', checkOrientation);
-
-          // Initial check
-          checkOrientation();
-      }
-
-      lockOrientation();
-
-      document.querySelector('main').style.minHeight = `calc(100vh - ${document.querySelector('.navbar').offsetHeight}px)`;
-      document.querySelector(".locale").addEventListener("change", () => {
-        document.querySelector(".locale-form").submit();
-      })
-      var lang = "{{request.session.lang}}"
-      if (lang === "") {
-        lang = "uk"
-      }
-      document.querySelectorAll("option").forEach(it => {
-          if (it.value == lang){
-              it.setAttribute("selected", "selected");
-          }
-      })
-    </script>
+    <script src="{% static 'js/mobile_detector.js' %}"></script>
     {% block script %}
     {% endblock script %}
-    <script src="{% static 'js/ajax.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>    
+    <script src="{% static 'js/popup.js' %}"></script>
   </body>
 </html>

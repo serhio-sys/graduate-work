@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['*']
 ALLOWED_ADMIN_IPS = []
 SECRET_ADMIN_TOKEN = os.environ.get("SECRET_ADMIN_TOKEN")
 CORS_ORIGIN_ALLOW_ALL = True
-PROD_HOST = "dungeonapp.westeurope.cloudapp.azure.com"
+PROD_HOST = "113-30-189-214.cloud-xip.com"
 
 DEFAULT_HTTP_PROTOCOL = 'http'
 PROTOCOL = 'http'
@@ -112,7 +112,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'settings.context_processors.context_processor',
             ],
         },
     },

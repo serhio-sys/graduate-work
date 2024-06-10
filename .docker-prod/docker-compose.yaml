@@ -9,17 +9,6 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
 
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    depends_on:
-      - db
-    env_file:
-    - ../.env
-    ports:
-      - "5051:5050"
-    restart: always
-
   web:
     build:
       context: ../
@@ -28,7 +17,7 @@ services:
       - ../.env
     volumes:
       - ../:/code
-    command: uvicorn settings.asgi:application --host 0.0.0.0 --port 8000
+    command: uvicorn settings.asgi:application --host 0.0.0.0 --port 8000 --reload
     ports:
       - 8000:8000
     depends_on:

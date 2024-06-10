@@ -4,6 +4,7 @@ from django.db import models
 from django.urls import reverse
 from django.conf import settings
 from django.templatetags.static import static
+from channels.db import database_sync_to_async
 
 
 class BaseShopEntity(models.Model):
@@ -165,6 +166,32 @@ class BaseEntity(models.Model):
                    "total": max(total_ag + sum_ag, 0)},
             "effects": list(active_effects)
         }
+    
+    @database_sync_to_async
+    def async_get_summary_stats(self) -> dict:
+        total_str = self.strength
+        total_ag = self.agility
+
+        current_time = timezone.now()
+        if isinstance(self, Enemy):
+            self.effect_enemy.filter(models.Q(deleted_time__lte=current_time)).delete()
+            active_effects = self.effect_enemy.filter(deleted_time__gt=current_time).values()
+        else:
+            self.effect_set.filter(models.Q(deleted_time__lte=current_time)).delete()
+            active_effects = self.effect_set.filter(deleted_time__gt=current_time).values()
+
+        sum_str = sum(effect['strength'] for effect in active_effects)
+        sum_ag = sum(effect['agility'] for effect in active_effects)
+
+        return {
+            "str": {"hero": total_str,
+                    "sum": sum_str,
+                    "total": max(total_str + sum_str, 0)},
+            "ag": {"hero": total_ag,
+                   "sum": sum_ag,
+                   "total": max(total_ag + sum_ag, 0)},
+            "effects": list(active_effects)
+        }
 
     def return_all_damage_taken(self) -> int:
         bonus = round(settings.ROLES[self.role]['dmg'] * self.agility)
@@ -180,8 +207,32 @@ class BaseEntity(models.Model):
             if chance <= 10:
                 return attack * 1.8
         return attack
+    
+    @database_sync_to_async
+    def async_return_all_damage_taken(self) -> int:
+        bonus = round(settings.ROLES[self.role]['dmg'] * self.agility)
+        if self.weapon_equiped is not None:
+            bonus += self.weapon_equiped.damage
+        if self.weapon2_equiped is not None:
+            bonus += self.weapon2_equiped.damage
+        attack = self.attack + bonus
+        if self.role == 'strength':
+            return attack * 1.2
+        if settings.ROLES[self.role]['double_dmg']:
+            chance = random.randint(0, 100)
+            if chance <= 10:
+                return attack * 1.8
+        return attack
 
     def return_all_defence(self) -> int:
+        bonus = round(settings.ROLES[self.role]['dmg'] * self.agility)
+        if self.armor_equiped is not None:
+            bonus += self.armor_equiped.armor_value
+        attack = self.defence + bonus
+        return attack
+    
+    @database_sync_to_async
+    def async_return_all_defence(self) -> int:
         bonus = round(settings.ROLES[self.role]['dmg'] * self.agility)
         if self.armor_equiped is not None:
             bonus += self.armor_equiped.armor_value
@@ -247,3 +298,11 @@ class Task(models.Model):
                              null=True,
                              blank=True,
                              on_delete=models.CASCADE)
+    
+
+class Room(models.Model):
+    first_player = models.ForeignKey("users.NewUser", default=None, null=True, blank=True, on_delete=models.SET_NULL, related_name="first")
+    second_player = models.ForeignKey("users.NewUser", default=None, null=True, blank=True, on_delete=models.SET_NULL, related_name="second")
+    name = models.CharField("NAME", max_length=50)
+    rate = models.PositiveIntegerField("RATE")
+    password = models.CharField("PASSWORD", max_length=255, default=None, null=True, blank=True)

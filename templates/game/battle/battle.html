@@ -16,14 +16,15 @@
     <div class="d-flex justify-content-between h-100">
         {% include "components/hero.html" %}
         <div class="m-4 p-2 d-flex w-100 h-100 flex-column justify-content-center align-items-center">
-            <div style="width: 300px; height: 200px;" class="rounded bg-dark d-flex justify-content-center align-items-center">
+            <div style="width: 300px; min-height: 260px;" class="rounded bg-dark d-flex justify-content-center align-items-center">
                 <div>
+                    <div class="countdown_timer" style="margin-bottom: 1em;">{% trans "Cуперник очікує вашої атаки." %}</div>
                     <form method="post" class="attack_form w-100 d-flex flex-column align-items-center gap-2">
                         {% csrf_token %}
                         <div class="d-flex gap-5">
                             {{ form|crispy }}
                         </div>
-                        <button class="btn btn-outline-warning" type="submit">{% trans 'Вперед' %}</button>
+                        <button class="btn btn-outline-warning attack_submit" type="submit">{% trans 'Вперед' %}</button>
                     </form>
                 </div>
             </div>
@@ -40,7 +41,7 @@
                 <hr>
             </div>
         </div>
-        {% include "components/enemy.html" %}
+        {% include "components/user_enemy.html" %}
         {% block map %}
         
         {% endblock %}
@@ -54,21 +55,34 @@
 {% block script %}
 <script>
     // VARIABLES
-    const csrftoken = "{{csrf_token}}"
-    const enemy_effects = document.querySelector('.enemy_effects')
-    const user_effects = document.querySelector('.user_effects')
+    const userId = {{ request.user.id }};
+    const room_id = {{ room.id }};
+    const first_player = {{ room.first_player.id }};
+    {% if room.second_player %}
+    const second_player = {{ room.second_player.id }};
+    {% endif %}
+    const enemy = "{{ enemy }}";
+    const wsStart = 'ws://' + window.location.host + '/battle/' + room_id + '/' + userId + '/';
+    const socket = new WebSocket(wsStart);
+    const waiting_both_attack = "{% trans 'Cуперник очікує вашої атаки.' %}";
+    const attack_process = "{% trans 'Процес атаки... Очікуйте.' %}";
+    const attack_countdown = "{% trans 'На атаку залишилося: ' %}";
+    const finish_redirect = "{% url 'battle_result' room.id %}";
+
+    const csrftoken = "{{csrf_token}}";
+    const enemy_effects = document.querySelector('.enemy_effects');
+    const user_effects = document.querySelector('.user_effects');
     
-    const enemy_hp = document.querySelector('.enemy_hp')
-    const user_hp = document.querySelector('.user_hp')
+    const enemy_hp = document.querySelector('.enemy_hp');
+    const user_hp = document.querySelector('.user_hp');
 
     
-    const enemy_str = document.querySelector('.str_enemy')
-    const user_str = document.querySelector('.user_str')
-    const enemy_ag = document.querySelector('.ag_enemy')
-    const user_ag = document.querySelector('.user_ag')
+    const enemy_str = document.querySelector('.str_enemy');
+    const user_str = document.querySelector('.user_str');
+    const enemy_ag = document.querySelector('.ag_enemy');
+    const user_ag = document.querySelector('.user_ag');
 
-    const logs_chat = document.querySelector('.logs_chat')
-    // VARIABLES
+    const logs_chat = document.querySelector('.logs_chat');
 
     function setEffects(enemy, user) {
         enemy_str.innerHTML = `{% trans "Сила: " %} ${enemy.str.total} (${enemy.str.hero}${enemy.str.sum >= 0 ? "+"+enemy.str.sum : enemy.str.sum})`
@@ -99,23 +113,21 @@
     }
     
     function setHp(user_health, enemy_health) {
-        user_hp.innerHTML = `{% trans "здоров'я:" %} ${user_health}`
-        user_hp.ariaValueNow = user_health
-        user_hp.parentElement.querySelector(".progress-bar").style.width = `${user_health}%`
+        user_hp.innerHTML = `{% trans "здоров'я:" %} ${user_health}`;
+        user_hp.ariaValueNow = user_health;
+        user_hp.parentElement.querySelector(".progress-bar").style.width = `${user_health}%`;
         
-        enemy_hp.innerHTML = `{% trans "здоров'я:" %} ${enemy_health}`
-        enemy_hp.ariaValueNow = enemy_health
-        enemy_hp.parentElement.querySelector(".progress-bar").style.width = `${enemy_health}%`
+        enemy_hp.innerHTML = `{% trans "здоров'я:" %} ${enemy_health}`;
+        enemy_hp.ariaValueNow = enemy_health;
+        enemy_hp.parentElement.querySelector(".progress-bar").style.width = `${enemy_health}%`;
     }
     
     function addLog(logs) {
-        var add_text = ""
-        logs.forEach(item => {
-            add_text += `<span>${item}</span><br>`
-        })
-        logs_chat.innerHTML += add_text
-        logs_chat.scrollTop = logs_chat.scrollHeight
+        var add_text = `<span>${logs}</span><br>`;
+        logs_chat.innerHTML += add_text;
+        logs_chat.scrollTop = logs_chat.scrollHeight;
     }
+    // VARIABLES
 </script>
-<script src="{% static 'js/fight/dungeon_fight.js' %}"></script>
+<script src="{% static 'js/battle/online_handling.js' %}"></script>
 {% endblock %}

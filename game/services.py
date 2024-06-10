@@ -4,6 +4,7 @@ import datetime
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template.response import TemplateResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import get_user_model
 from django.views import View
 from django.templatetags.static import static
 from django.shortcuts import render, redirect
@@ -11,8 +12,9 @@ from django.urls import reverse
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.forms import model_to_dict
+from channels.db import database_sync_to_async
 from users.models import NewUser
-from .models import Weapon, Armor, Effect, Enemy, DungeonLvl
+from .models import Weapon, Armor, Effect, Enemy, DungeonLvl, Room
 from .logs import get_text_effect, INSTRUCTION_LOGS
 from .forms import AttackForm
 
@@ -51,8 +53,8 @@ def post_church(request: HttpRequest) -> HttpResponse:
     request.user.save()
     user_effect.save()
     return render(request=request, template_name="game/church_success.html",
-                  context={"head": _("Бог схильний до вас."),
-                           "msg": _("Ви отримали благословення бога.")})
+                  context={"head": _("Свята пожертва."),
+                           "msg": _("Ви отримали ефект святої пожертви.")})
 
 
 def post_equip_armor(request: HttpRequest) -> JsonResponse:
@@ -309,6 +311,19 @@ class BasedFight:
         if en_effect.user is not None or en_effect.enemy is not None:
             en_effect.save()
 
+    @staticmethod
+    @database_sync_to_async
+    def async_apply_effect(effect_name: str, whom: NewUser | Enemy, duration_min: int) -> None:
+        try:
+            effect = Effect.objects.filter(name=effect_name, user__isnull=True, enemy__isnull=True).first()
+        except Effect.DoesNotExist:
+            return
+        en_effect = Effect(**model_to_dict(effect, exclude=['id']))
+        en_effect.deleted_time = datetime.datetime.now() + datetime.timedelta(minutes=duration_min)
+        setattr(en_effect, 'user' if isinstance(whom, NewUser) else 'enemy', whom)
+        if en_effect.user is not None or en_effect.enemy is not None:
+            en_effect.save()
+
     def get_entity_effect(self, who: NewUser | Enemy, whom: NewUser | Enemy) -> None:
         is_whom_user = isinstance(whom, NewUser)
 
@@ -479,4 +494,56 @@ class BossFightView(BasedFight):
                 "winner": self.is_winner,
                 "redirect_url": reverse("final" if user.dungeon == 6 else "fight_results"),
             }, status=200)
+        return response
+    
+
+def get_battle_view(request: HttpRequest, template_name: str, room_pk: int) -> HttpResponse:
+    try:
+        room = Room.objects.select_related('first_player', 'second_player').get(pk=room_pk)
+    except Room.DoesNotExist:
+        return redirect("tavern")
+    if room.second_player != request.user and room.first_player != request.user:
+        err_msg = _("Бій вже почався.")
+        return redirect(reverse("tavern") + f"?msg={err_msg}")
+    if room.second_player != None and (room.first_player.health == 0 or room.second_player.health == 0):
+        room.delete()
+        return redirect("tavern")
+    response = get_with_user_context(request=request, template_name=template_name)
+    response.context_data['room'] = room
+    base_sql = get_user_model().objects.select_related('weapon2_equiped','armor_equiped', 'weapon_equiped', 'dungeon')
+    if room.first_player == request.user:
+        if room.second_player != None:
+            enemy = base_sql.get(pk=room.second_player.pk)
+        else:
+            enemy = None
+    else:
+        enemy = base_sql.get(pk=room.first_player.pk)
+    response.context_data['enemy'] = enemy
+    response.context_data['form'] = AttackForm()
+    return response
+
+
+def get_battle_result_view(request: HttpRequest, template_name: str, room_pk: int) -> HttpResponse:
+    try:
+        room = Room.objects.select_related('first_player', 'second_player').get(pk=room_pk)
+    except Room.DoesNotExist:
+        err_msg = _("Кімнату було видалено.")
+        return redirect(reverse("tavern") + f"?msg={err_msg}")
+    user = request.user
+    if room.second_player.pk != user.pk and room.first_player.pk != user.pk:
+        err_msg = _("Ви не є бійцем цієї кімнати.")
+        return redirect(reverse("tavern") + f"?msg={err_msg}")
+    if room.first_player.health != 0 and room.second_player.health != 0:
+        return redirect("battle", room.pk)
+    response = get_with_user_context(request=request, template_name=template_name)
+    response.context_data['room_id'] = room.pk
+    if user.health == 0:
+        response.context_data['money'] = -room.rate
+        response.context_data['is_winner'] = False
+        return response
+    else:
+        user.balance += room.rate * 2
+        user.save(update_fields={"balance"})
+        response.context_data['money'] = room.rate * 2
+        response.context_data['is_winner'] = True
         return response

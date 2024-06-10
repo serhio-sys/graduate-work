@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
-
+from .models import Room
 
 class UserIncreaseStatsForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -39,3 +39,16 @@ class AttackForm(forms.Form):
     
     attack = forms.CharField(label=_("Атака"),widget=forms.RadioSelect(choices=choise))
     defence = forms.CharField(label=_("Захист"),widget=forms.RadioSelect(choices=choise))
+
+
+class RoomCreateForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].label = _("Ім'я кімнати")
+        self.fields['rate'].label = _("Початковий взнесок")
+        self.fields['password'].label = _("Пароль кімнати (Не обов'язково)")
+
+    class Meta:
+        model = Room
+        fields = ['name', 'rate', 'password']

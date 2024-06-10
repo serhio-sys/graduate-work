@@ -44,24 +44,24 @@
                 </div>
                 <div class="mt-4 bal">{% trans "Рахунок: " %} {{user.balance}} $</div>
             </div>
-            <div class="mt-5 d-flex flex-column gap-1" ondrop="drop_eq(event)" ondragover="allowDrop(event)">
+            <div class="mt-5 d-flex flex-column gap-1" ondrop="dropEq(event)" ondragover="allowDrop(event)">
                 {% if user.weapon_equiped %}
-                    <img src="{{user.weapon_equiped.get_img}}" class="item_img" style="background: rgba(black, 0.5);" width="85px" height="85px"  draggable="true" ondragstart="drag_deq(event, 1, 'weapon')"/>
+                    <img src="{{user.weapon_equiped.get_img}}" class="item_img" style="background: rgba(black, 0.5);" width="85px" height="85px"  draggable="true" ondragstart="dragDeq(event, 1, 'weapon')"/>
                 {% else %}
                     <div class="empty_img"></div>
                 {% endif %}
                 {% if user.weapon2_equiped %}
-                    <img src="{{user.weapon2_equiped.get_img}}" class="item_img" width="85px" height="85px"  draggable="true" ondragstart="drag_deq(event, 2, 'weapon')"/>
+                    <img src="{{user.weapon2_equiped.get_img}}" class="item_img" width="85px" height="85px"  draggable="true" ondragstart="dragDeq(event, 2, 'weapon')"/>
                 {% else %}
                     {% if user.armor_equiped %}
-                        <img src="{{user.armor_equiped.get_img}}" class="item_img" width="85px" height="85px"  draggable="true" ondragstart="drag_deq(event, 0, 'armor')"/>
+                        <img src="{{user.armor_equiped.get_img}}" class="item_img" width="85px" height="85px"  draggable="true" ondragstart="dragDeq(event, 0, 'armor')"/>
                     {% else %}
                         <div class="empty_img"></div>
                     {% endif %}
                 {% endif %}
             </div>
         </div>
-        <div class="shop w-100 p-2 rouded" style="max-width: 800px;" ondrop="drop_deq(event)" ondragover="allowDrop(event)">
+        <div class="shop w-100 p-2 rouded" style="max-width: 800px;" ondrop="dropDeq(event)" ondragover="allowDrop(event)">
             <div class="text-center">{% trans "Зброя" %}</div>
             <hr/>
             <div class="inv_block">
@@ -69,7 +69,7 @@
                 {% for w in weapons %}
                 <div class="weapon mt-3">
                     <div>
-                        <img src="{{w.get_img}}" class="weapon_img" draggable="true" ondragstart="drag_eq(event, 'weapon', '{{w.id}}')"/>
+                        <img src="{{w.get_img}}" class="weapon_img" draggable="true" ondragstart="dragEq(event, 'weapon', '{{w.id}}')"/>
                     </div>
                     <div><span>{{w.name}}</span></div>
                     <div>{% trans "Урон:" %} {{w.damage}}</div>
@@ -88,7 +88,7 @@
                     {% for a in armors %}
                     <div class="weapon mt-3">
                         <div>
-                            <img src="{{a.get_img}}"class="weapon_img" draggable="true" ondragstart="drag_eq(event, 'armor', '{{a.id}}')"/>
+                            <img src="{{a.get_img}}"class="weapon_img" draggable="true" ondragstart="dragEq(event, 'armor', '{{a.id}}')"/>
                         </div>
                         <span>{{a.name}}</span>
                         <div>{% trans "Захист" %}: {{a.armor}}</div>
@@ -112,90 +112,12 @@
 
 {% block script %}
 <script>
+    // VARIABLES
     const Url = "/"
-    var csrftoken = '{{ csrf_token }}';
-    var balance = document.querySelector('.bal')
-    var user_balance = {{user.balance}};
-
-    document.querySelectorAll('.sell_form').forEach(item => {
-        
-        item.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            let sellSumAttribute = e.target.querySelector('.btn').getAttribute('data-sell-sum');
-            await fetch(item.action, {
-                method: "POST",
-                headers: {'X-CSRFToken': csrftoken} 
-            }).then(res => {
-                if (res.status == 200) {
-                    user_balance += parseInt(sellSumAttribute)
-                    balance.innerHTML = `{% trans "Рахунок: " %}${user_balance}  $`
-                    item.parentElement.parentElement.remove();
-                }
-            });
-        });
-    });
-
-    function allowDrop(ev) {
-        ev.preventDefault();
-    }
-
-    function drag_eq(ev, item, pk) {
-        ev.dataTransfer.setData('type', item);
-        ev.dataTransfer.setData('pk', pk);
-    }
-      
-    async function drop_eq(ev) {
-        ev.preventDefault();
-        var dataString = ev.dataTransfer.getData('type');
-        var ds = ev.dataTransfer.getData('pk')
-        if (dataString === "armor"){
-            await fetch(Url+"game/equip_armor/", {
-                method: "POST",
-                headers: {'Content-Type': 'application/json', 'X-CSRFToken': csrftoken},
-                body: JSON.stringify({"pk": ds}) 
-            }).then(res => {
-            console.log("Request complete! response:", res);
-            });
-        } else if (dataString === "weapon"){
-            await fetch(Url+"game/equip_weapon/", {
-                method: "POST",
-                headers: {'Content-Type': 'application/json', 'X-CSRFToken': csrftoken}, 
-                body: JSON.stringify({"pk": ds})
-            }).then(res => {
-            console.log("Request complete! response:", res);
-            });
-        } 
-        window.location.reload()
-    }
-
-    function drag_deq(ev, deq_type, item) {
-        ev.dataTransfer.setData('type', item);
-        ev.dataTransfer.setData('deq', deq_type)
-    }
-      
-    async function drop_deq(ev) {
-        var dataString = ev.dataTransfer.getData('type');
-        var deq = ev.dataTransfer.getData('deq');
-        ev.preventDefault();
-        if (dataString === "armor"){
-            await fetch(Url+"game/equip_armor/", {
-                method: "POST",
-                headers: {'Content-Type': 'application/json', 'X-CSRFToken': csrftoken},
-                body: JSON.stringify({"dequip": true}) 
-            }).then(res => {
-            console.log("Request complete! response:", res);
-            });
-        } else if (dataString === "weapon"){
-            await fetch(Url+"game/equip_weapon/", {
-                method: "POST",
-                headers: {'Content-Type': 'application/json', 'X-CSRFToken': csrftoken}, 
-                body: JSON.stringify({"dequip": deq})
-            }).then(res => {
-            console.log("Request complete! response:", res);
-            });
-        }
-        window.location.reload()
-    }
+    const csrftoken = '{{ csrf_token }}';
+    const balance = document.querySelector('.bal')
+    let user_balance = {{user.balance}};
+    // VARIABLES
 </script>
-<script src="{% static 'js/ajax.js' %}"></script>
+<script src="{% static 'js/inventory/drag_and_drop.js' %}"></script>
 {% endblock %}

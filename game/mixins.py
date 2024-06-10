@@ -6,7 +6,8 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.conf import settings
-from .models import DungeonLvl
+from django.db.models import Q
+from .models import DungeonLvl, Room
 
 
 class InstructionMixin(LoginRequiredMixin):
@@ -24,6 +25,9 @@ class DungeonMixin(LoginRequiredMixin):
         response = super().dispatch(request, *args, **kwargs)
         if isinstance(response, HttpResponseRedirect):
             return response
+        room = Room.objects.filter(Q(first_player=request.user) | Q(second_player=request.user)).first()
+        if room != None:
+            return redirect("battle", room.pk)
         dungeon = DungeonLvl.objects.get(pk=request.user.current_dungeon)
         with open(settings.BASE_DIR + dungeon.map.url, 'r', encoding='utf-8') as f:
             self.map_data = json.load(f)

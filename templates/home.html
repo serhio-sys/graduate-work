@@ -67,8 +67,21 @@
                     </li>
                {% endif %}
                <li class="nav-link w-100">
-                <form method="post" action="{% url 'locale' request.resolver_match.url_name %}" class="locale-form">{% csrf_token %}{{locale_form}}</form>
-               </li>
+                {% get_current_language_bidi as LANGUAGE_BIDI %}
+                {% get_current_language as LANGUAGE_CODE %}
+                <form action="{% url 'set_language' %}" class="locale-form" method="post">{% csrf_token %}
+                    <input name="next" type="hidden" value="{{request.path}}">
+                    <select name="language" class="form-control" onchange="this.form.submit()">
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                            <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                                {{ language.name_local }} ({{ language.code }})
+                            </option>
+                        {% endfor %}
+                    </select>
+                </form>
+                </li>
             </ul>
             </div>
         </div>
@@ -109,18 +122,6 @@
     </footer>
   <script>
     document.querySelector('main').style.minHeight = `calc(100vh - ${document.querySelector('.navbar').offsetHeight}px)`;
-    document.querySelector(".locale").addEventListener("change", () => {
-      document.querySelector(".locale-form").submit();
-    })
-    var lang = "{{request.session.lang}}"
-    if (lang === "") {
-      lang = "uk"
-    }
-    document.querySelectorAll("option").forEach(it => {
-        if (it.value == lang){
-            it.setAttribute("selected", "selected");
-        }
-    })
   </script>
     {% block script %}
     <script>
@@ -129,7 +130,6 @@
             elem.classList.add("hidden");
         });
     </script>
-    <script src="{% static 'js/ajax.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     {% endblock script %}

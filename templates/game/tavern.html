@@ -4,6 +4,20 @@
 {% block head_title %}{% trans "Tavern Location" %}{% endblock %}
 
 {% block map %}
+<div class="message hidden room_password" style="flex-direction: column; z-index: 101; gap: 1em;"> 
+    <div><input type="text" placeholder="{% trans 'Введіть пароль від кімнати' %}" class="password_input form-control"/></div>
+    <div><button class="btn btn-outline-warning connect_password_btn">{% trans "Приєднатися" %}</button></div>
+</div>
+<div class="message hidden rooms">
+    <div style="display: flex; flex-direction:column; gap: 1em; background: rgba(0, 0, 0, 0.8); padding: 1em; box-shadow: 0 2px 10px rgba(255, 255, 255, 0.5); border-radius: 0.5em;">
+        <div class="room_list">
+        </div>
+        <div class="p-1 d-flex justify-content-center gap-4">
+            <a href="{% url 'create-room' %}" class="btn btn-small btn-warning create-room">{% trans "Створити кімнату" %}</a>
+            <a class="btn btn-small btn-outline-warning connect-btn disabled">{% trans "Приєднатися" %}</a>
+        </div>
+    </div>
+</div>
 <div class="navigation">
     <div class="map">
         <img src="{% static 'img/locations/tavern_loc.jpg' %}" class="image_map"/>
@@ -19,5 +33,22 @@
 </div>
 {% endblock %}
 {% block low %}
-<div><a href="">{% trans "" %}</a></div>
+<div class="w-100 d-flex justify-content-center"><button class="btn btn-outline-light duels">{% trans "Поєдинки" %}</button></div>
 {% endblock %}
+{% block script %}
+<script>
+    // VARIABLES
+    const rooms_url = "{% url 'rooms' %}";
+    const rooms_connect_url = "{% url 'connect' %}";
+    const button_create = document.querySelector(".create-room");
+    const rooms_block = document.querySelector(".rooms");
+    const button_connect = document.querySelector(".connect-btn");
+    const connect_password_btn = document.querySelector(".connect_password_btn");
+    const password_input = document.querySelector(".password_input");
+    const no_more_rooms_message = "{% trans 'На разі не має створених кімнат' %}"
+    const csrftoken = '{{ csrf_token }}';
+    let selected = null;
+    // VARIABLES
+</script>
+<script src="{% static 'js/tavern/room_actions.js' %}"></script>
+{% endblock script %}
