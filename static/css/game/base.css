@@ -122,6 +122,7 @@
     align-items: center;
     padding-right: 1.5rem !important;
 }
+
 @media (max-width: 1024px) {
     .menu {
         padding-right: 0 !important;
