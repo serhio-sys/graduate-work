@@ -313,3 +313,4 @@ class BattleConsumer(AsyncWebsocketConsumer):
         await self.send(text_data=json.dumps({
             'is_connected': message
         }))
+        

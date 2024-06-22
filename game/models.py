@@ -306,3 +306,4 @@ class Room(models.Model):
     name = models.CharField("NAME", max_length=50)
     rate = models.PositiveIntegerField("RATE")
     password = models.CharField("PASSWORD", max_length=255, default=None, null=True, blank=True)
+    

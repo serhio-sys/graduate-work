@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-09 09:44+0300\n"
+"POT-Creation-Date: 2024-06-20 22:00+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1795,35 +1795,35 @@ msgstr ""
 "press the \"Forward!\" button. You will then see the result of your move in "
 "the logs."
 
-#: .\game\services.py:42
+#: .\game\services.py:43
 msgid "Недостатньо коштів на вашому рахунку"
 msgstr "Insufficient funds in your account"
 
-#: .\game\services.py:55
+#: .\game\services.py:56
 msgid "Свята пожертва."
 msgstr "Holy sacrifice."
 
-#: .\game\services.py:56
+#: .\game\services.py:57
 msgid "Ви отримали ефект святої пожертви."
 msgstr "You have received the effect of the holy sacrifice."
 
-#: .\game\services.py:108 .\game\services.py:132
+#: .\game\services.py:109 .\game\services.py:133
 msgid "Не вистачає коштів"
 msgstr "Not enough funds"
 
-#: .\game\services.py:113 .\game\services.py:137
+#: .\game\services.py:114 .\game\services.py:138
 msgid "Недостатньо атрибутів для цього предмету"
 msgstr "Not enough attributes for this item"
 
-#: .\game\services.py:118 .\game\services.py:142
+#: .\game\services.py:119 .\game\services.py:143
 msgid "Цей предмет вже є у вас в інвентарі."
 msgstr "This item is already in your inventory."
 
-#: .\game\services.py:168
+#: .\game\services.py:169
 msgid "Ловкач"
 msgstr "Dexterous"
 
-#: .\game\services.py:170
+#: .\game\services.py:171
 msgid ""
 "Головний атрибут: Спритність.\n"
 " Якщо супротивник дуже повільний і буде ловити гав, то є можливість зробити "
@@ -1835,11 +1835,11 @@ msgstr ""
 "double attack.\n"
 " Feature: ability to dodge attacks and counter-attack."
 
-#: .\game\services.py:177
+#: .\game\services.py:178
 msgid "Силач"
 msgstr "Strongman"
 
-#: .\game\services.py:179
+#: .\game\services.py:180
 msgid ""
 "Головний атрибут: Сила.\n"
 " Чим більша сила, тим більше болю може зазнати супротивник.\n"
@@ -1849,9 +1849,17 @@ msgstr ""
 " The greater the strength, the more pain the opponent can endure.\n"
 " Feature: inflicting heavy wounds."
 
-#: .\game\views.py:138 .\game\views.py:421
+#: .\game\services.py:506 .\game\views.py:138
 msgid "Бій вже почався."
 msgstr ""
+
+#: .\game\services.py:530
+msgid "Кімнату було видалено."
+msgstr "The room was deleted."
+
+#: .\game\services.py:534
+msgid "Ви не є бійцем цієї кімнати."
+msgstr "You are not a fighter in this room."
 
 #: .\game\views.py:141
 #, fuzzy
@@ -1871,14 +1879,6 @@ msgid ""
 msgstr ""
 "Insufficient funds on balance to create a room with the specified initial "
 "contribution."
-
-#: .\game\views.py:448
-msgid "Кімнату було видалено."
-msgstr "The room was deleted."
-
-#: .\game\views.py:452
-msgid "Ви не є бійцем цієї кімнати."
-msgstr "You are not a fighter in this room."
 
 #: .\settings\password_validators.py:25
 #, python-format
@@ -1972,7 +1972,7 @@ msgstr ""
 "Don't have an account? Then sign up <a href=\"%(signup_url)s\">registration</"
 "a>."
 
-#: .\templates\account\login.html:26 .\templates\home.html:103
+#: .\templates\account\login.html:26 .\templates\home.html:169
 msgid "Увійти"
 msgstr "Log in"
 
@@ -2031,7 +2031,7 @@ msgid ""
 msgstr ""
 "Already have an account? Then log in <a href=\"%(login_url)s\">log in</a>."
 
-#: .\templates\account\signup.html:25 .\templates\home.html:104
+#: .\templates\account\signup.html:25 .\templates\home.html:170
 #: .\templates\socialaccount\signup.html:25
 msgid "Зареєструватися"
 msgstr "Register"
@@ -2142,7 +2142,7 @@ msgstr "Return to Game"
 msgid "Boycovskiy Club"
 msgstr "Boycowskiy Club"
 
-#: .\templates\game\base.html:19 .\templates\home.html:41
+#: .\templates\game\base.html:19 .\templates\home.html:107
 msgid "Бійцівський Клуб"
 msgstr "Boycowskiy Club"
 
@@ -2586,19 +2586,25 @@ msgstr "Duels"
 msgid "На разі не має створених кімнат"
 msgstr "There is no created rooms"
 
-#: .\templates\home.html:58
+#: .\templates\home.html:100
+msgid ""
+"Гру \"Бійцівський Клуб\" розробляв студент 45 групи Колодяжний Сергій "
+"спеціальності \"Розробка програмного забезпечення\"."
+msgstr ""
+
+#: .\templates\home.html:124
 msgid "Мій профіль"
 msgstr "My Profile"
 
-#: .\templates\home.html:63
+#: .\templates\home.html:129
 msgid "Вийти"
 msgstr "Logout"
 
-#: .\templates\home.html:94 .\templates\home.html:96
+#: .\templates\home.html:160 .\templates\home.html:162
 msgid "Почати гру"
 msgstr "Start Game"
 
-#: .\templates\home.html:101
+#: .\templates\home.html:167
 msgid "Ви повинні увійти в свій аккаунт."
 msgstr "You must log in to your account."
 

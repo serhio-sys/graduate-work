@@ -22,9 +22,66 @@
         background-repeat: no-repeat;
         background-size: cover;
       }
-      .message h1{
+
+      .message{
+          z-index: 10000;
           color: white;
       }
+      
+      .modal-info {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: 200ms ease-in-out;
+        border: 1px solid white;
+        color: white;
+        border-radius: 10px;
+        z-index: 10000;
+        background-color: rgba(0,0,0, 0.8);
+        width: 500px;
+        max-width: 80%;
+      }
+      
+      .modal-info.active {
+        transform: translate(-50%, -50%) scale(1);
+      }
+      
+      .modal-header {
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid white;
+      }
+      
+      .modal-header .title {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+      
+      .modal-header .close-button {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        background: none;
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: white;
+      }
+      
+      .modal-body {
+        padding: 10px 15px;
+      }
+      
+      main {
+        pointer-events: all;
+      }
+      
+      main .active {
+        opacity: 1;
+      }
+    
     </style>
     {% endblock styles %}
   </head>
@@ -34,6 +91,15 @@
         <h1>{{request.GET.error}}</h1>
     </div>
     {% endif %}
+    <div class="modal-info" id="modal-info">
+      <div class="modal-header">
+        <div class="title">&copy; 2024 Boycovskiy Club</div>
+        <button data-close-button class="close-button">&times;</button>
+      </div>
+      <div class="modal-body">
+        {% trans 'Гру "Бійцівський Клуб" розробляв студент 45 групи Колодяжний Сергій спеціальності "Розробка програмного забезпечення".' %}
+      </div>
+    </div>
     <nav class="navbar navbar-expand-xl navbar-dark bg-dark" style="z-index: 1000;">
         <div class="container-fluid">
           <a class="navbar-brand d-flex align-items-center gap-3" href="{% url 'home' %}">
@@ -112,24 +178,52 @@
           <a href="/" class="mb-3 me-2 mb-md-0 text-light text-decoration-none lh-1">
             <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
           </a>
-          <span class="mb-3 mb-md-0 text-light">&copy; 2024 Boycovskiy Club, Inc</span>
+          <span style="cursor: pointer;" class="mb-3 mb-md-0 text-light info" data-modal-target="#modal-info">&copy; 2024 Boycovskiy Club</span>
         </div>
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-          <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
-          <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
-          <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
-        </ul>
     </footer>
   <script>
     document.querySelector('main').style.minHeight = `calc(100vh - ${document.querySelector('.navbar').offsetHeight}px)`;
   </script>
     {% block script %}
     <script>
-        var elem = document.querySelector(".message");
-        elem.addEventListener("click", () => {
-            elem.classList.add("hidden");
-        });
+        const openModalButtons = document.querySelectorAll('[data-modal-target]')
+        const closeModalButtons = document.querySelectorAll('[data-close-button]')
+        const overlay = document.querySelector('main')
+
+        openModalButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const modal = document.querySelector(button.dataset.modalTarget)
+            openModal(modal)
+          })
+        })
+
+        overlay.addEventListener('click', () => {
+          const modals = document.querySelectorAll('.modal-info.active')
+          modals.forEach(modal => {
+            closeModal(modal)
+          })
+        })
+
+        closeModalButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const modal = button.closest('.modal-info')
+            closeModal(modal)
+          })
+        })
+
+        function openModal(modal) {
+          if (modal == null) return
+          modal.classList.add('active')
+          overlay.classList.add('active')
+        }
+
+        function closeModal(modal) {
+          if (modal == null) return
+          modal.classList.remove('active')
+          overlay.classList.remove('active')
+        }
     </script>
+    <script src="{% static 'js/popup.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     {% endblock script %}
