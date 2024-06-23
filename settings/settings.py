@@ -25,7 +25,7 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = os.environ.get('DJANGO_SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', True)
+DEBUG = os.environ.get('DJANGO_DEBUG', False)
 ALLOWED_HOSTS = ['*']
 ALLOWED_ADMIN_IPS = []
 SECRET_ADMIN_TOKEN = os.environ.get("SECRET_ADMIN_TOKEN")
