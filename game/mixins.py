@@ -13,9 +13,12 @@ from .models import DungeonLvl, Room
 class InstructionMixin(LoginRequiredMixin):
 
     def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        responce = super().dispatch(request, *args, **kwargs)
+        if not request.user.is_authenticated:
+            return self.handle_no_permission()
         if not request.user.is_started and request.resolver_match.url_name != "select_class":
             return redirect("instruction")
-        return super().dispatch(request, *args, **kwargs)
+        return responce
 
 
 class DungeonMixin(LoginRequiredMixin):
