@@ -205,7 +205,7 @@ class ShopLocation(DungeonMixin, View):
         return response.render()
 
 
-class SelectClassView(InstructionMixin, DungeonMixin, View):
+class SelectClassView(DungeonMixin, InstructionMixin, View):
     template_name = "game/select_class.html"
 
     def get(self, request: HttpRequest):
